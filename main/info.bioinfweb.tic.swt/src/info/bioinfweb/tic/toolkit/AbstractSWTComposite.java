@@ -58,6 +58,13 @@ public class AbstractSWTComposite extends Composite implements SWTToolkitCompone
 
 
 	@Override
+	public Dimension getToolkitSize() {
+		Point point = getSize();
+		return new Dimension(point.x, point.y);
+	}
+
+
+	@Override
 	public void assignSizeToSWTLayoutData(Point size) {}
 	
 	
