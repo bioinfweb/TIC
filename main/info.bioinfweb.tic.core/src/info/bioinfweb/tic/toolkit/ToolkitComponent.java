@@ -19,6 +19,7 @@
 package info.bioinfweb.tic.toolkit;
 
 
+import java.awt.Dimension;
 import java.awt.Point;
 
 import info.bioinfweb.tic.TICComponent;
@@ -63,6 +64,13 @@ public interface ToolkitComponent {
 	 * @return the location in the coordinate system of the parent GUI component
 	 */
 	public Point getLocationInParent();
+	
+	/**
+	 * Returns the current size of this component.
+	 * 
+	 * @return the size this component currently has
+	 */
+	public Dimension getToolkitSize();
 	
 	/**
 	 * Adopts the current size provided by the parent TIC component to this GUI toolkit component.
