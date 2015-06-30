@@ -21,24 +21,13 @@ package info.bioinfweb.tic;
 
 import info.bioinfweb.tic.TICPaintEvent;
 import info.bioinfweb.tic.TargetToolkit;
-import info.bioinfweb.tic.input.TICComponentKeyListenersList;
-import info.bioinfweb.tic.input.TICComponentMouseListenersList;
-import info.bioinfweb.tic.input.TICComponentMouseWheelListenerList;
+import info.bioinfweb.tic.input.TICListenerSet;
 import info.bioinfweb.tic.input.TICKeyListener;
 import info.bioinfweb.tic.input.TICMouseListener;
 import info.bioinfweb.tic.input.TICMouseWheelListener;
-import info.bioinfweb.tic.toolkit.DefaultSWTComposite;
-import info.bioinfweb.tic.toolkit.DefaultSwingComponent;
 import info.bioinfweb.tic.toolkit.ToolkitComponent;
 
-import java.awt.Component;
 import java.awt.Dimension;
-import java.awt.Point;
-
-import javax.swing.JComponent;
-
-import org.eclipse.swt.widgets.Composite;
-import org.eclipse.swt.widgets.Widget;
 
 
 
@@ -67,9 +56,9 @@ import org.eclipse.swt.widgets.Widget;
  */
 public abstract class TICComponent {
 	private ToolkitComponent toolkitComponent = null;
-	private TICComponentKeyListenersList keyListenersList = new TICComponentKeyListenersList(this);
-	private TICComponentMouseListenersList mouseListenersList = new TICComponentMouseListenersList(this);
-	private TICComponentMouseWheelListenerList mouseWheelListenersList = new TICComponentMouseWheelListenerList(this);
+	private TICListenerSet<TICKeyListener> keyListenersSet = new TICListenerSet<TICKeyListener>(this);
+	private TICListenerSet<TICMouseListener> mouseListenersSet = new TICListenerSet<TICMouseListener>(this);
+	private TICListenerSet<TICMouseWheelListener> mouseWheelListenersSet = new TICListenerSet<TICMouseWheelListener>(this);
 	
 	
 	/**
@@ -87,11 +76,8 @@ public abstract class TICComponent {
 	 *         implementation has yet been assigned
 	 */
 	public TargetToolkit getCurrentToolkit() {
-		if (toolkitComponent instanceof Component) {
-			return TargetToolkit.SWING;
-		}
-		else if (toolkitComponent instanceof Widget) {
-			return TargetToolkit.SWT;
+		if (hasToolkitComponent()) {
+			return getToolkitComponent().getTargetToolkit();
 		}
 		else {
 			return TargetToolkit.UNDEFINED;
@@ -140,56 +126,13 @@ public abstract class TICComponent {
 	/**
 	 * Adopts the current component size to the underlying GUI toolkit, if a toolkit specific component
 	 * has already been created.
+	 * <p>
+	 * This methods delegates to {@link ToolkitComponent#assignSize()}, if an underlying toolkit-specific 
+	 * component was already created.
 	 */
 	public void assignSize() {
 		if (hasToolkitComponent()) {
-			Dimension size = getSize();
-			if (getCurrentToolkit().equals(TargetToolkit.SWT)) {
-				Composite composite = (Composite)getToolkitComponent();
-				composite.setSize(size.width, size.height);
-				assignSizeToSWTLayoutData(composite.getSize(), composite);
-			}
-			else {
-				JComponent component = (JComponent)getToolkitComponent();
-				component.setSize(size);
-				component.setPreferredSize(size);  //TODO Also set minSize?
-			}
-		}
-	}
-	
-	
-	/**
-	 * Method called by {@link #assignSize()} to be used to adopt the size of the TIC component to the 
-	 * underlying SWT component's layout data. This method is only called if this component is backed
-	 * by an SWT composite and not is the Swing version is used or no toolkit specifc component has
-	 * been created yet.
-	 * <p>
-	 * It can be overwritten by inherited classes that know the class the layout data will have. This 
-	 * default implementation is empty. Note that depending on your GUI design {@link #assignSize()}
-	 * might not have the desired if this method is not overwritten with an according implementation.   
-	 * 
-	 * @param size - the size the composite shall have
-	 * @param composite - the SWT composite that backs this TIC component
-	 * 
-	 * @since 1.1.0
-	 */
-	public void assignSizeToSWTLayoutData(org.eclipse.swt.graphics.Point size, Composite composite) {}
-	
-	
-	/**
-	 * Returns the location of this component in the coordinate space of the parent component.
-	 * 
-	 * @return the location or {@code null} if neither a Swing nor a SWT component has yet been created.
-	 */
-	public Point getLocationInParent() {
-		switch (getCurrentToolkit()) {
-			case SWING:
-				return ((JComponent)getToolkitComponent()).getLocation();
-			case SWT:
-				org.eclipse.swt.graphics.Point location = ((Composite)getToolkitComponent()).getLocation();
-				return new Point(location.x, location.y);
-			default:
-				return null;
+			getToolkitComponent().assignSize();
 		}
 	}
 	
@@ -205,6 +148,11 @@ public abstract class TICComponent {
 	}
 	
 	
+	protected void setToolkitComponent(ToolkitComponent toolkitComponent) {
+		this.toolkitComponent = toolkitComponent;
+	}
+	
+	
 	/**
 	 * Checks if an associated toolkit specific component has already been assigned to this instance.
 	 * 
@@ -216,113 +164,53 @@ public abstract class TICComponent {
 	
 	
 	/**
-	 * Method that creates a new instance of the associated Swing component. It is called by
-	 * {@link #createSwingComponent()} internally.
-	 * <p>
-	 * Overwrite this method if you want to provide custom toolkit specific implementations.
-	 * <p>
-	 * <b>IMPORTANT:</b> The returned instances must implement the interface {@link ToolkitComponent}. 
+	 * Method used by {@code SwingComponentFactory} in the Swing module to create the concrete GUI
+	 * object for Swing. Inherited classes providing custom Swing specific implementations should
+	 * overwrite this method.
 	 * 
-	 * @return a new instance implementing {@link ToolkitComponent}
+	 * @return a fully qualified class name for a class used to create the concrete Swing GUI instance
+	 *         associated with this instance
 	 */
-	protected JComponent doCreateSwingComponent() {
-		return new DefaultSwingComponent(this);
+	protected String getSwingComponentClassName() {
+		return "info.bioinfweb.tic.toolkit.DefaultSwingComponent";
 	}
 	
 	
 	/**
-	 * Creates the Swing component that will be associated with this instance if it was not created before. 
-	 * The returned instance will be returned by {@link #getToolkitComponent()} from now on. Subsequent
-	 * calls of this method will return the same instance again. 
-	 * <p>
-	 * Note that this method can only be called if {@link #createSWTWidget(Composite, int)} has not been called 
-	 * before.
-	 * <p>
-	 * If you want to provide a custom Swing component overwrite {@link #doCreateSwingComponent()} 
-	 * instead of this method.
+	 * Method used by {@code SwingComponentFactory} in the SWT module to create the concrete GUI
+	 * object for Swing. Inherited classes providing custom Swing specific implementations should
+	 * overwrite this method.
 	 * 
-	 * @return the associated Swing component that has been created
-	 * @throws IllegalStateException if {@link #createSWTWidget(Composite, int)} has been called before 
+	 * @return a fully qualified class name for a class used to create the concrete SWT GUI instance
+	 *         associated with this instance
 	 */
-	public JComponent createSwingComponent() {
-		if (toolkitComponent == null) {
-			JComponent component = doCreateSwingComponent();
-			component.addKeyListener(keyListenersList);
-			component.addMouseListener(mouseListenersList);
-			component.addMouseMotionListener(mouseListenersList);
-			component.addMouseWheelListener(mouseWheelListenersList);
-			toolkitComponent = (ToolkitComponent)component;
-		}
-		else if (!getCurrentToolkit().equals(TargetToolkit.SWING)) {
-			throw new IllegalStateException("A non Swing component has already been created.");
-		}
-		return (JComponent)toolkitComponent;
+	protected String getSWTComponentClassName() {
+		return "info.bioinfweb.tic.toolkit.DefaultSWTComponent";
 	}
 	
 	
-	/**
-	 * Method that creates a new instance of the associated SWT component. It is called by
-	 * {@link #createSWTWidget} internally.
-	 * <p>
-	 * Overwrite this method if you want to provide custom toolkit specific implementations.
-	 * <p>
-	 * <b>IMPORTANT:</b> The returned instances must implement the interface {@link ToolkitComponent}. 
-	 * 
-	 * @return a new instance implementing {@link ToolkitComponent}
-	 */
-	protected Composite doCreateSWTWidget(Composite parent, int style) {
-		return new DefaultSWTComposite(parent, style, this);
+	protected TICListenerSet<TICKeyListener> getKeyListenersSet() {
+		return keyListenersSet;
 	}
-	
-	
-	private ToolkitComponent createAndRegisterSWTWidget(Composite parent, int style) {
-		Composite result = doCreateSWTWidget(parent, style);
-		result.addKeyListener(keyListenersList);
-		result.addMouseListener(mouseListenersList);
-		result.addMouseMoveListener(mouseListenersList);
-		result.addMouseTrackListener(mouseListenersList);
-		result.addMouseWheelListener(mouseWheelListenersList);
-		return (ToolkitComponent)result;
+
+
+	protected TICListenerSet<TICMouseListener> getMouseListenersSet() {
+		return mouseListenersSet;
 	}
-	
-	
-	/**
-	 * Creates the SWT component that will be associated with this instance if it was not created before. 
-	 * The returned instance will be returned by {@link #getToolkitComponent()} from now on. Subsequent
-	 * calls of this method will return the same instance again. The specified parameters will not be
-	 * considered in that case. 
-	 * <p>
-	 * Note that this method can only be called if {@link #createSWTWidget(Composite, int)} has not been called 
-	 * before.
-	 * <p>
-	 * If you want to provide a custom Swing component overwrite {@link #doCreateSwingComponent()} 
-	 * instead of this method.
-	 * 
-	 * @return the associated Swing component that has been created
-	 * @throws IllegalStateException if {@link #createSWTWidget(Composite, int)} has been called before 
-	 */
-	public Composite createSWTWidget(Composite parent, int style) {
-		if (toolkitComponent == null) {
-			toolkitComponent = createAndRegisterSWTWidget(parent, style);
-		}
-		else if (!getCurrentToolkit().equals(TargetToolkit.SWT)) {
-			throw new IllegalStateException("A non Swing component has already been created.");
-		}
-		else if (((Composite)toolkitComponent).isDisposed()) {  // && getCurrentToolkit().equals(TargetToolkit.SWT)
-			toolkitComponent = createAndRegisterSWTWidget(parent, style);  // Create new component if previous one was disposed.
-			//TODO Does this make sense this way? Anything else to be done about disposing of SWT elements?
-		}
-		return (Composite)toolkitComponent;
+
+
+	protected TICListenerSet<TICMouseWheelListener> getMouseWheelListenersSet() {
+		return mouseWheelListenersSet;
 	}
-	
-	
+
+
 	/**
 	 * Adds a key listener to this component (and automatically to the underlying toolkit specific component).
 	 * 
 	 * @param listener - the object to listen to key events
 	 */
 	public void addKeyListener(TICKeyListener listener) {
-		keyListenersList.getListeners().add(listener);
+		keyListenersSet.getListeners().add(listener);
 	}
 	
 	
@@ -333,7 +221,7 @@ public abstract class TICComponent {
 	 * @return {@code true} if the specified lister was contained in the list, {@code false} otherwise
 	 */
 	public boolean removeKeyListener(TICKeyListener listener) {
-		return keyListenersList.getListeners().remove(listener);
+		return keyListenersSet.getListeners().remove(listener);
 	}
 	
 	
@@ -344,7 +232,7 @@ public abstract class TICComponent {
 	 * @see #addMouseWheelListener(TICMouseWheelListener)
 	 */
 	public void addMouseListener(TICMouseListener listener) {
-		mouseListenersList.getListeners().add(listener);
+		mouseListenersSet.getListeners().add(listener);
 	}
 	
 	
@@ -355,7 +243,7 @@ public abstract class TICComponent {
 	 * @return {@code true} if the specified lister was contained in the list, {@code false} otherwise
 	 */
 	public boolean removeMouseListener(TICMouseListener listener) {
-		return mouseListenersList.getListeners().remove(listener);
+		return mouseListenersSet.getListeners().remove(listener);
 	}
 	
 	
@@ -366,7 +254,7 @@ public abstract class TICComponent {
 	 * @see #addMouseListener(TICMouseListener)
 	 */
 	public void addMouseWheelListener(TICMouseWheelListener listener) {
-		mouseWheelListenersList.getListeners().add(listener);
+		mouseWheelListenersSet.getListeners().add(listener);
 	}
 	
 	
@@ -377,6 +265,6 @@ public abstract class TICComponent {
 	 * @return {@code true} if the specified lister was contained in the list, {@code false} otherwise
 	 */
 	public boolean removeWheelMouseListener(TICMouseWheelListener listener) {
-		return mouseWheelListenersList.getListeners().remove(listener);
+		return mouseWheelListenersSet.getListeners().remove(listener);
 	}
 }

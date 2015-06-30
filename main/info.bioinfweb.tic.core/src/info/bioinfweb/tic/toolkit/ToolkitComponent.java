@@ -19,7 +19,10 @@
 package info.bioinfweb.tic.toolkit;
 
 
+import java.awt.Point;
+
 import info.bioinfweb.tic.TICComponent;
+import info.bioinfweb.tic.TargetToolkit;
 
 
 
@@ -30,10 +33,32 @@ import info.bioinfweb.tic.TICComponent;
  * @since 1.0.0
  */
 public interface ToolkitComponent {
+	/**
+	 * Returns the toolkit type this instance can be used with.
+	 * 
+	 * @return the toolkit type implemented by this instance
+	 */
+	public TargetToolkit getTargetToolkit();
+	
   /**
    * Returns the {@link TICComponent} that is displayed by this GUI element.
    */
   public TICComponent getIndependentComponent();
   
+  /**
+   * Repaints the contents of this instance.
+   */
   public void repaint();
+  
+	/**
+	 * Returns the coordinates of this component relative to its parent component.
+	 * 
+	 * @return the location in the coordinate system of the parent GUI component
+	 */
+	public Point getLocationInParent();
+	
+	/**
+	 * Adopts the current size provided by the parent TIC component to this GUI toolkit component.
+	 */
+	public void assignSize();
 }

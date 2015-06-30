@@ -23,8 +23,6 @@ import java.awt.event.InputEvent;
 import java.awt.event.KeyEvent;
 import java.util.EventObject;
 
-import org.eclipse.swt.SWT;
-
 import info.bioinfweb.commons.SystemUtils;
 import info.bioinfweb.tic.TICComponent;
 
@@ -55,43 +53,6 @@ public class TICInputEvent extends EventObject {
 	}
 	
 	
-	/**
-	 * Converts a SWT event time value to a Swing time value.
-	 * 
-	 * @param time - the SWT time value (unsigned {@code int})
-	 * @return a Swing time value (signed {@code long})
-	 */
-	public static long convertSWTEventTime(int time) {
-		return time & 0xFFFFFFFFL;
-	}
-	
-	
-	public static int convertSWTStateMask(int stateMask, int mouseButton) {
-		int result = 0;
-		if ((stateMask & SWT.SHIFT) != 0) {
-			result |= InputEvent.SHIFT_DOWN_MASK;
-		}
-		if ((stateMask & SWT.CONTROL) != 0) {
-			result |= InputEvent.CTRL_DOWN_MASK;
-		}
-		if ((stateMask & SWT.ALT) != 0) {
-			result |= InputEvent.ALT_DOWN_MASK;
-		}
-		if ((stateMask & SWT.COMMAND) != 0) {
-			result |= InputEvent.META_DOWN_MASK;
-		}
-		if (((stateMask & SWT.BUTTON1) != 0) || (mouseButton == 1)) {
-			result |= InputEvent.BUTTON1_DOWN_MASK;
-		}
-		if (((stateMask & SWT.BUTTON2) != 0) || (mouseButton == 2)) {
-			result |= InputEvent.BUTTON2_DOWN_MASK;
-		}
-		if (((stateMask & SWT.BUTTON3) != 0) || (mouseButton == 3)) {
-			result |= InputEvent.BUTTON3_DOWN_MASK;
-		}
-		//TODO Add more cases?
-		return result;
-	}
 	
 	
   @Override

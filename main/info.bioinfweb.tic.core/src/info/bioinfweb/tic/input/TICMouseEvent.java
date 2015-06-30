@@ -19,8 +19,6 @@
 package info.bioinfweb.tic.input;
 
 
-import java.awt.event.MouseEvent;
-
 import info.bioinfweb.tic.TICComponent;
 
 
@@ -50,19 +48,6 @@ public class TICMouseEvent extends TICInputEvent {
 	}
 	
 	
-	public TICMouseEvent(TICComponent source, MouseEvent swingEvent) {
-		this(source, swingEvent.getWhen(), swingEvent.getModifiersEx(), swingEvent.getButton(), swingEvent.getClickCount(), 
-				swingEvent.isPopupTrigger(), swingEvent.getX(), swingEvent.getY());
-	}
-
-
-	public TICMouseEvent(TICComponent source, org.eclipse.swt.events.MouseEvent swtEvent) {
-		this(source, convertSWTEventTime(swtEvent.time), convertSWTStateMask(swtEvent.stateMask, swtEvent.button), 
-				swtEvent.button, swtEvent.count,	false, swtEvent.x, swtEvent.y);
-		//TODO Determine popup trigger
-	}
-
-
 	public int getButton() {
 		return button;
 	}

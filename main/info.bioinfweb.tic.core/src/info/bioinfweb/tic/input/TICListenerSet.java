@@ -20,24 +20,28 @@ package info.bioinfweb.tic.input;
 
 
 import info.bioinfweb.tic.TICComponent;
-import info.bioinfweb.tic.TargetToolkit;
 
-import java.awt.event.MouseEvent;
-import java.util.ArrayList;
 import java.util.EventListener;
-import java.util.List;
-
-import javax.swing.JComponent;
-import javax.swing.SwingUtilities;
+import java.util.HashSet;
+import java.util.Set;
 
 
 
-public abstract class AbstractListenerList<L extends EventListener> {
+/**
+ * Manages a list of TIC event listeners. The toolkit specific TIC components will forward
+ * events from their toolkit to the elements of this list in instances of {@link TICComponent}. 
+ * 
+ * @author Ben St&ouml;ver
+ * @since 2.0.0
+ *
+ * @param <L> the listener type
+ */
+public class TICListenerSet<L extends EventListener> {
 	private TICComponent owner;
-	private List<L> listeners = new ArrayList<L>();
+	private Set<L> listeners = new HashSet<L>();
 	
 	
-	public AbstractListenerList(TICComponent owner) {
+	public TICListenerSet(TICComponent owner) {
 		super();
 		this.owner = owner;
 	}
@@ -48,16 +52,7 @@ public abstract class AbstractListenerList<L extends EventListener> {
 	}
 
 
-	public List<L> getListeners() {
+	public Set<L> getListeners() {
 		return listeners;
-	}
-	
-	
-	protected void forwardMouseEvent(MouseEvent event, boolean consumed) {
-		if (getOwner().getCurrentToolkit().equals(TargetToolkit.SWING) && !consumed) {
-			JComponent component = (JComponent)getOwner().getToolkitComponent(); 
-			component.getParent().dispatchEvent(SwingUtilities.convertMouseEvent(
-					component, event, component.getParent()));
-		}
 	}
 }

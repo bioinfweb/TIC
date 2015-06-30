@@ -3,19 +3,17 @@ main/info.bioinfweb.tic.core/.classpath -text svneol=unset#text/plain
 main/info.bioinfweb.tic.core/.project -text svneol=unset#text/plain
 main/info.bioinfweb.tic.core/.settings/org.eclipse.jdt.core.prefs -text svneol=unset#text/plain
 main/info.bioinfweb.tic.core/lib/commons-lang3-3.1.jar -text
-main/info.bioinfweb.tic.core/lib/swt.jar -text
 main/info.bioinfweb.tic.core/src/info/bioinfweb/tic/TICComponent.java -text svneol=unset#text/plain
 main/info.bioinfweb.tic.core/src/info/bioinfweb/tic/TICPaintEvent.java -text svneol=unset#text/plain
 main/info.bioinfweb.tic.core/src/info/bioinfweb/tic/TargetToolkit.java -text svneol=unset#text/plain
+main/info.bioinfweb.tic.core/src/info/bioinfweb/tic/exception/ToolkitSpecificInstantiationException.java -text svneol=unset#text/plain
 main/info.bioinfweb.tic.core/src/info/bioinfweb/tic/exception/UnsupportedToolkitException.java -text svneol=unset#text/plain
-main/info.bioinfweb.tic.core/src/info/bioinfweb/tic/input/AbstractListenerList.java -text svneol=unset#text/plain
-main/info.bioinfweb.tic.core/src/info/bioinfweb/tic/input/TICComponentKeyListenersList.java -text svneol=unset#text/plain
-main/info.bioinfweb.tic.core/src/info/bioinfweb/tic/input/TICComponentMouseListenersList.java -text svneol=unset#text/plain
-main/info.bioinfweb.tic.core/src/info/bioinfweb/tic/input/TICComponentMouseWheelListenerList.java -text svneol=unset#text/plain
+main/info.bioinfweb.tic.core/src/info/bioinfweb/tic/input/AbstractEventForwarder.java -text svneol=unset#text/plain
 main/info.bioinfweb.tic.core/src/info/bioinfweb/tic/input/TICInputEvent.java -text svneol=unset#text/plain
 main/info.bioinfweb.tic.core/src/info/bioinfweb/tic/input/TICKeyAdapter.java -text svneol=unset#text/plain
 main/info.bioinfweb.tic.core/src/info/bioinfweb/tic/input/TICKeyEvent.java -text svneol=unset#text/plain
 main/info.bioinfweb.tic.core/src/info/bioinfweb/tic/input/TICKeyListener.java -text svneol=unset#text/plain
+main/info.bioinfweb.tic.core/src/info/bioinfweb/tic/input/TICListenerSet.java -text svneol=unset#text/plain
 main/info.bioinfweb.tic.core/src/info/bioinfweb/tic/input/TICMouseAdapter.java -text svneol=unset#text/plain
 main/info.bioinfweb.tic.core/src/info/bioinfweb/tic/input/TICMouseEvent.java -text svneol=unset#text/plain
 main/info.bioinfweb.tic.core/src/info/bioinfweb/tic/input/TICMouseListener.java -text svneol=unset#text/plain
@@ -23,9 +21,4 @@ main/info.bioinfweb.tic.core/src/info/bioinfweb/tic/input/TICMouseWheelEvent.jav
 main/info.bioinfweb.tic.core/src/info/bioinfweb/tic/input/TICMouseWheelListener.java -text svneol=unset#text/plain
 main/info.bioinfweb.tic.core/src/info/bioinfweb/tic/input/package-info.java -text svneol=unset#text/plain
 main/info.bioinfweb.tic.core/src/info/bioinfweb/tic/package-info.java -text svneol=unset#text/plain
-main/info.bioinfweb.tic.core/src/info/bioinfweb/tic/toolkit/AbstractSWTComposite.java -text svneol=unset#text/plain
-main/info.bioinfweb.tic.core/src/info/bioinfweb/tic/toolkit/AbstractSWTWidget.java -text svneol=unset#text/plain
-main/info.bioinfweb.tic.core/src/info/bioinfweb/tic/toolkit/AbstractSwingComponent.java -text svneol=unset#text/plain
-main/info.bioinfweb.tic.core/src/info/bioinfweb/tic/toolkit/DefaultSWTComposite.java -text svneol=unset#text/plain
-main/info.bioinfweb.tic.core/src/info/bioinfweb/tic/toolkit/DefaultSwingComponent.java -text svneol=unset#text/plain
 main/info.bioinfweb.tic.core/src/info/bioinfweb/tic/toolkit/ToolkitComponent.java -text svneol=unset#text/plain

@@ -19,9 +19,6 @@
 package info.bioinfweb.tic.input;
 
 
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseWheelEvent;
-
 import info.bioinfweb.tic.TICComponent;
 
 
@@ -43,20 +40,6 @@ public class TICMouseWheelEvent extends TICMouseEvent {
 		super(source, time, modifiers, button, clickCount, popupTrigger, componentX, componentY);
 		this.wheelRotation = wheelRotation;
 		this.preciseWheelRotation = preciseWheelRotation;
-	}
-
-
-	public TICMouseWheelEvent(TICComponent source, MouseWheelEvent swingEvent) {
-		super(source, swingEvent);
-		wheelRotation = swingEvent.getWheelRotation();
-		preciseWheelRotation = swingEvent.getPreciseWheelRotation();
-	}
-
-
-	public TICMouseWheelEvent(TICComponent source, org.eclipse.swt.events.MouseEvent swtEvent) {
-		super(source, swtEvent);
-		wheelRotation = -swtEvent.count;  //TODO Is this the correct field?
-		preciseWheelRotation = -swtEvent.count;  //TODO Is this the correct field?
 	}
 
 
