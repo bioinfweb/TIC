@@ -38,6 +38,22 @@ import org.eclipse.swt.widgets.Composite;
  * @since 2.0.0
  */
 public class SWTComponentFactory {
+	private static SWTComponentFactory firstInstance = null;
+	
+	
+	private SWTComponentFactory() {
+		super();
+	}
+	
+	
+	public static SWTComponentFactory getInstance() {
+		if (firstInstance == null) {
+			firstInstance = new SWTComponentFactory();
+		}
+		return firstInstance;
+	}
+
+
 	private Composite createSWTComponent(TICComponent ticComponent, Composite parent, int style) {
 		try {
 			return (Composite)Class.forName(ticComponent.getSWTComponentClassName()).
