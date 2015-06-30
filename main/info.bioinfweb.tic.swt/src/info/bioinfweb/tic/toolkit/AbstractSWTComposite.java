@@ -24,7 +24,6 @@ import java.awt.Dimension;
 import info.bioinfweb.tic.TICComponent;
 import info.bioinfweb.tic.TargetToolkit;
 
-import org.eclipse.swt.graphics.Point;
 import org.eclipse.swt.widgets.Composite;
 
 
@@ -35,7 +34,7 @@ import org.eclipse.swt.widgets.Composite;
  * @author Ben St&ouml;ver
  * @since 1.1.0
  */
-public class AbstractSWTComposite extends Composite implements SWTToolkitComponent {
+public class AbstractSWTComposite extends Composite implements ToolkitComponent {
 	private TICComponent independentComponent;
 
 	
@@ -59,20 +58,13 @@ public class AbstractSWTComposite extends Composite implements SWTToolkitCompone
 
 	@Override
 	public Dimension getToolkitSize() {
-		Point point = getSize();
-		return new Dimension(point.x, point.y);
+		return SWTComponentTools.getToolkitSize(this);
 	}
 
 
 	@Override
-	public void assignSizeToSWTLayoutData(Point size) {}
-	
-	
-	@Override
 	public void assignSize() {
-		Dimension size = getIndependentComponent().getSize();
-		setSize(size.width, size.height);
-		assignSizeToSWTLayoutData(getSize());
+		SWTComponentTools.assignSize(this);
 	}
 
 
@@ -84,7 +76,6 @@ public class AbstractSWTComposite extends Composite implements SWTToolkitCompone
 
 	@Override
 	public java.awt.Point getLocationInParent() {
-		Point location = getLocation();
-		return new java.awt.Point(location.x, location.y);
+		return SWTComponentTools.getLocationInParent(this);
 	}
 }
