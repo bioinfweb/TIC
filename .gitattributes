@@ -22,3 +22,12 @@ main/info.bioinfweb.tic.core/src/info/bioinfweb/tic/input/TICMouseWheelListener.
 main/info.bioinfweb.tic.core/src/info/bioinfweb/tic/input/package-info.java -text svneol=unset#text/plain
 main/info.bioinfweb.tic.core/src/info/bioinfweb/tic/package-info.java -text svneol=unset#text/plain
 main/info.bioinfweb.tic.core/src/info/bioinfweb/tic/toolkit/ToolkitComponent.java -text svneol=unset#text/plain
+main/info.bioinfweb.tic.swing/.classpath -text svneol=unset#text/plain
+main/info.bioinfweb.tic.swing/.project -text svneol=unset#text/plain
+main/info.bioinfweb.tic.swing/.settings/org.eclipse.jdt.core.prefs -text svneol=unset#text/plain
+main/info.bioinfweb.tic.swing/src/info/bioinfweb/tic/SwingComponentFactory.java -text svneol=unset#text/plain
+main/info.bioinfweb.tic.swing/src/info/bioinfweb/tic/input/SwingKeyEventForwarder.java -text svneol=unset#text/plain
+main/info.bioinfweb.tic.swing/src/info/bioinfweb/tic/input/SwingMouseEventForwarder.java -text svneol=unset#text/plain
+main/info.bioinfweb.tic.swing/src/info/bioinfweb/tic/input/SwingMouseWheelEventForwarder.java -text svneol=unset#text/plain
+main/info.bioinfweb.tic.swing/src/info/bioinfweb/tic/toolkit/AbstractSwingComponent.java -text svneol=unset#text/plain
+main/info.bioinfweb.tic.swing/src/info/bioinfweb/tic/toolkit/DefaultSwingComponent.java -text svneol=unset#text/plain
