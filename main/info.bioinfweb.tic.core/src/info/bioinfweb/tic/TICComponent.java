@@ -167,6 +167,9 @@ public abstract class TICComponent {
 	 * Method used by {@code SwingComponentFactory} in the Swing module to create the concrete GUI
 	 * object for Swing. Inherited classes providing custom Swing specific implementations should
 	 * overwrite this method.
+	 * <p>
+	 * Note that custom implementations need to provider constructors as defined in the documentation
+	 * of {@link ToolkitComponent}.
 	 * 
 	 * @return a fully qualified class name for a class used to create the concrete Swing GUI instance
 	 *         associated with this instance
@@ -180,6 +183,9 @@ public abstract class TICComponent {
 	 * Method used by {@code SwingComponentFactory} in the SWT module to create the concrete GUI
 	 * object for Swing. Inherited classes providing custom Swing specific implementations should
 	 * overwrite this method.
+	 * <p>
+	 * Note that custom implementations need to provider constructors as defined in the documentation
+	 * of {@link ToolkitComponent}.
 	 * 
 	 * @return a fully qualified class name for a class used to create the concrete SWT GUI instance
 	 *         associated with this instance

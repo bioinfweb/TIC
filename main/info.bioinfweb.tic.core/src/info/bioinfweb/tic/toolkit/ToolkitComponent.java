@@ -27,7 +27,14 @@ import info.bioinfweb.tic.TargetToolkit;
 
 
 /**
- * Should be implemented by all GUI classes that display the contents of a {@link PaintableArea}.
+ * Interface to be implemented by all toolkit-specific GUI components associated with a {@link TICComponent}.
+ * <p>
+ * Note that implementing classes must always provide constructors with the following parameters in order to 
+ * be used with a {@link TICComponent}:
+ * <ul>
+ *   <li>Swing: {@code SomeSwingComponent(TICComponent owner)}</li> 
+ *   <li>SWT: {@code SomeSWTComponent(TICComponent owner, Composite parent, int style)}</li>
+ * </ul> 
  * 
  * @author Ben St&ouml;ver
  * @since 1.0.0
