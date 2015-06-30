@@ -29,7 +29,7 @@ import org.eclipse.swt.widgets.Composite;
 
 
 /**
- * The Swing component implementing {@link ToolkitComponent}. Custom Swing components can be inherited from this class.
+ * The SWT component implementing {@link ToolkitComponent}. Custom SWT components can be inherited from this class.
  *
  * @author Ben St&ouml;ver
  * @since 1.1.0

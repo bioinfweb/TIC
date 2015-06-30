@@ -29,7 +29,8 @@ import org.eclipse.swt.widgets.Composite;
 
 
 /**
- * Tool collection for shared functionality of {@link AbstractSWTWidget} and {@link AbstractSWTComposite}.
+ * Tool collection for shared functionality of {@link AbstractSWTWidget} and {@link AbstractSWTComposite} or
+ * SWT components implementing {@link ToolkitComponent} which cannot inherit from {@link AbstractSWTComposite}.
  * 
  * @author Ben St&ouml;ver
  * @since 2.0.0
