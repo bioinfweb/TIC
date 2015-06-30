@@ -25,7 +25,11 @@ import info.bioinfweb.tic.input.SWTMouseEventForwarder;
 import info.bioinfweb.tic.input.SWTMouseWheelEventForwarder;
 import info.bioinfweb.tic.toolkit.ToolkitComponent;
 
+import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Parameter;
+
+import javax.swing.JComponent;
 
 import org.eclipse.swt.widgets.Composite;
 
@@ -56,8 +60,19 @@ public class SWTComponentFactory {
 
 	private Composite createSWTComponent(TICComponent ticComponent, Composite parent, int style) {
 		try {
-			return (Composite)Class.forName(ticComponent.getSWTComponentClassName()).
-					getConstructor(TICComponent.class, Composite.class, int.class).newInstance(this, parent, style);
+			Constructor<?>[] constructors = Class.forName(ticComponent.getSWTComponentClassName()).getConstructors();
+			for (int i = 0; i < constructors.length; i++) {
+				Parameter[] parameters = constructors[i].getParameters();
+				if ((parameters.length == 3) && parameters[0].getType().isAssignableFrom(ticComponent.getClass())
+						&& parameters[1].getType().equals(Composite.class) && parameters[2].getType().equals(int.class)) {
+					
+					return (Composite)constructors[i].newInstance(ticComponent, parent, style);
+				}
+			}
+			throw new NoSuchMethodException("No according constructor found for " + ticComponent.getSWTComponentClassName());
+
+//			return (Composite)Class.forName(ticComponent.getSWTComponentClassName()).
+//					getConstructor(TICComponent.class, Composite.class, int.class).newInstance(ticComponent, parent, style);
 		} 
 		catch (InstantiationException e) {
 			throw new ToolkitSpecificInstantiationException(e);
