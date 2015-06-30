@@ -56,6 +56,12 @@ public abstract class AbstractSwingComponent extends JPanel implements ToolkitCo
 
 
 	@Override
+	public Dimension getToolkitSize() {
+		return getSize();
+	}
+
+
+	@Override
 	public Dimension getMaximumSize() {
 		Dimension maxSize = super.getMaximumSize();
 		Dimension preferredSize = getPreferredSize();
