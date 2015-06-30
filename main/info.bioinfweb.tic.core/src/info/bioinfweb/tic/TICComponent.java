@@ -191,7 +191,7 @@ public abstract class TICComponent {
 	 *         associated with this instance
 	 */
 	protected String getSWTComponentClassName() {
-		return "info.bioinfweb.tic.toolkit.DefaultSWTComponent";
+		return "info.bioinfweb.tic.toolkit.DefaultSWTComposite";
 	}
 	
 	
