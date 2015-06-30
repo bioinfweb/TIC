@@ -38,6 +38,22 @@ import javax.swing.JComponent;
  * @since 2.0.0
  */
 public class SwingComponentFactory {
+	private static SwingComponentFactory firstInstance = null;
+	
+	
+	private SwingComponentFactory() {
+		super();
+	}
+	
+	
+	public static SwingComponentFactory getInstance() {
+		if (firstInstance == null) {
+			firstInstance = new SwingComponentFactory();
+		}
+		return firstInstance;
+	}
+
+
 	private JComponent createSwingComponent(TICComponent ticComponent) {
 		try {
 			return (JComponent)Class.forName(ticComponent.getSwingComponentClassName()).
