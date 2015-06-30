@@ -38,7 +38,7 @@ public class AbstractSWTComposite extends Composite implements ToolkitComponent 
 	private TICComponent independentComponent;
 
 	
-	public AbstractSWTComposite(Composite parent, int style, TICComponent ticComponent) {
+	public AbstractSWTComposite(TICComponent ticComponent, Composite parent, int style) {
 		super(parent, style);
 		independentComponent = ticComponent;
 	}

@@ -43,7 +43,7 @@ public abstract class AbstractSWTWidget extends Canvas implements PaintListener,
 	private TICComponent independentComponent;
 
 	
-	public AbstractSWTWidget(Composite parent, int style, TICComponent ticComponent) {
+	public AbstractSWTWidget(TICComponent ticComponent, Composite parent, int style) {
 		super(parent, style);
 		independentComponent = ticComponent;
 		addPaintListener(this);
