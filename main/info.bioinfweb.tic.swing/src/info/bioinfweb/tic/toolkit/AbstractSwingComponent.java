@@ -65,7 +65,7 @@ public abstract class AbstractSwingComponent extends JPanel implements ToolkitCo
 
 	@Override
 	public void assignSize() {
-		Dimension size = getSize();
+		Dimension size = getIndependentComponent().getSize();
 		setSize(size);
 		setPreferredSize(size);
 	}
