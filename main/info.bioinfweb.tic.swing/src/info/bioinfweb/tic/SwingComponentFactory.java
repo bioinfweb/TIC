@@ -25,7 +25,9 @@ import info.bioinfweb.tic.input.SwingMouseEventForwarder;
 import info.bioinfweb.tic.input.SwingMouseWheelEventForwarder;
 import info.bioinfweb.tic.toolkit.ToolkitComponent;
 
+import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Parameter;
 
 import javax.swing.JComponent;
 
@@ -56,8 +58,14 @@ public class SwingComponentFactory {
 
 	private JComponent createSwingComponent(TICComponent ticComponent) {
 		try {
-			return (JComponent)Class.forName(ticComponent.getSwingComponentClassName()).
-					getConstructor(TICComponent.class).newInstance(this);
+			Constructor<?>[] constructors = Class.forName(ticComponent.getSwingComponentClassName()).getConstructors();
+			for (int i = 0; i < constructors.length; i++) {
+				Parameter[] parameters = constructors[i].getParameters();
+				if ((parameters.length == 1) && parameters[0].getType().isAssignableFrom(ticComponent.getClass())) {
+					return (JComponent)constructors[i].newInstance(ticComponent);
+				}
+			}
+			throw new NoSuchMethodException("No according constructor found for " + ticComponent.getSwingComponentClassName());
 		} 
 		catch (InstantiationException e) {
 			throw new ToolkitSpecificInstantiationException(e);
