@@ -2,17 +2,17 @@
  * LibrAlign - A GUI library for displaying and editing multiple sequence alignments and attached data
  * Copyright (C) 2014-2015  Ben Stöver
  * <http://bioinfweb.info/LibrAlign>
- * 
+ *
  * This file is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
- * 
+ *
  * This file is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
  * GNU General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU General Public License
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
@@ -27,7 +27,6 @@ import info.bioinfweb.tic.toolkit.ToolkitComponent;
 
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Parameter;
 
 import org.eclipse.swt.widgets.Composite;
 
@@ -35,19 +34,19 @@ import org.eclipse.swt.widgets.Composite;
 
 /**
  * Factory that allows to create SWT GUI component instances from instances of {@link TICComponent}.
- * 
+ *
  * @author Ben St&ouml;ver
  * @since 2.0.0
  */
 public class SWTComponentFactory {
 	private static SWTComponentFactory firstInstance = null;
-	
-	
+
+
 	private SWTComponentFactory() {
 		super();
 	}
-	
-	
+
+
 	public static SWTComponentFactory getInstance() {
 		if (firstInstance == null) {
 			firstInstance = new SWTComponentFactory();
@@ -60,45 +59,45 @@ public class SWTComponentFactory {
 		try {
 			Constructor<?>[] constructors = Class.forName(ticComponent.getSWTComponentClassName()).getConstructors();
 			for (int i = 0; i < constructors.length; i++) {
-				Parameter[] parameters = constructors[i].getParameters();
-				if ((parameters.length == 3) && parameters[0].getType().isAssignableFrom(ticComponent.getClass())
-						&& parameters[1].getType().equals(Composite.class) && parameters[2].getType().equals(int.class)) {
-					
+				Class<?>[] parameters = constructors[i].getParameterTypes();
+				if ((parameters.length == 3) && parameters[0].isAssignableFrom(ticComponent.getClass())
+						&& parameters[1].equals(Composite.class) && parameters[2].equals(int.class)) {
+
 					Composite result = (Composite)constructors[i].newInstance(ticComponent, parent, style);
 					if (result instanceof ToolkitComponent) {
 						return result;
 					}
 					else {
-						throw new ToolkitSpecificInstantiationException("The constructed instance of type " + 
-								result.getClass().getCanonicalName() + " does not implement " + ToolkitComponent.class.getCanonicalName() + 
+						throw new ToolkitSpecificInstantiationException("The constructed instance of type " +
+								result.getClass().getCanonicalName() + " does not implement " + ToolkitComponent.class.getCanonicalName() +
 								".");
 					}
 				}
 			}
-			throw new ToolkitSpecificInstantiationException("No according constructor found for " + 
+			throw new ToolkitSpecificInstantiationException("No according constructor found for " +
 					ticComponent.getSWTComponentClassName());
-		} 
+		}
 		catch (InstantiationException e) {
 			throw new ToolkitSpecificInstantiationException(e);
-		} 
+		}
 		catch (IllegalAccessException e) {
 			throw new ToolkitSpecificInstantiationException(e);
-		} 
+		}
 		catch (IllegalArgumentException e) {
 			throw new ToolkitSpecificInstantiationException(e);
-		} 
+		}
 		catch (InvocationTargetException e) {
 			throw new ToolkitSpecificInstantiationException(e);
-		} 
+		}
 		catch (SecurityException e) {
 			throw new ToolkitSpecificInstantiationException(e);
-		} 
+		}
 		catch (ClassNotFoundException e) {
 			throw new ToolkitSpecificInstantiationException(e);
 		}
 	}
-	
-	
+
+
 	private ToolkitComponent createAndRegisterSWTWidget(TICComponent ticComponent, Composite parent, int style) {
 		Composite result = createSWTComponent(ticComponent, parent, style);
 		result.addKeyListener(new SWTKeyEventForwarder(ticComponent.getKeyListenersSet()));
@@ -109,19 +108,19 @@ public class SWTComponentFactory {
 		result.addMouseWheelListener(new SWTMouseWheelEventForwarder(ticComponent.getMouseWheelListenersSet()));
 		return (ToolkitComponent)result;
 	}
-	
-	
+
+
 	/**
-	 * Creates the SWT component that will be associated with the specified TIC component if it was not 
-	 * created before. The returned instance will be returned by {@link #getToolkitComponent()} from now 
-	 * on. Subsequent calls of this method will return the same instance again. The specified parameters 
-	 * will not be considered in that case. 
+	 * Creates the SWT component that will be associated with the specified TIC component if it was not
+	 * created before. The returned instance will be returned by {@link #getToolkitComponent()} from now
+	 * on. Subsequent calls of this method will return the same instance again. The specified parameters
+	 * will not be considered in that case.
 	 * <p>
 	 * Note that this method can only be called if no Swing component has been created for the specified
 	 * TIC component before.
-	 * 
+	 *
 	 * @return the associated Swing component that has been created
-	 * @throws IllegalStateException if an Swing component has already been created for {@code ticComponent} 
+	 * @throws IllegalStateException if an Swing component has already been created for {@code ticComponent}
 	 */
 	public Composite getSWTComponent(TICComponent ticComponent, Composite parent, int style) {
 		if (!ticComponent.hasToolkitComponent()) {
