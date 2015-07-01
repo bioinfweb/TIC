@@ -64,13 +64,19 @@ public class SWTComponentFactory {
 				if ((parameters.length == 3) && parameters[0].getType().isAssignableFrom(ticComponent.getClass())
 						&& parameters[1].getType().equals(Composite.class) && parameters[2].getType().equals(int.class)) {
 					
-					return (Composite)constructors[i].newInstance(ticComponent, parent, style);
+					Composite result = (Composite)constructors[i].newInstance(ticComponent, parent, style);
+					if (result instanceof ToolkitComponent) {
+						return result;
+					}
+					else {
+						throw new ToolkitSpecificInstantiationException("The constructed instance of type " + 
+								result.getClass().getCanonicalName() + " does not implement " + ToolkitComponent.class.getCanonicalName() + 
+								".");
+					}
 				}
 			}
-			throw new NoSuchMethodException("No according constructor found for " + ticComponent.getSWTComponentClassName());
-
-//			return (Composite)Class.forName(ticComponent.getSWTComponentClassName()).
-//					getConstructor(TICComponent.class, Composite.class, int.class).newInstance(ticComponent, parent, style);
+			throw new ToolkitSpecificInstantiationException("No according constructor found for " + 
+					ticComponent.getSWTComponentClassName());
 		} 
 		catch (InstantiationException e) {
 			throw new ToolkitSpecificInstantiationException(e);
@@ -82,9 +88,6 @@ public class SWTComponentFactory {
 			throw new ToolkitSpecificInstantiationException(e);
 		} 
 		catch (InvocationTargetException e) {
-			throw new ToolkitSpecificInstantiationException(e);
-		} 
-		catch (NoSuchMethodException e) {
 			throw new ToolkitSpecificInstantiationException(e);
 		} 
 		catch (SecurityException e) {
