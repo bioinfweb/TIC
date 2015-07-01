@@ -62,10 +62,19 @@ public class SwingComponentFactory {
 			for (int i = 0; i < constructors.length; i++) {
 				Parameter[] parameters = constructors[i].getParameters();
 				if ((parameters.length == 1) && parameters[0].getType().isAssignableFrom(ticComponent.getClass())) {
-					return (JComponent)constructors[i].newInstance(ticComponent);
+					JComponent result = (JComponent)constructors[i].newInstance(ticComponent);
+					if (result instanceof ToolkitComponent) {
+						return result;
+					}
+					else {
+						throw new ToolkitSpecificInstantiationException("The constructed instance of type " + 
+								result.getClass().getCanonicalName() + " does not implement " + ToolkitComponent.class.getCanonicalName() + 
+								".");
+					}
 				}
 			}
-			throw new NoSuchMethodException("No according constructor found for " + ticComponent.getSwingComponentClassName());
+			throw new ToolkitSpecificInstantiationException("No according constructor found for " + 
+					ticComponent.getSwingComponentClassName());
 		} 
 		catch (InstantiationException e) {
 			throw new ToolkitSpecificInstantiationException(e);
@@ -77,9 +86,6 @@ public class SwingComponentFactory {
 			throw new ToolkitSpecificInstantiationException(e);
 		} 
 		catch (InvocationTargetException e) {
-			throw new ToolkitSpecificInstantiationException(e);
-		} 
-		catch (NoSuchMethodException e) {
 			throw new ToolkitSpecificInstantiationException(e);
 		} 
 		catch (SecurityException e) {
