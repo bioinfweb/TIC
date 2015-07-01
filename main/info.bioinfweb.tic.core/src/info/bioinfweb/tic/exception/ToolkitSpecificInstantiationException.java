@@ -38,4 +38,9 @@ public class ToolkitSpecificInstantiationException extends RuntimeException {
 	public ToolkitSpecificInstantiationException(Throwable cause) {
 		super(cause.getLocalizedMessage(), cause);
 	}
+
+	
+	public ToolkitSpecificInstantiationException(String message) {
+		super(message);
+	}
 }
