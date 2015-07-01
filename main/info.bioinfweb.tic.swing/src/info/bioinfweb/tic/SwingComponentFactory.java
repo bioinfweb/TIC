@@ -60,8 +60,8 @@ public class SwingComponentFactory {
 		try {
 			Constructor<?>[] constructors = Class.forName(ticComponent.getSwingComponentClassName()).getConstructors();
 			for (int i = 0; i < constructors.length; i++) {
-				Parameter[] parameters = constructors[i].getParameters();
-				if ((parameters.length == 1) && parameters[0].getType().isAssignableFrom(ticComponent.getClass())) {
+				Class<?>[] parameters = constructors[i].getParameterTypes();
+				if ((parameters.length == 1) && parameters[0].isAssignableFrom(ticComponent.getClass())) {
 					JComponent result = (JComponent)constructors[i].newInstance(ticComponent);
 					if (result instanceof ToolkitComponent) {
 						return result;
