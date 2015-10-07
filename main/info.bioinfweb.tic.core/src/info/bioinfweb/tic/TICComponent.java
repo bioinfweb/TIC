@@ -180,7 +180,7 @@ public abstract class TICComponent {
 	
 	
 	/**
-	 * Method used by {@code SwingComponentFactory} in the SWT module to create the concrete GUI
+	 * Method used by {@code SWTComponentFactory} in the SWT module to create the concrete GUI
 	 * object for Swing. Inherited classes providing custom Swing specific implementations should
 	 * overwrite this method.
 	 * <p>
