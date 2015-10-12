@@ -27,7 +27,6 @@ import info.bioinfweb.tic.toolkit.ToolkitComponent;
 
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Parameter;
 
 import javax.swing.JComponent;
 
@@ -35,6 +34,18 @@ import javax.swing.JComponent;
 
 /**
  * Factory that allows to create Swing GUI component instances from instances of {@link TICComponent}.
+ * <p>
+ * The following example shows how to create Swing-specific GUI components from a TIC component.
+ * <pre>
+ * // Create an instance of a TIC component:
+ * TICComponent ticComponent = new SomeComponent();
+ * 
+ * // Use this factory to create a Swing-specific instance from it:
+ * JComponent swingComponent = SwingComponentFactory.getInstance().getSwingComponent(ticComponent);
+ * 
+ * // swingComponent can now be used in any Swing GUI.
+ * </pre>
+ * See {@link #getSwingComponent(TICComponent)} for further details.
  * 
  * @author Ben St&ouml;ver
  * @since 2.0.0
