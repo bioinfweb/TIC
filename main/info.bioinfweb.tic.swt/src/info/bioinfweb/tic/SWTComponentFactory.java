@@ -34,7 +34,17 @@ import org.eclipse.swt.widgets.Composite;
 
 /**
  * Factory that allows to create SWT GUI component instances from instances of {@link TICComponent}.
- *
+ * <p>
+ * The following example shows how to create SWT-specific GUI components from a TIC component.
+ * <pre>
+ * // Create an instance of a TIC component:
+ * TICComponent ticComponent = new SomeComponent();
+ * 
+ * // Use this factory to create a SWT-specific instance from it:
+ * Composite swtComponent = SWTComponentFactory.getInstance().getSWTComponent(ticComponent, parentSWTComponent, SWT.NONE);
+ * </pre>
+ * See {@link #getSWTComponent(TICComponent, Composite, int)} for further details.
+ * 
  * @author Ben St&ouml;ver
  * @since 2.0.0
  */
@@ -47,6 +57,11 @@ public class SWTComponentFactory {
 	}
 
 
+	/**
+	 * Returns the shared instance of this factory
+	 * 
+	 * @return the shared factory instance
+	 */
 	public static SWTComponentFactory getInstance() {
 		if (firstInstance == null) {
 			firstInstance = new SWTComponentFactory();
