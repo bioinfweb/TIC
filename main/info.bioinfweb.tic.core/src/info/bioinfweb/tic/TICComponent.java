@@ -32,9 +32,17 @@ import java.awt.Dimension;
 
 
 /**
- * All classes implementing TIC components must inherit from this class.
+ * This is the parent class of all GUI components based in TIC. Inherited classes are toolkit independent GUI 
+ * components that can be used in both Swing and SWT GUIs. To create toolkit specific instances of inherited
+ * classes {@code SwingComponentFactory} and {@code SWTComponentFactory} from the according TIC modules can be used.
  * <p>
- * Note that depending on your GUI design {@link #assignSize()} might not have the desired if 
+ * To create a concrete TIC component, the abstract methods {@link #paint(TICPaintEvent)} and {@link #getSize()} 
+ * need to be implemented. Implementing these methods is sufficient for creating components that paint their
+ * contents directly. If toolkit specific versions containing subcomponents from Swing or SWT are created instead,
+ * {@link #getSwingComponentClassName()} and {@link #getSWTComponentClassName()} must be overwritten accordingly
+ * and the implementation of {@link #paint(TICPaintEvent)} may remain empty.  
+ * <p>
+ * Note that depending on your GUI design {@link #assignSize()} might not have the desired effect if 
  * {@link #assignSizeToSWTLayoutData(org.eclipse.swt.graphics.Point, Composite)} is not overwritten with an according 
  * implementation.
  * <p>
