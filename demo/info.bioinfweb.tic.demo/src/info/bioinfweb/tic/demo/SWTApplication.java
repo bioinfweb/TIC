@@ -9,7 +9,15 @@ import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Shell;
 
 
-
+/**
+ * Example that demonstrates using TIC components in SWT applications.
+ * <p>
+ * This example is used in the 
+ * <a href="http://bioinfweb.info/TIC/Documentation">TIC documentation</a>.
+ * 
+ * @author Sarah Wiechers
+ * @author Ben St&ouml;ver
+ */
 public class SWTApplication {	
 	protected Shell shell;
 	private SierpinskiTriangleComponent triangle;
@@ -17,6 +25,7 @@ public class SWTApplication {
 	
 	/**
 	 * Launch the application.
+	 * 
 	 * @param args
 	 */
 	public static void main(String[] args) {
@@ -53,8 +62,11 @@ public class SWTApplication {
 		shell.setSize(450, 300);
 		shell.setText("SWT Application");
 		shell.setLayout(new FillLayout(SWT.HORIZONTAL));
-		
+
+		// Create TIC component instance:
 		triangle = new SierpinskiTriangleComponent();
+		
+		// Create SWT-specific component instance and add it to the SWT GUI:
 		SWTComponentFactory.getInstance().getSWTComponent(triangle, shell, SWT.NONE);
 	}
 }

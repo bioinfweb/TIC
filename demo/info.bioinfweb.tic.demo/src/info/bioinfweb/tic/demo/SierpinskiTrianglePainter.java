@@ -10,6 +10,13 @@ import java.awt.geom.Path2D;
 
 
 
+/**
+ * This class paints a Sierpinski triangle that is used as an example TIC component content. The detailed
+ * contents of this class are not relevant for the TIC usage example.
+ * 
+ * @author Sarah Wiechers
+ * @author Ben St&ouml;ver
+ */
 public class SierpinskiTrianglePainter {
 	public static final double MINIMAL_SIDE_LENGHTH = 5;
 	
@@ -19,60 +26,61 @@ public class SierpinskiTrianglePainter {
 		
 		double sideLength = Math.min(size.getWidth(), size.getHeight()) * 2 / 3;
 		double triangleHeight = getTriangleHeight(sideLength);
+		
 		// start at a point so that triangle fits on screen.
-		double startx = (size.getWidth() - sideLength) / 2;
-		double starty = (size.getHeight() - triangleHeight) / 2 + triangleHeight;
+		double startX = (size.getWidth() - sideLength) / 2;
+		double startY = (size.getHeight() - triangleHeight) / 2 + triangleHeight;
 		
 		g.setColor(SystemColor.control);
 		g.fill(new Rectangle(size));
 		
 		g.setColor(SystemColor.controlText);
-		drawTriangle(g, startx, starty, sideLength);
-		drawSierpinskiTriangle(g, startx, starty, sideLength / 2);
+		drawTriangle(g, startX, startY, sideLength);
+		drawSierpinskiTriangle(g, startX, startY, sideLength / 2);
 	}
 	
 	
-	private static void drawSierpinskiTriangle (Graphics2D g, double startx, double starty, double sideLength) {
+	private static void drawSierpinskiTriangle (Graphics2D g, double startX, double startY, double sideLength) {
 		if (sideLength > MINIMAL_SIDE_LENGHTH) {
 			double xDiff = sideLength / 4;
 			double yDiff = getTriangleHeight(sideLength) / 2;
-			drawInverseTriangle(g, startx + (xDiff * 2), starty - (yDiff * 2), sideLength);
-			double startX1 = startx; 
-			double startY1 = starty;		
+			drawInverseTriangle(g, startX + (xDiff * 2), startY - (yDiff * 2), sideLength);
+			double startX1 = startX; 
+			double startY1 = startY;		
 			drawSierpinskiTriangle(g, startX1, startY1, sideLength / 2); // bottom left
-			double startX2 = startx + xDiff * 2;
-			double startY2 = starty - yDiff * 2;		
+			double startX2 = startX + xDiff * 2;
+			double startY2 = startY - yDiff * 2;		
 			drawSierpinskiTriangle(g, startX2, startY2, sideLength / 2); // top
-			double startX3 = startx + xDiff * 4;
-			double startY3 = starty;		
+			double startX3 = startX + xDiff * 4;
+			double startY3 = startY;		
 			drawSierpinskiTriangle(g, startX3, startY3, sideLength / 2); // bottom right
 		}
 	}
 	
 	
-	private static void drawInverseTriangle(Graphics2D g, double startx, double starty, double sideLength) { //starting point is top left
-		double rightx = startx + sideLength; //right y = start y
-		double bottomx = startx + sideLength/2;
-		double bottomy = starty + getTriangleHeight(sideLength);
+	private static void drawInverseTriangle(Graphics2D g, double startX, double startY, double sideLength) { //starting point is top left
+		double rightx = startX + sideLength; //right y = start y
+		double bottomx = startX + sideLength/2;
+		double bottomy = startY + getTriangleHeight(sideLength);
 		
 		Path2D path = new Path2D.Double();
-		path.moveTo(startx, starty);
-		path.lineTo(rightx, starty);
+		path.moveTo(startX, startY);
+		path.lineTo(rightx, startY);
 		path.lineTo(bottomx, bottomy);
 		path.closePath();
 		g.draw(path);
 	}
 	
 	
-	private static void drawTriangle(Graphics2D g, double startx, double starty, double sideLength) { //starting point is bottom left
-		double rightx = startx + sideLength; //right y = start y
-		double topx = startx + sideLength/2;
-		double topy = starty - getTriangleHeight(sideLength);
+	private static void drawTriangle(Graphics2D g, double startX, double startY, double sideLength) { //starting point is bottom left
+		double rightx = startX + sideLength; //right y = start y
+		double topx = startX + sideLength/2;
+		double topy = startY - getTriangleHeight(sideLength);
 		
 		Path2D path = new Path2D.Double();
-		path.moveTo(startx, starty);
+		path.moveTo(startX, startY);
 		path.lineTo(topx, topy);
-		path.lineTo(rightx, starty);
+		path.lineTo(rightx, startY);
 		path.closePath();
 		g.draw(path);
 	 }

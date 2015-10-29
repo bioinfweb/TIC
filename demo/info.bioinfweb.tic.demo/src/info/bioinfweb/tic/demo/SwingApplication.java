@@ -10,7 +10,15 @@ import javax.swing.JComponent;
 import javax.swing.JFrame;
 
 
-
+/**
+ * Example that demonstrates using TIC components in Swing applications.
+ * <p>
+ * This example is used in the 
+ * <a href="http://bioinfweb.info/TIC/Documentation">TIC documentation</a>.
+ * 
+ * @author Sarah Wiechers
+ * @author Ben St&ouml;ver
+ */
 public class SwingApplication {
 	private JFrame frame;
 	private SierpinskiTriangleComponent triangle;
@@ -50,9 +58,14 @@ public class SwingApplication {
 		frame.setBounds(100, 100, 450, 300);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setTitle("Swing Application");
-		
+
+		// Create TIC component instance:
 		triangle = new SierpinskiTriangleComponent();
+		
+		// Create Swing-specific component instance:
 		JComponent swingTriangle = SwingComponentFactory.getInstance().getSwingComponent(triangle);
+		
+		// Add Swing component to GUI:
 		frame.getContentPane().add(swingTriangle, BorderLayout.CENTER);
 	}
 }

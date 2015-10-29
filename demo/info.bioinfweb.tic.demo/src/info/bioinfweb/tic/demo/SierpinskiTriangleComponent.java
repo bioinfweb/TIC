@@ -9,8 +9,21 @@ import info.bioinfweb.tic.TICComponent;
 import info.bioinfweb.tic.TICPaintEvent;
 
 
-
-public class SierpinskiTriangleComponent extends TICComponent {	
+/**
+ * Example TIC component in which a Sierpinski triangle is painted.
+ * <p>
+ * This example is used in the 
+ * <a href="http://bioinfweb.info/TIC/Documentation">TIC documentation</a>.
+ * 
+ * @author Sarah Wiechers
+ * @author Ben St&ouml;ver
+ */
+public class SierpinskiTriangleComponent extends TICComponent {
+	
+	
+	/**
+	 * In this method the Sierpinski triangle is painted.
+	 */
 	@Override
 	public void paint(TICPaintEvent event) {
 		Graphics2D g = event.getGraphics();
@@ -18,8 +31,14 @@ public class SierpinskiTriangleComponent extends TICComponent {
 		
 		SierpinskiTrianglePainter.paintSierpinskiTriangle(g, getSize());
 	}
-
 	
+
+	/**
+	 * Returns the current size of the underlying toolkit specific component. This allows the toolkit-specific layout 
+	 * manager to determine the size of this TIC component.
+	 * 
+	 * @see info.bioinfweb.tic.TICComponent#getSize()
+	 */
 	@Override
   public Dimension getSize() {
 	 if (hasToolkitComponent()) {
