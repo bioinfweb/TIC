@@ -1,4 +1,11 @@
 * text=auto !eol
+demo/info.bioinfweb.tic.demo/.classpath -text svneol=unset#text/plain
+demo/info.bioinfweb.tic.demo/.project -text svneol=unset#text/plain
+demo/info.bioinfweb.tic.demo/.settings/org.eclipse.jdt.core.prefs -text svneol=unset#text/plain
+demo/info.bioinfweb.tic.demo/src/info/bioinfweb/tic/demo/SWTApplication.java -text svneol=unset#text/plain
+demo/info.bioinfweb.tic.demo/src/info/bioinfweb/tic/demo/SierpinskiTriangleComponent.java -text svneol=unset#text/plain
+demo/info.bioinfweb.tic.demo/src/info/bioinfweb/tic/demo/SierpinskiTrianglePainter.java -text svneol=unset#text/plain
+demo/info.bioinfweb.tic.demo/src/info/bioinfweb/tic/demo/SwingApplication.java -text svneol=unset#text/plain
 main/info.bioinfweb.tic.core/.classpath -text svneol=unset#text/plain
 main/info.bioinfweb.tic.core/.project -text svneol=unset#text/plain
 main/info.bioinfweb.tic.core/.settings/org.eclipse.jdt.core.prefs -text svneol=unset#text/plain
