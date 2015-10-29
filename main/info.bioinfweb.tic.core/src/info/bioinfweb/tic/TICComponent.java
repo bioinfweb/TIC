@@ -108,11 +108,7 @@ public abstract class TICComponent {
 	
 	
 	/**
-	 * Returns the size this objects uses to be painted completely.
-	 * <p>
-	 * Note that the associated graphical component might be contained in a scroll container and the
-	 * actual area displayed in the screen can be smaller than the dimension returned here.
-	 * </p>  
+	 * Returns the size this object needs to be painted completely.
 	 * 
 	 * @return the dimension in pixels
 	 */
@@ -148,8 +144,7 @@ public abstract class TICComponent {
 	/**
 	 * Returns a toolkit specific component used to display the contents of this class.
 	 * 
-	 * @return the toolkit specific component or {@code null} if neither {@link #createSwingComponent()} nor 
-	 *         {@link #createSWTWidget(Composite, int)} have been called previously
+	 * @return the toolkit specific component or {@code null} if neither a Swing nor a SWT component has yet been created 
 	 */
 	public ToolkitComponent getToolkitComponent() {
 		return toolkitComponent;
