@@ -78,5 +78,10 @@ main/info.bioinfweb.tic.swt/src/info/bioinfweb/tic/toolkit/layoutdata/SingleLayo
 test/info.bioinfweb.tic.test/.classpath -text svneol=unset#text/plain
 test/info.bioinfweb.tic.test/.project -text svneol=unset#text/plain
 test/info.bioinfweb.tic.test/.settings/org.eclipse.jdt.core.prefs -text svneol=unset#text/plain
+test/info.bioinfweb.tic.test/.settings/org.eclipse.jdt.ui.prefs -text svneol=unset#text/plain
 test/info.bioinfweb.tic.test/lib/junit-4.9b1.jar -text
+test/info.bioinfweb.tic.test/src/APACHE-LICENSE.txt -text svneol=unset#text/plain
+test/info.bioinfweb.tic.test/src/GPL.txt -text svneol=unset#text/plain
+test/info.bioinfweb.tic.test/src/LGPL.txt -text svneol=unset#text/plain
+test/info.bioinfweb.tic.test/src/NOTICE.txt -text svneol=unset#text/plain
 test/info.bioinfweb.tic.test/src/info/bioinfweb/tic/input/SWTSwingEventConversionToolsTest.java -text svneol=unset#text/plain
