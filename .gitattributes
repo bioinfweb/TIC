@@ -37,6 +37,11 @@ main/info.bioinfweb.tic.core/src/info/bioinfweb/tic/toolkit/ToolkitComponent.jav
 main/info.bioinfweb.tic.swing/.classpath -text svneol=unset#text/plain
 main/info.bioinfweb.tic.swing/.project -text svneol=unset#text/plain
 main/info.bioinfweb.tic.swing/.settings/org.eclipse.jdt.core.prefs -text svneol=unset#text/plain
+main/info.bioinfweb.tic.swing/.settings/org.eclipse.jdt.ui.prefs -text svneol=unset#text/plain
+main/info.bioinfweb.tic.swing/src/APACHE-LICENSE.txt -text svneol=unset#text/plain
+main/info.bioinfweb.tic.swing/src/GPL.txt -text svneol=unset#text/plain
+main/info.bioinfweb.tic.swing/src/LGPL.txt -text svneol=unset#text/plain
+main/info.bioinfweb.tic.swing/src/NOTICE.txt -text svneol=unset#text/plain
 main/info.bioinfweb.tic.swing/src/info/bioinfweb/tic/SwingComponentFactory.java -text svneol=unset#text/plain
 main/info.bioinfweb.tic.swing/src/info/bioinfweb/tic/input/SwingKeyEventForwarder.java -text svneol=unset#text/plain
 main/info.bioinfweb.tic.swing/src/info/bioinfweb/tic/input/SwingMouseEventForwarder.java -text svneol=unset#text/plain
