@@ -9,7 +9,12 @@ demo/info.bioinfweb.tic.demo/src/info/bioinfweb/tic/demo/SwingApplication.java -
 main/info.bioinfweb.tic.core/.classpath -text svneol=unset#text/plain
 main/info.bioinfweb.tic.core/.project -text svneol=unset#text/plain
 main/info.bioinfweb.tic.core/.settings/org.eclipse.jdt.core.prefs -text svneol=unset#text/plain
+main/info.bioinfweb.tic.core/.settings/org.eclipse.jdt.ui.prefs -text svneol=unset#text/plain
 main/info.bioinfweb.tic.core/lib/commons-lang3-3.1.jar -text
+main/info.bioinfweb.tic.core/src/APACHE-LICENSE.txt -text svneol=unset#text/plain
+main/info.bioinfweb.tic.core/src/GPL.txt -text svneol=unset#text/plain
+main/info.bioinfweb.tic.core/src/LGPL.txt -text svneol=unset#text/plain
+main/info.bioinfweb.tic.core/src/NOTICE.txt -text svneol=unset#text/plain
 main/info.bioinfweb.tic.core/src/info/bioinfweb/tic/TICComponent.java -text svneol=unset#text/plain
 main/info.bioinfweb.tic.core/src/info/bioinfweb/tic/TICPaintEvent.java -text svneol=unset#text/plain
 main/info.bioinfweb.tic.core/src/info/bioinfweb/tic/TargetToolkit.java -text svneol=unset#text/plain
