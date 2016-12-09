@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" 
+		xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+		xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+		
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>info.bioinfweb.tic</groupId>
+	<artifactId>tic-core</artifactId>
+	<version>2.0.0</version>
+	<packaging>jar</packaging>
+  <name>TIC Core</name>
+  <description>The core module of TIC.</description>
+  <url>http://bioinfweb.info/TIC/</url>
+	<licenses>
+		<license>
+			<name>GNU Lesser General Public License, Version 3</name>
+			<url>http://bioinfweb.info/TIC/License</url>
+		</license>
+	</licenses>
+	<developers>
+		<developer>
+			<name>Ben Stöver</name>
+			<email>stoever@bioinfweb.info</email>
+			<organization>bioinfweb.info</organization>
+			<organizationUrl>http://bioinfweb.info/</organizationUrl>
+		</developer>
+	</developers>
+	<scm>
+		<connection>scm:svn:https://secure.bioinfweb.info/Code/svn/TIC/trunk</connection>
+		<developerConnection>scm:svn:https://secure.bioinfweb.info/Code/svn/TIC/trunk</developerConnection>
+		<url>http://bioinfweb.info/Code/sventon/repos/TIC/list/trunk/</url>
+	</scm>
+
+	<dependencies>
+		<!-- https://mvnrepository.com/artifact/org.apache.commons/commons-lang3 -->
+		<dependency>
+			<groupId>org.apache.commons</groupId>
+			<artifactId>commons-lang3</artifactId>
+			<version>3.5</version>
+		</dependency>
+
+		<!-- http://bioinfweb.info/MavenRepository/info/bioinfweb/commons/java/bioinfweb-commons-core/ -->
+		<dependency>
+			<groupId>info.bioinfweb.commons.java</groupId>
+			<artifactId>bioinfweb-commons-java-core</artifactId>
+			<version>[2.0.0,3.0.0)</version>
+		</dependency>
+	</dependencies>
+</project>
