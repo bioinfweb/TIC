@@ -1,4 +1,16 @@
 * text=auto !eol
+demo/info.bioinfweb.tic.demo.sierpinski/.classpath -text svneol=unset#text/plain
+demo/info.bioinfweb.tic.demo.sierpinski/.project -text svneol=unset#text/plain
+demo/info.bioinfweb.tic.demo.sierpinski/.settings/org.eclipse.jdt.core.prefs -text svneol=unset#text/plain
+demo/info.bioinfweb.tic.demo.sierpinski/.settings/org.eclipse.jdt.ui.prefs -text svneol=unset#text/plain
+demo/info.bioinfweb.tic.demo.sierpinski/src/APACHE-LICENSE.txt -text svneol=unset#text/plain
+demo/info.bioinfweb.tic.demo.sierpinski/src/GPL.txt -text svneol=unset#text/plain
+demo/info.bioinfweb.tic.demo.sierpinski/src/LGPL.txt -text svneol=unset#text/plain
+demo/info.bioinfweb.tic.demo.sierpinski/src/NOTICE.txt -text svneol=unset#text/plain
+demo/info.bioinfweb.tic.demo.sierpinski/src/info/bioinfweb/tic/demo/sierpinski/SWTApplication.java -text svneol=unset#text/plain
+demo/info.bioinfweb.tic.demo.sierpinski/src/info/bioinfweb/tic/demo/sierpinski/SierpinskiTriangleComponent.java -text svneol=unset#text/plain
+demo/info.bioinfweb.tic.demo.sierpinski/src/info/bioinfweb/tic/demo/sierpinski/SierpinskiTrianglePainter.java -text svneol=unset#text/plain
+demo/info.bioinfweb.tic.demo.sierpinski/src/info/bioinfweb/tic/demo/sierpinski/SwingApplication.java -text svneol=unset#text/plain
 demo/info.bioinfweb.tic.demo/.classpath -text svneol=unset#text/plain
 demo/info.bioinfweb.tic.demo/.project -text svneol=unset#text/plain
 demo/info.bioinfweb.tic.demo/.settings/org.eclipse.jdt.core.prefs -text svneol=unset#text/plain
