@@ -1,0 +1,3 @@
+<include name="${projectFolderPrefix}.core/**/*.*" />
+<include name="${projectFolderPrefix}.swing/**/*.*" />
+<include name="${projectFolderPrefix}.swt/**/*.*" />

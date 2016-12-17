@@ -1,0 +1,5 @@
+<fileset dir="${tempFolder}">
+	<include name="${simpleProjectLabel}.core.jar" />
+	<include name="${simpleProjectLabel}.swing.jar" />
+	<include name="${simpleProjectLabel}.swt.jar" />
+</fileset>
