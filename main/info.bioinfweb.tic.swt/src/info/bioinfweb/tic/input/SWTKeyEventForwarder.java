@@ -1,6 +1,6 @@
 /*
  * Toolkit independent components (TIC) - A Java library for creating GUI components for Swing and SWT
- * Copyright (C) 2014-2016  Ben Stöver
+ * Copyright (C) 2014-2017  Ben Stöver, Sarah Wiechers
  * <http://bioinfweb.info/TIC>
  * 
  * This file is free software: you can redistribute it and/or modify
