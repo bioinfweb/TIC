@@ -1,3 +1,3 @@
-		    <sourceLocation sourceFolder="${sourceDataFolder}/${projectFolderPrefix}.core/src" urlPrefix="http://bioinfweb.info/Code/sventon/repos/TIC/show/trunk/main/info.bioinfweb.commons.core/src/" />
-		    <sourceLocation sourceFolder="${sourceDataFolder}/${projectFolderPrefix}.swing/src" urlPrefix="http://bioinfweb.info/Code/sventon/repos/TIC/show/trunk/main/info.bioinfweb.commons.swing/src/" />
-		    <sourceLocation sourceFolder="${sourceDataFolder}/${projectFolderPrefix}.swt/src" urlPrefix="http://bioinfweb.info/Code/sventon/repos/TIC/show/trunk/main/info.bioinfweb.commons.swt/src/" />
+		    <sourceLocation sourceFolder="${sourceDataFolder}/${projectFolderPrefix}.core/src" urlPrefix="http://bioinfweb.info/Code/sventon/repos/TIC/show/trunk/main/info.bioinfweb.tic.core/src/" />
+		    <sourceLocation sourceFolder="${sourceDataFolder}/${projectFolderPrefix}.swing/src" urlPrefix="http://bioinfweb.info/Code/sventon/repos/TIC/show/trunk/main/info.bioinfweb.tic.swing/src/" />
+		    <sourceLocation sourceFolder="${sourceDataFolder}/${projectFolderPrefix}.swt/src" urlPrefix="http://bioinfweb.info/Code/sventon/repos/TIC/show/trunk/main/info.bioinfweb.tic.swt/src/" />
