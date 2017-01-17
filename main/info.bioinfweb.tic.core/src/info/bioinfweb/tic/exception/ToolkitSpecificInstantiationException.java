@@ -33,6 +33,7 @@ import info.bioinfweb.tic.TICComponent;
  * 
  * @author Ben St&ouml;ver
  * @since 2.0.0
+ * @bioinfweb.module info.bioinfweb.tic.core
  */
 public class ToolkitSpecificInstantiationException extends RuntimeException {
 	public ToolkitSpecificInstantiationException(Throwable cause) {

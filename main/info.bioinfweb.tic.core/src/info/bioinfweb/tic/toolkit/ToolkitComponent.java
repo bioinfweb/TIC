@@ -39,6 +39,7 @@ import info.bioinfweb.tic.TargetToolkit;
  * 
  * @author Ben St&ouml;ver
  * @since 1.0.0
+ * @bioinfweb.module info.bioinfweb.tic.core
  */
 public interface ToolkitComponent {
 	/**

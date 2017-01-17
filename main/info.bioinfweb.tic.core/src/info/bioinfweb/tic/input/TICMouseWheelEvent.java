@@ -28,6 +28,7 @@ import info.bioinfweb.tic.TICComponent;
  * 
  * @author Ben St&ouml;ver
  * @since 1.2.0
+ * @bioinfweb.module info.bioinfweb.tic.core
  */
 public class TICMouseWheelEvent extends TICMouseEvent {
 	private double preciseWheelRotation;

@@ -27,6 +27,7 @@ import info.bioinfweb.tic.TICComponent;
  * TIC event object that is used to represent a toolkit independent mouse event. 
  * 
  * @author Ben St&ouml;ver
+ * @bioinfweb.module info.bioinfweb.tic.core
  */
 public class TICMouseEvent extends TICInputEvent {
 	private int button;

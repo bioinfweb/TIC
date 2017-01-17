@@ -27,6 +27,7 @@ package info.bioinfweb.tic.input;
  * additional empty implementations for unused methods.
  * 
  * @author Ben St&ouml;ver
+ * @bioinfweb.module info.bioinfweb.tic.core
  */
 public class TICMouseAdapter implements TICMouseListener {
 	@Override

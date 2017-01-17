@@ -29,6 +29,7 @@ import info.bioinfweb.tic.TICComponent;
  * Implement this interface to listen to mouse events of {@link TICComponent}s.
  * 
  * @author Ben St&ouml;ver
+ * @bioinfweb.module info.bioinfweb.tic.core
  */
 public interface TICMouseListener extends EventListener {
   /**

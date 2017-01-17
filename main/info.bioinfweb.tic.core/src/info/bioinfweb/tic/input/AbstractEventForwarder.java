@@ -19,6 +19,7 @@
 package info.bioinfweb.tic.input;
 
 
+import info.bioinfweb.tic.TICComponent;
 import info.bioinfweb.tic.TargetToolkit;
 
 import java.awt.event.MouseEvent;
@@ -29,6 +30,15 @@ import javax.swing.SwingUtilities;
 
 
 
+/**
+ * Implemented shared functionality for toolkit-specific event forwarders.
+ * <p>
+ * <b>Warning:</b> This class in meant for internal use by {@link TICComponent} and is not guaranteed to have an unchanged
+ * API in future releases with the same major version number.
+ * 
+ * @author Ben St&ouml;ver
+ * @bioinfweb.module info.bioinfweb.tic.core
+ */
 public abstract class AbstractEventForwarder<L extends EventListener> {
 	private TICListenerSet<L> listenerSet;
 

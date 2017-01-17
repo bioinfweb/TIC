@@ -27,6 +27,7 @@ import info.bioinfweb.tic.TICComponent;
  * TIC event object that is used to represent a toolkit independent key event. 
  * 
  * @author Ben St&ouml;ver
+ * @bioinfweb.module info.bioinfweb.tic.core
  */
 public class TICKeyEvent extends TICInputEvent {
 	private int keyCode;

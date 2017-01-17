@@ -31,6 +31,7 @@ import java.util.EventObject;
  * 
  * @author Ben St&ouml;ver
  * @since 1.0.0
+ * @bioinfweb.module info.bioinfweb.tic.core
  */
 public class TICPaintEvent extends EventObject {
   private Graphics2D graphics;

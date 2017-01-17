@@ -61,6 +61,7 @@ import java.awt.Dimension;
  * is influenced by the return value of TIC event listeners.)
  * 
  * @author Ben St&ouml;ver
+ * @bioinfweb.module info.bioinfweb.tic.core
  */
 public abstract class TICComponent {
 	private ToolkitComponent toolkitComponent = null;

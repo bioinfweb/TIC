@@ -24,6 +24,7 @@ package info.bioinfweb.tic;
  * Enumerates the supported toolkits of TIC. (Currently Swing and SWT)
  * 
  * @author Ben St&ouml;ver
+ * @bioinfweb.module info.bioinfweb.tic.core
  */
 public enum TargetToolkit {
 	UNDEFINED,

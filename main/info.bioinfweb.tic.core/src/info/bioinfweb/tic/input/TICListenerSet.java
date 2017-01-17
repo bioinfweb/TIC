@@ -33,6 +33,7 @@ import java.util.Set;
  * 
  * @author Ben St&ouml;ver
  * @since 2.0.0
+ * @bioinfweb.module info.bioinfweb.tic.core
  *
  * @param <L> the listener type
  */

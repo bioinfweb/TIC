@@ -32,6 +32,7 @@ import info.bioinfweb.tic.TICComponent;
  * All toolkit independent input events in TIC should be inherited from this class.
  * 
  * @author Ben St&ouml;ver
+ * @bioinfweb.module info.bioinfweb.tic.core
  */
 public class TICInputEvent extends EventObject {
 	private long time;

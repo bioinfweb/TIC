@@ -27,7 +27,7 @@ import info.bioinfweb.tic.TargetToolkit;
  * supported by the called method.
  * 
  * @author Ben St&ouml;ver
- *
+ * @bioinfweb.module info.bioinfweb.tic.core
  */
 public class UnsupportedToolkitException extends RuntimeException {
 	/**
