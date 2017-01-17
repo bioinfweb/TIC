@@ -38,6 +38,7 @@ import org.eclipse.swt.widgets.Composite;
  * 
  * @author Ben St&ouml;ver
  * @since 1.0.0
+ * @bioinfweb.module info.bioinfweb.tic.swt
  */
 public abstract class AbstractSWTWidget extends Canvas implements PaintListener, ToolkitComponent {
 	private TICComponent independentComponent;

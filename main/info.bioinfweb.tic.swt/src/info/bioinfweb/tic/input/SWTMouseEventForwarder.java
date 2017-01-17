@@ -35,6 +35,7 @@ import org.eclipse.swt.events.MouseTrackListener;
  * API in future releases with the same major version number.
  * 
  * @author Ben St&ouml;ver
+ * @bioinfweb.module info.bioinfweb.tic.swt
  */
 public class SWTMouseEventForwarder extends AbstractEventForwarder<TICMouseListener> 
 		implements MouseListener, MouseMoveListener, MouseTrackListener {

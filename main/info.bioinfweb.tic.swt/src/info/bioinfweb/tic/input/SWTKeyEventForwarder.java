@@ -34,6 +34,7 @@ import info.bioinfweb.tic.TICComponent;
  * 
  * @author Ben St&ouml;ver
  * @since 2.0.0
+ * @bioinfweb.module info.bioinfweb.tic.swt
  */
 public class SWTKeyEventForwarder extends AbstractEventForwarder<TICKeyListener>	implements KeyListener {
 	public SWTKeyEventForwarder(TICListenerSet<TICKeyListener> listenerSet) {

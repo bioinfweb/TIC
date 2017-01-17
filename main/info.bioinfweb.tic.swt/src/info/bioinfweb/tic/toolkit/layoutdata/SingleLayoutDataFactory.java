@@ -24,6 +24,10 @@ import org.eclipse.swt.widgets.Composite;
 
 
 
+/**
+ * @author Ben St&ouml;ver
+ * @bioinfweb.module info.bioinfweb.tic.swt
+ */
 public interface SingleLayoutDataFactory {
 	public Object createLayoutData(Point size, Composite composite);
 }

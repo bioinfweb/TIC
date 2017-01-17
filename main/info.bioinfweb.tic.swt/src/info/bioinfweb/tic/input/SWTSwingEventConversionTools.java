@@ -28,6 +28,12 @@ import org.eclipse.swt.SWT;
 
 
 
+/**
+ * Tool class that converts property values of <i>Swing</i> and <i>SWT</i> events.
+ * 
+ * @author Ben St&ouml;ver
+ * @bioinfweb.module info.bioinfweb.tic.swt
+ */
 public class SWTSwingEventConversionTools {
 	private static final Map<Integer, Integer> KEY_CODE_MAP = createKeyCodeMap(); 
 	

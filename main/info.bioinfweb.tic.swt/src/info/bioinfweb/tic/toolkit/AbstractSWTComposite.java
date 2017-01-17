@@ -33,6 +33,7 @@ import org.eclipse.swt.widgets.Composite;
  *
  * @author Ben St&ouml;ver
  * @since 1.1.0
+ * @bioinfweb.module info.bioinfweb.tic.swt
  */
 public class AbstractSWTComposite extends Composite implements ToolkitComponent {
 	private TICComponent independentComponent;

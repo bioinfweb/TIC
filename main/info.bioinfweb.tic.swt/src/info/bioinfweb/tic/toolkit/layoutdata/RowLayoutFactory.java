@@ -25,6 +25,10 @@ import org.eclipse.swt.widgets.Composite;
 
 
 
+/**
+ * @author Ben St&ouml;ver
+ * @bioinfweb.module info.bioinfweb.tic.swt
+ */
 public class RowLayoutFactory implements SingleLayoutDataFactory {
 	@Override
 	public Object createLayoutData(Point size, Composite composite) {

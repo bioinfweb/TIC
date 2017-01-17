@@ -41,6 +41,7 @@ import org.eclipse.swt.widgets.Composite;
  * It uses the {@link TICComponent#paint(TICPaintEvent)} to draw the widget.
  * 
  * @author Ben St&ouml;ver
+ * @bioinfweb.module info.bioinfweb.tic.swt
  */
 public class DefaultSWTComposite extends AbstractSWTWidget {
 	public DefaultSWTComposite(TICComponent ticComponent, Composite parent, int style) {

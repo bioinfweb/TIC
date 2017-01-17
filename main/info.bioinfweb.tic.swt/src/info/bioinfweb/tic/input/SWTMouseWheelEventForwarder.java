@@ -26,6 +26,16 @@ import org.eclipse.swt.events.MouseWheelListener;
 
 
 
+/**
+ * Contains a list of {@link TICMouseWheelListener}s and delegates all SWT events to the entries in this list.
+ * <p>
+ * <b>Warning:</b> This class in meant for internal use by {@link TICComponent} and is not guaranteed to have an unchanged
+ * API in future releases with the same major version number.
+ * 
+ * @author Ben St&ouml;ver
+ * @since 2.0.0
+ * @bioinfweb.module info.bioinfweb.tic.swt
+ */
 public class SWTMouseWheelEventForwarder extends AbstractEventForwarder<TICMouseWheelListener> implements MouseWheelListener {
 	public SWTMouseWheelEventForwarder(TICListenerSet<TICMouseWheelListener> listenerSet) {
 		super(listenerSet);

@@ -29,6 +29,10 @@ import org.eclipse.swt.widgets.Layout;
 
 
 
+/**
+ * @author Ben St&ouml;ver
+ * @bioinfweb.module info.bioinfweb.tic.swt
+ */
 public class SWTLayoutDataFactory {
 	private static SWTLayoutDataFactory firstInstance = null;
 	

@@ -47,6 +47,7 @@ import org.eclipse.swt.widgets.Composite;
  * 
  * @author Ben St&ouml;ver
  * @since 2.0.0
+ * @bioinfweb.module info.bioinfweb.tic.swt
  */
 public class SWTComponentFactory {
 	private static SWTComponentFactory firstInstance = null;
