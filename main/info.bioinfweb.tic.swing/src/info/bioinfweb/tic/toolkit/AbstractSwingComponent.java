@@ -37,6 +37,7 @@ import javax.swing.JPanel;
  * 
  * @author Ben St&ouml;ver
  * @since 1.0.0
+ * @bioinfweb.module info.bioinfweb.tic.swing
  */
 public abstract class AbstractSwingComponent extends JPanel implements ToolkitComponent {  // If JComponent is used as the base class, it won't be be possible to have a width above 16384 (or more with a differen max size but less than JPanel) pixels. JPanel allows this.
 	private TICComponent independentComponent;

@@ -35,6 +35,7 @@ import java.awt.event.MouseMotionListener;
  * 
  * @author Ben St&ouml;ver
  * @since 2.0.0
+ * @bioinfweb.module info.bioinfweb.tic.swing
  */
 public class SwingMouseEventForwarder extends AbstractEventForwarder<TICMouseListener>	
 		implements MouseListener, MouseMotionListener {

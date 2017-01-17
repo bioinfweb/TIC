@@ -36,6 +36,7 @@ import info.bioinfweb.tic.TICPaintEvent;
  * It overwrites {@link #paint(Graphics)} using {@link TICComponent#paint(TICPaintEvent)} to paint the component.
  * 
  * @author Ben St&ouml;ver
+ * @bioinfweb.module info.bioinfweb.tic.swing
  */
 public class DefaultSwingComponent extends AbstractSwingComponent {
 	public DefaultSwingComponent(TICComponent ticComponent) {

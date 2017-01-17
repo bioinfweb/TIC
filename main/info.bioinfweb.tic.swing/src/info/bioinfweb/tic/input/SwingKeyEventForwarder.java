@@ -34,6 +34,7 @@ import java.awt.event.KeyListener;
  * 
  * @author Ben St&ouml;ver
  * @since 2.0.0
+ * @bioinfweb.module info.bioinfweb.tic.swing
  */
 public class SwingKeyEventForwarder extends AbstractEventForwarder<TICKeyListener> implements KeyListener {
 	public SwingKeyEventForwarder(TICListenerSet<TICKeyListener> listenerSet) {

@@ -34,6 +34,7 @@ import java.awt.event.MouseWheelListener;
  * 
  * @author Ben St&ouml;ver
  * @since 2.0.0
+ * @bioinfweb.module info.bioinfweb.tic.swing
  */
 public class SwingMouseWheelEventForwarder extends AbstractEventForwarder<TICMouseWheelListener> 
 		implements MouseWheelListener {

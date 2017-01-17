@@ -49,6 +49,7 @@ import javax.swing.JComponent;
  * 
  * @author Ben St&ouml;ver
  * @since 2.0.0
+ * @bioinfweb.module info.bioinfweb.tic.swing
  */
 public class SwingComponentFactory {
 	private static SwingComponentFactory firstInstance = null;
