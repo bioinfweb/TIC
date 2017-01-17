@@ -23,14 +23,12 @@
 	<property name="webspaceJavaDocFolder" value="${webspaceRootFolder}/PROTECTED/tree/Documentation/API" />
 	<property name="webspaceDownloadFolder" value="${webspaceRootFolder}/Download" />	
 	<property name="svnRepositoryPath" value="https://secure.bioinfweb.info/Code/svn/TIC/trunk/main/" />
-	<property name="defaultJavaDocSourceLocation" value="https://secure.bioinfweb.info/Code/svn/TIC/trunk/main/info.bioinfweb.tic.core/" />
 	<property name="styleName" value="TIC" />
 	<property name="dbName" value="biw_TIC" />
 	<property name="dbUser" value="biw_rm_TIC" />
 	&dbPassword;
 	<property name="softwareID" value="20" />
 	<property name="containedItems" value="0 1 2 3" />
-	<property name="javadocSourcePath" value="${sourceDataFolder}/${projectFolderPrefix}.core/src;" />
 	<property name="defaultNewsTextEn" value="A [LINK http://bioinfweb.info/TIC/Download new version] of our Java library for creating toolkit independent GUI components to be used with Swing and SWT was released." />
 	<property name="defaultNewsTextDe" value="Eine [LINK http://bioinfweb.info/TIC/Download neue Version] unserer Java Bibliothek zum Erzeugen von Toolkit-unabhängigen GUI Komponenten für Swing und SWT wurde veröffentlicht." />
 	<property name="defaultImageURL" value="http://bioinfweb.info/Software/TICList.png" />
