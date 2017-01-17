@@ -31,7 +31,6 @@
 	<property name="containedItems" value="1 2 3 4" />
 	<property name="singleModuleDownloadTypes" value="5,6" />
 	<property name="completeDownloadTypes" value="1,2" />
-	<property name="containedItems" value="1 2 3 4" />
 	<property name="defaultNewsTextEn" value="A [LINK http://bioinfweb.info/TIC/Download new version] of our Java library for creating toolkit independent GUI components to be used with Swing and SWT was released." />
 	<property name="defaultNewsTextDe" value="Eine [LINK http://bioinfweb.info/TIC/Download neue Version] unserer Java Bibliothek zum Erzeugen von Toolkit-unabhängigen GUI Komponenten für Swing und SWT wurde veröffentlicht." />
 	<property name="defaultImageURL" value="http://bioinfweb.info/Software/TICList.png" />
