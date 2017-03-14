@@ -37,8 +37,6 @@ import info.bioinfweb.tic.TICPaintEvent;
  * @author Ben St&ouml;ver
  */
 public class SierpinskiTriangleComponent extends TICComponent {
-	
-	
 	/**
 	 * In this method the Sierpinski triangle is painted.
 	 */
@@ -58,12 +56,12 @@ public class SierpinskiTriangleComponent extends TICComponent {
 	 * @see info.bioinfweb.tic.TICComponent#getSize()
 	 */
 	@Override
-  public Dimension getSize() {
-	 if (hasToolkitComponent()) {
-		 	return getToolkitComponent().getToolkitSize();
-	 }
-	 else {
-		 	return new Dimension(0, 0);
-	 }
-  }
+	public Dimension getSize() {
+		if (hasToolkitComponent()) {
+			return getToolkitComponent().getToolkitSize();
+		}
+		else {
+			return new Dimension(0, 0);
+		}
+	}
 }
