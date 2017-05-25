@@ -33,32 +33,33 @@ import java.awt.Dimension;
 
 /**
  * This is the parent class of all GUI components based in TIC. Inherited classes are toolkit independent GUI 
- * components that can be used in both Swing and SWT GUIs. To create toolkit specific instances of inherited
- * classes {@code SwingComponentFactory} and {@code SWTComponentFactory} from the according TIC modules can be used.
+ * components that can be used in both <i>Swing</i> and <i>SWT</i> GUIs. To create toolkit specific instances of inherited
+ * classes {@code SwingComponentFactory} and {@code SWTComponentFactory} from the according <i>TIC</i> modules 
+ * can be used.
  * <p>
- * To create a concrete TIC component, the abstract methods {@link #paint(TICPaintEvent)} and {@link #getSize()} 
- * need to be implemented. Implementing these methods is sufficient for creating components that paint their
- * contents directly. If toolkit specific versions containing subcomponents from Swing or SWT are created instead,
- * {@link #getSwingComponentClassName()} and {@link #getSWTComponentClassName()} must be overwritten accordingly
+ * To create a concrete <i>TIC</i> component, the abstract methods {@link #paint(TICPaintEvent)} and 
+ * {@link #getSize()} need to be implemented, which is sufficient for creating components that paint their 
+ * contents directly. If toolkit specific classes containing subcomponents from <i>Swing</i> or <i>SWT</i> are created instead,
+ * {@link #getSwingComponentClassName()} and {@link #getSWTComponentClassName()} must be overwritten respectively
  * and the implementation of {@link #paint(TICPaintEvent)} may remain empty.  
  * <p>
  * Note that depending on your GUI design {@link #assignSize()} might not have the desired effect if 
- * {@link #assignSizeToSWTLayoutData(org.eclipse.swt.graphics.Point, Composite)} is not overwritten with an according 
- * implementation.
+ * {@link #assignSizeToSWTLayoutData(org.eclipse.swt.graphics.Point, Composite)} is not overwritten with an 
+ * respective implementation.
  * <p>
  * <b>Mouse and keyboard events</b>
  * <p>
- * TIC components support adding TIC event listeners for mouse and keyboard events. Due to the implementation of this 
- * behavior the toolkit specific components always have mouse and key listeners attached, no matter if a TIC listener 
- * was attached to the owning TIC component. In the case of Swing components events will not be forwarded to parent
- * components anymore, even if no listener in this component consumed the event. Therefore TIC components automatically
- * forward events to parent Swing components, if no TIC listener for the according event type consumed that event.
- * TIC listener indicate whether they consumed an event by the return value of their handler methods (e.g. 
+ * <i>TIC</i> components support adding <i>TIC</i> event listeners for mouse and keyboard events. Due to the implementation of this 
+ * behavior the toolkit specific components always have mouse and key listeners attached, no matter if a <i>TIC</i> listener 
+ * was attached to the owning <i>TIC</i> component. In the case of <i>Swing</i> components events will not be forwarded to parent
+ * components anymore, even if no listener in this component consumed the event. Therefore <i>TIC</i> components automatically
+ * forward events to parent <i>Swing</i> components, if no <i>TIC</i> listener for the according event type consumed that event.
+ * <i>TIC</i> listener indicate whether they consumed an event by the return value of their handler methods (e.g. 
  * {@link TICMouseWheelListener#mouseWheelMoved(info.bioinfweb.tic.input.TICMouseWheelEvent)}).
  * <p>
- * If more than one listener for the same event type is attached to a TIC component, all listeners will be informed
+ * If more than one listener for the same event type is attached to a <i>TIC</i> component, all listeners will be informed
  * on events, no matter if a previous listener in the list already consumed the event. (Only forwarding to parent events
- * is influenced by the return value of TIC event listeners.)
+ * is influenced by the return value of <i>TIC</i> event listeners.)
  * 
  * @author Ben St&ouml;ver
  * @bioinfweb.module info.bioinfweb.tic.core
@@ -103,7 +104,7 @@ public abstract class TICComponent {
 	 * {@link #doCreateSwingComponent()} and {@link #doCreateSWTWidget(Composite, int)} the 
 	 * implementation of this method can be empty.
 	 * 
-	 * @param graphics - the graphics context used to perform the paint operations in Swing and SWT
+	 * @param graphics - the graphics context used to perform the paint operations in <i>Swing</i> and <i>SWT</i>
 	 */
 	public abstract void paint(TICPaintEvent event);
 	
@@ -145,7 +146,7 @@ public abstract class TICComponent {
 	/**
 	 * Returns a toolkit specific component used to display the contents of this class.
 	 * 
-	 * @return the toolkit specific component or {@code null} if neither a Swing nor a SWT component has yet been created 
+	 * @return the toolkit specific component or {@code null} if neither a <i>Swing</i> nor a <i>SWT</i> component has yet been created 
 	 */
 	public ToolkitComponent getToolkitComponent() {
 		return toolkitComponent;
@@ -168,14 +169,14 @@ public abstract class TICComponent {
 	
 	
 	/**
-	 * Method used by {@code SwingComponentFactory} in the Swing module to create the concrete GUI
-	 * object for Swing. Inherited classes providing custom Swing specific implementations should
+	 * Method used by {@code SwingComponentFactory} in the <i>Swing</i> module to create the concrete GUI
+	 * object for <i>Swing</i>. Inherited classes providing custom <i>Swing</i> specific implementations should
 	 * overwrite this method.
 	 * <p>
 	 * Note that custom implementations need to provider constructors as defined in the documentation
 	 * of {@link ToolkitComponent}.
 	 * 
-	 * @return a fully qualified class name for a class used to create the concrete Swing GUI instance
+	 * @return a fully qualified class name for a class used to create the concrete <i>Swing</i> GUI instance
 	 *         associated with this instance
 	 */
 	protected String getSwingComponentClassName() {
@@ -184,14 +185,14 @@ public abstract class TICComponent {
 	
 	
 	/**
-	 * Method used by {@code SWTComponentFactory} in the SWT module to create the concrete GUI
-	 * object for Swing. Inherited classes providing custom Swing specific implementations should
+	 * Method used by {@code SWTComponentFactory} in the <i>SWT</i> module to create the concrete GUI
+	 * object for <i>Swing</i>. Inherited classes providing custom <i>Swing</i> specific implementations should
 	 * overwrite this method.
 	 * <p>
 	 * Note that custom implementations need to provider constructors as defined in the documentation
 	 * of {@link ToolkitComponent}.
 	 * 
-	 * @return a fully qualified class name for a class used to create the concrete SWT GUI instance
+	 * @return a fully qualified class name for a class used to create the concrete <i>SWT</i> GUI instance
 	 *         associated with this instance
 	 */
 	protected String getSWTComponentClassName() {
