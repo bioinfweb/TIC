@@ -36,7 +36,7 @@ import org.eclipse.swt.widgets.Composite;
 
 
 /**
- * The default SWT widget implementation to be associated with a {@link TICComponent}.
+ * The default <i>SWT</i> widget implementation to be associated with a {@link TICComponent}.
  * <p>
  * It uses the {@link TICComponent#paint(TICPaintEvent)} to draw the widget.
  * 
@@ -50,15 +50,17 @@ public class DefaultSWTComposite extends AbstractSWTWidget {
 	
 	
 	/**
-	 * Fire a TIC paint event internally to let the implementing class draw on a buffered image and than draws
-	 * that image into the SWT graphics context.
+	 * Fire a <i>TIC</i> paint event internally to let the implementing class draw on a buffered image and than draws
+	 * that image into the <i>SWT</i> graphics context.
 	 * <p>
-	 * Note that the TIC paint event will always cover a rectangle which is extended by one pixel to the left
-	 * and top compared to the SWT paint event. That is done to solve problems with anti-aliased lines passing
+	 * Note that the <i>TIC</i> paint event will always cover a rectangle which is extended by one pixel to the left
+	 * and top compared to the <i>SWT</i> paint event. That is done to solve problems with anti-aliased lines passing
 	 * the bounds of that rectangle.
 	 */
 	@Override
 	public void paintControl(PaintEvent e) {
+	  // Scroll position could be considered here by shifting the event and paint coordinates. This would have to be done in a non-LibrAlign-specific way.
+		
 		BufferedImage refreshArea = new BufferedImage(e.width + 1, e.height + 1, BufferedImage.TYPE_3BYTE_BGR);
 		Graphics2D g = refreshArea.createGraphics();
 		try {
