@@ -41,9 +41,9 @@ public class TICPaintEvent extends EventObject {
 	/**
 	 * Creates a new instance of this class.
 	 * 
-	 * @param source - the object that triggered the event
-	 * @param graphics - the swing graphics context
-	 * @param rectangle - the rectangle that has to be repainted
+	 * @param source the object that triggered the event
+	 * @param graphics the swing graphics context
+	 * @param rectangle the rectangle that has to be repainted
 	 */
 	public TICPaintEvent(Object source, Graphics2D graphics, Rectangle rectangle) {
 		super(source);
