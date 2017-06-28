@@ -44,11 +44,21 @@ public class TICPaintEvent extends EventObject {
 	 * @param source the object that triggered the event
 	 * @param graphics the swing graphics context
 	 * @param rectangle the rectangle that has to be repainted
+	 * 
+	 * @throws IllegalArgumentException if {@code source}, {@code graphics} or {@code rectangle} are {@code null} 
 	 */
 	public TICPaintEvent(Object source, Graphics2D graphics, Rectangle rectangle) {
 		super(source);
-		this.graphics = graphics;
-		this.rectangle = rectangle;
+		if (graphics == null) {
+			throw new IllegalArgumentException("The graphics context must not be null.");
+		}
+		else if (rectangle == null) {
+			throw new IllegalArgumentException("The rectangle must not be null.");
+		}
+		else {
+			this.graphics = graphics;
+			this.rectangle = rectangle;
+		}
 	}
 	
 
