@@ -46,12 +46,7 @@ import org.eclipse.swt.widgets.Composite;
  * See {@link #getSWTComponent(TICComponent, Composite, int)} for further details.
  * <p>
  * Note that it is alternatively possible to create a Swing component using {@code info.bioinfweb.tic.SwingComponentFactory}
- * and embed it into an <i>SWT</i> GUI using {@code info.bioinfweb.commons.swt.SWTUtils.embedAWTComponent()}. Both alternatives
- * have advantages and disadvantages. Creating native <i>SWT</i> components using this factory will ensure that all components
- * look exactly like native components, while embedded <i>Swing</i> components may look slightly different, even if the 
- * appropriate look and feel is set (e.g. using {@code info.bioinfweb.commons.swing.SwingUtils.setNativeLF()}). On the other
- * hand using native <i>SWT</i> components may result in a lower painting performance compared to <i>Swing</i> and alignments
- * in <i>SWT</i> under <i>Windows</i> may currently not be wider than 32767 pixels.
+ * and embed it into an <i>SWT</i> GUI using {@code info.bioinfweb.commons.swt.SWTUtils.embedAWTComponent()}.
  * 
  * @author Ben St&ouml;ver
  * @since 2.0.0
