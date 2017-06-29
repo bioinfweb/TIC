@@ -90,7 +90,7 @@ public class SWTComponentFactory {
 					}
 				}
 			}
-			throw new ToolkitSpecificInstantiationException("No according constructor found for " +
+			throw new ToolkitSpecificInstantiationException("No valid constructor found for " +
 					ticComponent.getSWTComponentClassName());
 		}
 		catch (InstantiationException e) {
