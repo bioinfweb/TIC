@@ -73,7 +73,6 @@ main/info.bioinfweb.tic.swt/.classpath -text svneol=unset#text/plain
 main/info.bioinfweb.tic.swt/.project -text svneol=unset#text/plain
 main/info.bioinfweb.tic.swt/.settings/org.eclipse.jdt.core.prefs -text svneol=unset#text/plain
 main/info.bioinfweb.tic.swt/.settings/org.eclipse.jdt.ui.prefs -text svneol=unset#text/plain
-main/info.bioinfweb.tic.swt/lib/swt.jar -text
 main/info.bioinfweb.tic.swt/pom.xml -text svneol=unset#text/plain
 main/info.bioinfweb.tic.swt/src/APACHE-LICENSE.txt -text svneol=unset#text/plain
 main/info.bioinfweb.tic.swt/src/GPL.txt -text svneol=unset#text/plain
