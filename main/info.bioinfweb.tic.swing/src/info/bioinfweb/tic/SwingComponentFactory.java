@@ -85,7 +85,7 @@ public class SwingComponentFactory {
 					}
 				}
 			}
-			throw new ToolkitSpecificInstantiationException("No according constructor found for " + 
+			throw new ToolkitSpecificInstantiationException("No valid constructor found for " + 
 					ticComponent.getSwingComponentClassName());
 		} 
 		catch (InstantiationException e) {
