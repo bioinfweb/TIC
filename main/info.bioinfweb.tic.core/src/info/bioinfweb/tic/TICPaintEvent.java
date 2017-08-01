@@ -20,7 +20,7 @@ package info.bioinfweb.tic;
 
 
 import java.awt.Graphics2D;
-import java.awt.Rectangle;
+import java.awt.geom.Rectangle2D;
 import java.util.EventObject;
 
 
@@ -35,7 +35,7 @@ import java.util.EventObject;
  */
 public class TICPaintEvent extends EventObject {
   private Graphics2D graphics;
-  private Rectangle rectangle;
+  private Rectangle2D rectangle;
   
   
 	/**
@@ -47,7 +47,7 @@ public class TICPaintEvent extends EventObject {
 	 * 
 	 * @throws IllegalArgumentException if {@code source}, {@code graphics} or {@code rectangle} are {@code null} 
 	 */
-	public TICPaintEvent(Object source, Graphics2D graphics, Rectangle rectangle) {
+	public TICPaintEvent(Object source, Graphics2D graphics, Rectangle2D rectangle) {
 		super(source);
 		if (graphics == null) {
 			throw new IllegalArgumentException("The graphics context must not be null.");
@@ -77,9 +77,9 @@ public class TICPaintEvent extends EventObject {
 	/**
 	 * Returns the rectangle that needs to be repainted.
 	 * 
-	 * @return the area to be painted determined the associated Swing or SWT class 
+	 * @return the area to be painted determined the associated <i>Swing</i> or <i>SWT</i> class 
 	 */
-	public Rectangle getRectangle() {
+	public Rectangle2D getRectangle() {
 		return rectangle;
 	}
 }
