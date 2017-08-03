@@ -26,7 +26,7 @@ import javax.swing.JComponent;
 
 
 /**
- * Provides static methods that help in implementing Swing versions of {@link ToolkitComponent}, which
+ * Provides static methods that help in implementing <i>Swing</i> versions of {@link ToolkitComponent}, which
  * cannot be inherited from {@link AbstractSwingComponent}.
  * 
  * @author Ben St&ouml;ver
