@@ -42,7 +42,7 @@ import org.eclipse.swt.widgets.Composite;
  * <p>
  * Optionally shifting the paint coordinate origin is possible to model direct scrolling (without being nested 
  * within a scroll container). This is especially relevant for large components in <i>SWT</i> since the component
- * size is limited there to 32767 (2^15 - 1) on some operating systems. For components that directly implement scrolling
+ * size is limited to 32767 (2^15 - 1) on some operating systems. For components that directly implement scrolling
  * behavior the properties {@link #getScrollOffsetX()} and {@link #getScrollOffsetY()} can be used.
  * 
  * @author Ben St&ouml;ver
