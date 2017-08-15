@@ -38,6 +38,8 @@ import javax.swing.SwingUtilities;
  * 
  * @author Ben St&ouml;ver
  * @bioinfweb.module info.bioinfweb.tic.core
+ * 
+ * @param <L> the type of lister to forward events to
  */
 public abstract class AbstractEventForwarder<L extends EventListener> {
 	private TICListenerSet<L> listenerSet;
