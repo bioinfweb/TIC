@@ -19,13 +19,13 @@
 package info.bioinfweb.tic.toolkit;
 
 
+import info.bioinfweb.tic.TICComponent;
+import info.bioinfweb.tic.TICPaintEvent;
+
 import java.awt.Graphics2D;
 import java.awt.geom.Rectangle2D;
 import java.awt.image.BufferedImage;
 import java.awt.image.DataBufferByte;
-
-import info.bioinfweb.tic.TICComponent;
-import info.bioinfweb.tic.TICPaintEvent;
 
 import org.eclipse.swt.events.PaintEvent;
 import org.eclipse.swt.graphics.Image;
@@ -40,15 +40,16 @@ import org.eclipse.swt.widgets.Composite;
  * <p>
  * It uses the {@link TICComponent#paint(TICPaintEvent)} to draw the widget.
  * <p>
- * Optionally shifting the paint coordinate origin is possible to model direct scrolling (without being nested 
- * within a scroll container). This is especially relevant for large components in <i>SWT</i> since the component
- * size is limited to 32767 (2^15 - 1) on some operating systems. For components that directly implement scrolling
- * behavior the properties {@link #getScrollOffsetX()} and {@link #getScrollOffsetY()} can be used.
+ * Since <i>TIC</i> 3.0.0 optionally shifting the paint coordinate origin is possible to model direct scrolling 
+ * (without being nested within a scroll container). This is especially relevant for large components in 
+ * <i>SWT</i> since the component size is limited to 32767 (2^15 - 1) on some operating systems. For components 
+ * that directly implement scrolling behavior the properties {@link #getScrollOffsetX()} and 
+ * {@link #getScrollOffsetY()} can be used.
  * 
  * @author Ben St&ouml;ver
  * @bioinfweb.module info.bioinfweb.tic.swt
  */
-public class DefaultSWTComposite extends AbstractSWTWidget {
+public class DefaultSWTComposite extends AbstractSWTWidget implements DirectScrollingSWTComposite {
 	private double scrollOffsetX = 0.0;
 	private double scrollOffsetY = 0.0;
 	
@@ -58,50 +59,30 @@ public class DefaultSWTComposite extends AbstractSWTWidget {
 	}
 	
 	
-	/**
-	 * Returns the current painting offset on x. If this property is e.g. set -10, the component will be painted as if
-	 * it would be scrolled to the right by 10 px. (The left-most 10 px are not visible.)
-	 * 
-	 * @return the shift of the painting coordinate origin on x
-	 */
+	@Override
 	public double getScrollOffsetX() {
 		return scrollOffsetX;
 	}
 
 
-	/**
-	 * Sets the current painting offset on x. If this property is e.g. set -10, the component will be painted as if
-	 * it would be scrolled to the right by 10 px. (The left-most 10 px are not visible.)
-	 * 
-	 * @param scrollOffsetX the new shift of the painting coordinate origin on x
-	 */
+	@Override
 	public void setScrollOffsetX(double scrollOffsetX) {
 		this.scrollOffsetX = scrollOffsetX;
 	}
 
 
-	/**
-	 * Returns the current painting offset on y. If this property is e.g. set -10, the component will be painted as if
-	 * it would be scrolled downwards by 10 px. (The top-most 10 px are not visible.)
-	 * 
-	 * @return the shift of the painting coordinate origin on y
-	 */
+	@Override
 	public double getScrollOffsetY() {
 		return scrollOffsetY;
 	}
 
 
-	/**
-	 * Sets the current painting offset on y. If this property is e.g. set -10, the component will be painted as if
-	 * it would be scrolled downwards by 10 px. (The top-most 10 px are not visible.)
-	 * 
-	 * @param scrollOffsetX the new shift of the painting coordinate origin on y
-	 */
+	@Override
 	public void setScrollOffsetY(double scrollOffsetY) {
 		this.scrollOffsetY = scrollOffsetY;
 	}
-
-
+	
+	
 	/**
 	 * Fire a <i>TIC</i> paint event internally to let the implementing class draw on a buffered image and than draws
 	 * that image into the <i>SWT</i> graphics context.

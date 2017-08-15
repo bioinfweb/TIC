@@ -37,7 +37,7 @@ import org.eclipse.swt.events.MouseTrackListener;
  * @author Ben St&ouml;ver
  * @bioinfweb.module info.bioinfweb.tic.swt
  */
-public class SWTMouseEventForwarder extends AbstractEventForwarder<TICMouseListener> 
+public class SWTMouseEventForwarder extends AbstractSWTMouseEventForwarder<TICMouseListener> 
 		implements MouseListener, MouseMoveListener, MouseTrackListener {
 	
 	private int lastPressedButton = 0;
@@ -51,7 +51,7 @@ public class SWTMouseEventForwarder extends AbstractEventForwarder<TICMouseListe
 	private TICMouseEvent createEvent(TICComponent source, MouseEvent swtEvent) {
 		return new TICMouseEvent(source, SWTSwingEventConversionTools.convertSWTEventTime(swtEvent.time), 
 				SWTSwingEventConversionTools.convertSWTStateMask(swtEvent.stateMask, swtEvent.button), 
-				swtEvent.button, swtEvent.count, false, swtEvent.x, swtEvent.y);
+				swtEvent.button, swtEvent.count, false, transformMouseX(swtEvent.x), transformMouseY(swtEvent.y));
 		//TODO Determine popup trigger
 	}
 	

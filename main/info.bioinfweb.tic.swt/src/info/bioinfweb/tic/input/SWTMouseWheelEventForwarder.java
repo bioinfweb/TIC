@@ -36,7 +36,7 @@ import org.eclipse.swt.events.MouseWheelListener;
  * @since 2.0.0
  * @bioinfweb.module info.bioinfweb.tic.swt
  */
-public class SWTMouseWheelEventForwarder extends AbstractEventForwarder<TICMouseWheelListener> implements MouseWheelListener {
+public class SWTMouseWheelEventForwarder extends AbstractSWTMouseEventForwarder<TICMouseWheelListener> implements MouseWheelListener {
 	public SWTMouseWheelEventForwarder(TICListenerSet<TICMouseWheelListener> listenerSet) {
 		super(listenerSet);
 	}
@@ -45,7 +45,8 @@ public class SWTMouseWheelEventForwarder extends AbstractEventForwarder<TICMouse
 	private TICMouseWheelEvent createEvent(TICComponent source, MouseEvent swtEvent) {
 		return new TICMouseWheelEvent(source, SWTSwingEventConversionTools.convertSWTEventTime(swtEvent.time), 
 				SWTSwingEventConversionTools.convertSWTStateMask(swtEvent.stateMask, swtEvent.button), 
-				swtEvent.button, swtEvent.count, false, swtEvent.x, swtEvent.y, -swtEvent.count, -swtEvent.count);
+				swtEvent.button, swtEvent.count, false, transformMouseX(swtEvent.x), transformMouseY(swtEvent.y), 
+				-swtEvent.count, -swtEvent.count);
 		//TODO Determine popup trigger
 	}
 	
