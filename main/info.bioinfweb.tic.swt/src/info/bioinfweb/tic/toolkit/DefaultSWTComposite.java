@@ -49,40 +49,22 @@ import org.eclipse.swt.widgets.Composite;
  * @author Ben St&ouml;ver
  * @bioinfweb.module info.bioinfweb.tic.swt
  */
-public class DefaultSWTComposite extends AbstractSWTWidget implements DirectScrollingSWTComposite {
-	private double scrollOffsetX = 0.0;
-	private double scrollOffsetY = 0.0;
-	
-	
+public class DefaultSWTComposite extends AbstractSWTWidget {
 	public DefaultSWTComposite(TICComponent ticComponent, Composite parent, int style) {
 		super(ticComponent, parent, style);
 	}
 	
 	
-	@Override
-	public double getScrollOffsetX() {
-		return scrollOffsetX;
+	protected int getScrollOffsetX() {
+		return 0;
 	}
 
 
-	@Override
-	public void setScrollOffsetX(double scrollOffsetX) {
-		this.scrollOffsetX = scrollOffsetX;
+	protected int getScrollOffsetY() {
+		return 0;
 	}
 
 
-	@Override
-	public double getScrollOffsetY() {
-		return scrollOffsetY;
-	}
-
-
-	@Override
-	public void setScrollOffsetY(double scrollOffsetY) {
-		this.scrollOffsetY = scrollOffsetY;
-	}
-	
-	
 	/**
 	 * Fire a <i>TIC</i> paint event internally to let the implementing class draw on a buffered image and than draws
 	 * that image into the <i>SWT</i> graphics context.

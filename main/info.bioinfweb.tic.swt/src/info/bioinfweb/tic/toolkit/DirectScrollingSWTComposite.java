@@ -27,7 +27,7 @@ public interface DirectScrollingSWTComposite {
 	 * 
 	 * @return the shift of the painting coordinate origin on x
 	 */
-	public double getScrollOffsetX();
+	public int getScrollOffsetX();
 	
 	/**
 	 * Sets the current painting offset on x. If this property is e.g. set -10, the component will be painted as if
@@ -35,7 +35,7 @@ public interface DirectScrollingSWTComposite {
 	 * 
 	 * @param scrollOffsetX the new shift of the painting coordinate origin on x
 	 */
-	public void setScrollOffsetX(double scrollOffsetX);
+	public void setScrollOffsetX(int scrollOffsetX);
 	
 	/**
 	 * Returns the current painting offset on y. If this property is e.g. set -10, the component will be painted as if
@@ -43,13 +43,23 @@ public interface DirectScrollingSWTComposite {
 	 * 
 	 * @return the shift of the painting coordinate origin on y
 	 */
-	public double getScrollOffsetY();
+	public int getScrollOffsetY();
 	
 	/**
 	 * Sets the current painting offset on y. If this property is e.g. set -10, the component will be painted as if
 	 * it would be scrolled downwards by 10 px. (The top-most 10 px are not visible.)
 	 * 
-	 * @param scrollOffsetX the new shift of the painting coordinate origin on y
+	 * @param scrollOffsetY the new shift of the painting coordinate origin on y
 	 */
-	public void setScrollOffsetY(double scrollOffsetY);
+	public void setScrollOffsetY(int scrollOffsetY);
+	
+	/**
+	 * Sets the current painting offset on x and y. This method should be used, if both coordinates are changed, instead
+	 * of calling {@link #setScrollOffsetX(int)} and {@link #setScrollOffsetY(int)} separately to avoid unnecessary
+	 * repainting.
+	 * 
+	 * @param scrollOffsetX the new shift of the painting coordinate origin on x
+	 * @param scrollOffsetY the new shift of the painting coordinate origin on y
+	 */
+	public void setScrollOffset(int scrollOffsetX, int scrollOffsetY);
 }
