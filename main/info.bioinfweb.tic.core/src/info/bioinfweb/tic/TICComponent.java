@@ -173,30 +173,70 @@ public abstract class TICComponent {
 	 * object for <i>Swing</i>. Inherited classes providing custom <i>Swing</i> specific implementations should
 	 * overwrite this method.
 	 * <p>
-	 * Note that custom implementations need to provider constructors as defined in the documentation
+	 * Note that custom implementations need to provide constructors as defined in the documentation
 	 * of {@link ToolkitComponent}.
 	 * 
+	 * @param parameters an optional list of parameters that were passed to the {@code getSwingComponent()}
+	 *        method of {@code SwingComponentFactory}
 	 * @return a fully qualified class name for a class used to create the concrete <i>Swing</i> GUI instance
 	 *         associated with this instance
 	 */
-	protected String getSwingComponentClassName() {
+	protected String getSwingComponentClassName(Object... parameters) {
 		return "info.bioinfweb.tic.toolkit.DefaultSwingComponent";
 	}
 	
 	
 	/**
+	 * Inherited classes can overwrite this method if their <i>Swing</i> component needs constructor parameters
+	 * in addition to the owning {@link TICComponent}.
+	 * <p>
+	 * The default implementation of this method returns an empty array an can be left unchanged for all
+	 * <i>Swing</i> components that do not need additional constructor parameters.
+	 * 
+	 * @param parameters an optional list of parameters that were passed to the {@code getSwingComponent()}
+	 *        method of {@code SwingComponentFactory}
+	 * @return the list of additional parameters to be passed to the constructor of the <i>Swing</i> component 
+	 *         defined by the return value of {@link #getSwingComponentClassName(Object...)}
+	 * @since 3.0.0 
+	 */
+	protected Object[] getSwingComponentConstructorParameters(Object... parameters) {
+		return new Object[0];
+	}
+	
+	
+	/**
 	 * Method used by {@code SWTComponentFactory} in the <i>SWT</i> module to create the concrete GUI
-	 * object for <i>Swing</i>. Inherited classes providing custom <i>Swing</i> specific implementations should
+	 * object for <i>SWT</i>. Inherited classes providing custom <i>SWT</i> specific implementations should
 	 * overwrite this method.
 	 * <p>
-	 * Note that custom implementations need to provider constructors as defined in the documentation
+	 * Note that custom implementations need to provide constructors as defined in the documentation
 	 * of {@link ToolkitComponent}.
 	 * 
+	 * @param parameters an optional list of parameters that were passed to the {@code getSWTComponent()}
+	 *        method of {@code SWTComponentFactory}
 	 * @return a fully qualified class name for a class used to create the concrete <i>SWT</i> GUI instance
 	 *         associated with this instance
 	 */
-	protected String getSWTComponentClassName() {
+	protected String getSWTComponentClassName(Object... parameters) {
 		return "info.bioinfweb.tic.toolkit.DefaultSWTComposite";
+	}
+	
+	
+	/**
+	 * Inherited classes can overwrite this method if their <i>SWT</i> component needs constructor parameters
+	 * in addition to the owning {@link TICComponent}, the parent composite and the <i>SWT</i> style.
+	 * <p>
+	 * The default implementation of this method returns an empty array an can be left unchanged for all
+	 * <i>SWT</i> components that do not need additional constructor parameters.
+	 * 
+	 * @param parameters an optional list of parameters that were passed to the {@code getSWTComponent()}
+	 *        method of {@code SWTComponentFactory}
+	 * @return the list of additional parameters to be passed to the constructor of the <i>Swing</i> component 
+	 *         defined by the return value of {@link #getSwingComponentClassName(Object...)} 
+	 * @since 3.0.0 
+	 */
+	protected Object[] getSWTComponentConstructorParameters(Object... parameters) {
+		return new Object[0];
 	}
 	
 	

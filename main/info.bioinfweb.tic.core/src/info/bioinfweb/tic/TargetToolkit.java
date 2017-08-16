@@ -21,7 +21,7 @@ package info.bioinfweb.tic;
 
 
 /**
- * Enumerates the supported toolkits of TIC. (Currently Swing and SWT)
+ * Enumerates the supported toolkits of <i>TIC</i> (currently <i>Swing</i> and <i>SWT</i>).
  * 
  * @author Ben St&ouml;ver
  * @bioinfweb.module info.bioinfweb.tic.core

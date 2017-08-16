@@ -30,8 +30,11 @@ import info.bioinfweb.tic.TargetToolkit;
 /**
  * Interface to be implemented by all toolkit-specific GUI components associated with a {@link TICComponent}.
  * <p>
- * Note that implementing classes must always provide constructors with the following parameters in order to 
- * be used with a {@link TICComponent}:
+ * Note that implementing classes must always provide constructors that match the parameters expected by the
+ * associated {@link TICComponent}. Additional parameters are specified by 
+ * {@link TICComponent#getSwingComponentConstructorParameters(Object...)} or
+ * {@link TICComponent#getSWTComponentConstructorParameters(Object...)}. All constructors must have the 
+ * following set of parameters, possible followed by additional parameters defined by the <i>TIC</i> component: 
  * <ul>
  *   <li>Swing: {@code SomeSwingComponent(TICComponent owner)}</li> 
  *   <li>SWT: {@code SomeSWTComponent(TICComponent owner, Composite parent, int style)}</li>
