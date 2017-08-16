@@ -27,8 +27,11 @@ import info.bioinfweb.tic.toolkit.ToolkitComponent;
 
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
+import java.util.Arrays;
 
 import javax.swing.JComponent;
+
+import org.apache.commons.lang3.reflect.ConstructorUtils;
 
 
 
@@ -52,6 +55,9 @@ import javax.swing.JComponent;
  * @bioinfweb.module info.bioinfweb.tic.swing
  */
 public class SwingComponentFactory {
+	private static final int MINIMAL_NUMBER_OF_CONSTRUCTOR_PARAMETERS = 1;
+	
+	
 	private static SwingComponentFactory firstInstance = null;
 	
 	
@@ -68,41 +74,60 @@ public class SwingComponentFactory {
 	}
 
 
-	private JComponent createSwingComponent(TICComponent ticComponent) {
+	private JComponent createSwingComponent(TICComponent ticComponent, Object... factoryParameters) {
 		try {
-			Constructor<?>[] constructors = Class.forName(ticComponent.getSwingComponentClassName()).getConstructors();
-			for (int i = 0; i < constructors.length; i++) {
-				Class<?>[] parameters = constructors[i].getParameterTypes();
-				if ((parameters.length == 1) && parameters[0].isAssignableFrom(ticComponent.getClass())) {
-					JComponent result = (JComponent)constructors[i].newInstance(ticComponent);
-					if (result instanceof ToolkitComponent) {
-						return result;
+			Class<?> componentClass = Class.forName(ticComponent.getSwingComponentClassName(factoryParameters));
+			if (!JComponent.class.isAssignableFrom(componentClass)) {
+				throw new ToolkitSpecificInstantiationException("The constructed instance of type " +
+						componentClass.getCanonicalName() + " does not inherit from " + JComponent.class.getCanonicalName() + ".");
+			}
+			else if (!ToolkitComponent.class.isAssignableFrom(componentClass)) {
+				throw new ToolkitSpecificInstantiationException("The constructed instance of type " +
+						componentClass.getCanonicalName() + " does not implement " + ToolkitComponent.class.getCanonicalName() + ".");
+			}
+			else {
+				// Create list of possible additional constructor parameters:
+				Object[] constructorParameters = ticComponent.getSwingComponentConstructorParameters(factoryParameters);
+				
+				// Create combined array with all constructor parameter values:
+				Object[] parameterValues = new Object[constructorParameters.length + MINIMAL_NUMBER_OF_CONSTRUCTOR_PARAMETERS];
+				parameterValues[0] = ticComponent;
+				for (int i = 0; i < constructorParameters.length; i++) {
+					parameterValues[i + MINIMAL_NUMBER_OF_CONSTRUCTOR_PARAMETERS] = constructorParameters[i];
+				}
+	
+				// Create array with all constructor parameter classes:
+				Class<?>[] parameterClasses = new Class[parameterValues.length];
+				for (int i = 0; i < parameterValues.length; i++) {
+					parameterClasses[i] = parameterValues[i].getClass();
+				}
+				
+				// Create component instance:
+				try {
+					Constructor<?> constructor = ConstructorUtils.getMatchingAccessibleConstructor(componentClass, parameterClasses);
+					if (constructor != null) {
+						return (JComponent)constructor.newInstance(parameterValues);
 					}
 					else {
-						throw new ToolkitSpecificInstantiationException("The constructed instance of type " + 
-								result.getClass().getCanonicalName() + " does not implement " + ToolkitComponent.class.getCanonicalName() + 
-								".");
+						throw new ToolkitSpecificInstantiationException("No constructor accepting the parameter types " +
+								Arrays.toString(parameterClasses) + " or supertypes of these was found in " + 
+								componentClass.getCanonicalName() + ".");
 					}
+				} 
+				catch (InstantiationException e) {
+					throw new ToolkitSpecificInstantiationException(e);
+				}
+				catch (IllegalAccessException e) {
+					throw new ToolkitSpecificInstantiationException(e);
+				}
+				catch (IllegalArgumentException e) {
+					throw new ToolkitSpecificInstantiationException(e);
+				}
+				catch (InvocationTargetException e) {
+					throw new ToolkitSpecificInstantiationException(e);
 				}
 			}
-			throw new ToolkitSpecificInstantiationException("No valid constructor found for " + 
-					ticComponent.getSwingComponentClassName());
-		} 
-		catch (InstantiationException e) {
-			throw new ToolkitSpecificInstantiationException(e);
-		} 
-		catch (IllegalAccessException e) {
-			throw new ToolkitSpecificInstantiationException(e);
-		} 
-		catch (IllegalArgumentException e) {
-			throw new ToolkitSpecificInstantiationException(e);
-		} 
-		catch (InvocationTargetException e) {
-			throw new ToolkitSpecificInstantiationException(e);
-		} 
-		catch (SecurityException e) {
-			throw new ToolkitSpecificInstantiationException(e);
-		} 
+		}
 		catch (ClassNotFoundException e) {
 			throw new ToolkitSpecificInstantiationException(e);
 		}
@@ -111,18 +136,30 @@ public class SwingComponentFactory {
 	
 	/**
 	 * Creates the Swing component that will be associated with the specified TIC component if it was 
-	 * not created before. The returned instance will be returned by {@link #getToolkitComponent()} 
-	 * from now on. Subsequent calls of this method will return the same instance again. 
+	 * not created before. The created instance will be returned by {@link #getToolkitComponent()} 
+	 * from now on. 
 	 * <p>
-	 * Note that this method can only be called if no SWT component has been created for the specified
+	 * Subsequent calls of this method will return the same instance again. The parameters specified in
+	 * additional calls will therefore <b>not</b> be considered.
+	 * <p>
+	 * Note that this method can only be called if no <i>SWT</i> component has been created for the specified
 	 * TIC component before.
 	 * 
-	 * @return the associated Swing component that has been created
-	 * @throws IllegalStateException if an SWT component has already been created for {@code ticComponent} 
+	 * @param ticComponent the <i>TIC</i> component for which an <i>SWT</i> component shall be created
+	 * @param additionalParameters an optional list of parameters to be passed to 
+	 *        {@code ticComponent.getSWTComponentClassName(Object...)} and 
+	 *        {@code ticComponent.getSWTComponentConstructorParameters(Object...)} 
+	 *        (Note that these parameters will not be passed to the component constructor. The parameters passed 
+	 *        there are determined by the return value of 
+	 *        {@link TICComponent#getSWTComponentConstructorParameters(Object...)}.)
+	 * @return the associated <i>Swing</i> component that has been created
+	 * @throws IllegalStateException if an <i>SWT</i> component has already been created for {@code ticComponent} 
+	 * @throws ToolkitSpecificInstantiationException if an error during the creation of the component occurs 
+	 *         (e.g. no constructor matching the necessary parameters was found)
 	 */
-	public JComponent getSwingComponent(TICComponent ticComponent) {
+	public JComponent getSwingComponent(TICComponent ticComponent, Object... additionalParameters) {
 		if (!ticComponent.hasToolkitComponent()) {
-			JComponent component = createSwingComponent(ticComponent);
+			JComponent component = createSwingComponent(ticComponent, additionalParameters);
 			
 			component.addKeyListener(new SwingKeyEventForwarder(ticComponent.getKeyListenersSet()));
 			SwingMouseEventForwarder mouseListeners = new SwingMouseEventForwarder(ticComponent.getMouseListenersSet()); 
