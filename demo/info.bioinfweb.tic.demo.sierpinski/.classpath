@@ -6,6 +6,6 @@
 	<classpathentry kind="lib" path="/info.bioinfweb.tic.core/bin" sourcepath="/info.bioinfweb.tic.core/src"/>
 	<classpathentry kind="lib" path="/info.bioinfweb.tic.swing/bin" sourcepath="/info.bioinfweb.tic.swing/src"/>
 	<classpathentry kind="lib" path="/info.bioinfweb.tic.swt/bin" sourcepath="/info.bioinfweb.tic.swt/src"/>
-	<classpathentry kind="lib" path="/info.bioinfweb.tic.swt/lib/swt.jar"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/org.eclipse.swt"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
