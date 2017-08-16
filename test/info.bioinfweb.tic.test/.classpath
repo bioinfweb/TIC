@@ -6,5 +6,6 @@
 	<classpathentry kind="lib" path="/info.bioinfweb.tic.core/bin"/>
 	<classpathentry kind="lib" path="/info.bioinfweb.tic.swing/bin"/>
 	<classpathentry kind="lib" path="/info.bioinfweb.tic.swt/bin"/>
+	<classpathentry kind="lib" path="/info.bioinfweb.tic.core/include/lib/commons-lang3-3.1.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
