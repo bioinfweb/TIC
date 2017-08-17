@@ -69,6 +69,8 @@ public abstract class TICComponent {
 	private TICListenerSet<TICKeyListener> keyListenersSet = new TICListenerSet<TICKeyListener>(this);
 	private TICListenerSet<TICMouseListener> mouseListenersSet = new TICListenerSet<TICMouseListener>(this);
 	private TICListenerSet<TICMouseWheelListener> mouseWheelListenersSet = new TICListenerSet<TICMouseWheelListener>(this);
+	private boolean updateOngoing = false;
+	protected boolean repaintRequested = false;  // Inherited classes may have the need to access this field.
 	
 	
 	/**
@@ -118,13 +120,55 @@ public abstract class TICComponent {
 	
 	
 	/**
+	 * Determines whether the contents displayed by this component are currently ongoing.
+	 * <p> 
+	 * {@link #repaint()} makes use of this property to avoid unnecessary repaint operations. 
+	 * 
+	 * @return {@code true} if an update is currently ongoing, {@code false} otherwise
+	 * @since 0.5.0
+	 */
+	public boolean isUpdateOngoing() {
+		return updateOngoing;
+	}
+
+
+	/**
+	 * Allows to specify whether the contents displayed by this component are currently ongoing.
+	 * <p> 
+	 * {@link #repaint()} makes use of this property to avoid unnecessary repaint operations. If
+	 * this property is changed from {@code true} to {@code false}, the component will be repainted
+	 * directly, if that was previously requested.
+	 *  
+	 * @param updateOngoing {@code true} if an update is currently ongoing, {@code false} otherwise
+	 */
+	public void setUpdateOngoing(boolean updateOngoing) {
+		if (this.updateOngoing != updateOngoing) {
+			this.updateOngoing = updateOngoing;
+			if (!updateOngoing && repaintRequested) {
+				repaint();
+			}
+		}
+	}
+
+
+	/**
 	 * Forces the underlying toolkit component to be repainted. This method will only have an effect 
 	 * if a toolkit specific component has already been assigned ({@link #hasToolkitComponent()} return
 	 * {@code true}).
+	 * <p>
+	 * If {@link #isUpdateOngoing()} is set to {@code true}, calls of this method will not cause a direct
+	 * repaint. The request for repainting is stored internally by this instance and it will be repainted
+	 * when {@link #setUpdateOngoing(boolean)} is set to {@code false} the next time. (If this method was
+	 * called multiple times before that, still only one repaint operation will be performed.)
 	 */
 	public void repaint() {
 		if (hasToolkitComponent()) {
-			getToolkitComponent().repaint();
+			if (isUpdateOngoing()) {
+				repaintRequested = true;
+			}
+			else {
+				getToolkitComponent().repaint();
+			}
 		}
 	}
 	

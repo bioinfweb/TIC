@@ -54,8 +54,6 @@ public class TICInputEvent extends EventObject {
 	}
 	
 	
-	
-	
   @Override
 	public TICComponent getSource() {
 		return (TICComponent)super.getSource();
