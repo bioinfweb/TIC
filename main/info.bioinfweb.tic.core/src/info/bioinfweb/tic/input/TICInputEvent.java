@@ -29,7 +29,7 @@ import info.bioinfweb.tic.TICComponent;
 
 
 /**
- * All toolkit independent input events in TIC should be inherited from this class.
+ * All toolkit independent input events in <i>TIC</i> should be inherited from this class.
  * 
  * @author Ben St&ouml;ver
  * @bioinfweb.module info.bioinfweb.tic.core
@@ -43,9 +43,9 @@ public class TICInputEvent extends EventObject {
 	 * Creates a new instance of this class. Objects of this type should not be instantiated directly but an inherited
 	 * class should be used instead.
 	 * 
-	 * @param source - the TIC component triggering this event
-	 * @param time - the time (in milliseconds) when the event happened
-	 * @param modifiers - the modifier keys in AWT format (see constants in {@link KeyEvent})
+	 * @param source the <i>TIC</i> component triggering this event
+	 * @param time the time (in milliseconds) when the event happened
+	 * @param modifiers the modifier keys in AWT format (see constants in {@link KeyEvent})
 	 */
 	public TICInputEvent(TICComponent source, long time, int modifiers) {
 		super(source);
