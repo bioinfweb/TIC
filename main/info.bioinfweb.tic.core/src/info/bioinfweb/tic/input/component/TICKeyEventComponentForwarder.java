@@ -18,33 +18,36 @@
  */
 package info.bioinfweb.tic.input.component;
 
-import info.bioinfweb.tic.input.AbstractEventForwarder;
-import info.bioinfweb.tic.input.TICListenerSet;
-import info.bioinfweb.tic.input.TICMouseWheelEvent;
-import info.bioinfweb.tic.input.TICMouseWheelListener;
+
+import info.bioinfweb.tic.TICComponent;
+import info.bioinfweb.tic.input.TICKeyEvent;
+import info.bioinfweb.tic.input.TICKeyListener;
+
+import java.util.Set;
 
 
 
 /**
- * An <i>TIC</i> mouse wheel event listener that forwards all received {@link TICMouseWheelEvent}s to a set of other 
- * {@link TICMouseWheelListener}s.
+ * An <i>TIC</i> key event listener that forwards all received {@link TICKeyEvent}s to a set of {@link TICComponent}s.
  * 
  * @author Ben St&ouml;ver
  * @since 3.0.0
  * @bioinfweb.module info.bioinfweb.tic.core
  */
-public class TICMouseWheelEventForwarder extends AbstractEventForwarder<TICMouseWheelListener> implements TICMouseWheelListener {
-	public TICMouseWheelEventForwarder(TICListenerSet<TICMouseWheelListener> listenerSet) {
-		super(listenerSet);
+public class TICKeyEventComponentForwarder extends AbstractEventComponentForwarder implements TICKeyListener {
+	public TICKeyEventComponentForwarder(Set<TICComponent> components) {
+		super(components);
 	}
 
-
+	
 	@Override
-	public boolean mouseWheelMoved(TICMouseWheelEvent event) {
-		boolean consumed = false;
-		for (TICMouseWheelListener listener: getListenerSet().getListeners()) {
-			consumed = consumed || listener.mouseWheelMoved(event);
-		}
-		return consumed;
+	public boolean keyPressed(TICKeyEvent event) {
+		return dispatchEvent(event);
+	}
+
+	
+	@Override
+	public boolean keyReleased(TICKeyEvent event) {
+		return dispatchEvent(event);
 	}
 }

@@ -18,83 +18,60 @@
  */
 package info.bioinfweb.tic.input.component;
 
-import info.bioinfweb.tic.input.AbstractEventForwarder;
-import info.bioinfweb.tic.input.TICListenerSet;
+
+import info.bioinfweb.tic.TICComponent;
 import info.bioinfweb.tic.input.TICMouseEvent;
 import info.bioinfweb.tic.input.TICMouseListener;
+
+import java.util.Set;
 
 
 
 /**
- * An <i>TIC</i> mouse event listener that forwards all received {@link TICMouseEvent}s to a set of other 
- * {@link TICMouseListener}s.
+ * An <i>TIC</i> mouse event listener that forwards all received {@link TICMouseEvent}s to a set {@link TICComponent}s. 
  * 
  * @author Ben St&ouml;ver
  * @since 3.0.0
  * @bioinfweb.module info.bioinfweb.tic.core
  */
-public class TICMouseEventForwarder extends AbstractEventForwarder<TICMouseListener> implements TICMouseListener {
-	public TICMouseEventForwarder(TICListenerSet<TICMouseListener> listenerSet) {
-		super(listenerSet);
+public class TICMouseEventComponentForwarder extends AbstractEventComponentForwarder implements TICMouseListener {
+	public TICMouseEventComponentForwarder(Set<TICComponent> components) {
+		super(components);
 	}
 
 
 	@Override
 	public boolean mousePressed(TICMouseEvent event) {
-		boolean consumed = false;
-		for (TICMouseListener listener: getListenerSet().getListeners()) {
-			consumed = consumed || listener.mousePressed(event);
-		}
-		return consumed;
+		return dispatchEvent(event);
 	}
 
 
 	@Override
 	public boolean mouseReleased(TICMouseEvent event) {
-		boolean consumed = false;
-		for (TICMouseListener listener: getListenerSet().getListeners()) {
-			consumed = consumed || listener.mouseReleased(event);
-		}
-		return consumed;
+		return dispatchEvent(event);
 	}
 
 
 	@Override
 	public boolean mouseEntered(TICMouseEvent event) {
-		boolean consumed = false;
-		for (TICMouseListener listener: getListenerSet().getListeners()) {
-			consumed = consumed || listener.mouseEntered(event);
-		}
-		return consumed;
+		return dispatchEvent(event);
 	}
 
 
 	@Override
 	public boolean mouseExited(TICMouseEvent event) {
-		boolean consumed = false;
-		for (TICMouseListener listener: getListenerSet().getListeners()) {
-			consumed = consumed || listener.mouseExited(event);
-		}
-		return consumed;
+		return dispatchEvent(event);
 	}
 
 
 	@Override
 	public boolean mouseMoved(TICMouseEvent event) {
-		boolean consumed = false;
-		for (TICMouseListener listener: getListenerSet().getListeners()) {
-			consumed = consumed || listener.mouseMoved(event);
-		}
-		return consumed;
+		return dispatchEvent(event);
 	}
 
 
 	@Override
 	public boolean mouseDragged(TICMouseEvent event) {
-		boolean consumed = false;
-		for (TICMouseListener listener: getListenerSet().getListeners()) {
-			consumed = consumed || listener.mouseDragged(event);
-		}
-		return consumed;
+		return dispatchEvent(event);
 	}
 }
