@@ -43,7 +43,7 @@ public class SwingKeyEventForwarder extends AbstractEventForwarder<TICKeyListene
 
 
 	private TICKeyEvent createEvent(TICComponent source, KeyEvent swingEvent) {
-		return new TICKeyEvent(source, swingEvent.getWhen(), swingEvent.getModifiersEx(), swingEvent.getKeyCode(), 
+		return new TICKeyEvent(source, swingEvent.getID(), swingEvent.getWhen(), swingEvent.getModifiersEx(), swingEvent.getKeyCode(), 
 				swingEvent.getKeyLocation(), swingEvent.getKeyChar());
 	}
 	

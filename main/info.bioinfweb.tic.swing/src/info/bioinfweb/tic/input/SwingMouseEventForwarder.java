@@ -46,8 +46,8 @@ public class SwingMouseEventForwarder extends AbstractEventForwarder<TICMouseLis
 
 
 	private TICMouseEvent createEvent(TICComponent source, MouseEvent swingEvent) {
-		return new TICMouseEvent(source, swingEvent.getWhen(), swingEvent.getModifiersEx(), swingEvent.getButton(), 
-				swingEvent.getClickCount(), swingEvent.isPopupTrigger(), swingEvent.getX(), swingEvent.getY());
+		return new TICMouseEvent(source, swingEvent.getID(), swingEvent.getWhen(), swingEvent.getModifiersEx(), 
+				swingEvent.getButton(),	swingEvent.getClickCount(), swingEvent.isPopupTrigger(), swingEvent.getX(), swingEvent.getY());
 	}
 
 

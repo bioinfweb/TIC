@@ -46,8 +46,8 @@ public class SwingMouseWheelEventForwarder extends AbstractEventForwarder<TICMou
 	
 	
 	private TICMouseWheelEvent createEvent(TICComponent source, MouseWheelEvent swingEvent) {
-		return new TICMouseWheelEvent(source, swingEvent.getWhen(), swingEvent.getModifiersEx(), swingEvent.getButton(), 
-				swingEvent.getClickCount(), swingEvent.isPopupTrigger(), swingEvent.getX(), swingEvent.getY(),
+		return new TICMouseWheelEvent(source, swingEvent.getID(), swingEvent.getWhen(), swingEvent.getModifiersEx(), 
+				swingEvent.getButton(),	swingEvent.getClickCount(), swingEvent.isPopupTrigger(), swingEvent.getX(), swingEvent.getY(),
 				swingEvent.getWheelRotation(), swingEvent.getPreciseWheelRotation());
 	}
 	
