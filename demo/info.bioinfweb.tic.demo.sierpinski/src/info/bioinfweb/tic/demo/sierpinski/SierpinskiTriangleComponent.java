@@ -27,6 +27,7 @@ import info.bioinfweb.tic.TICComponent;
 import info.bioinfweb.tic.TICPaintEvent;
 
 
+
 /**
  * Example TIC component in which a Sierpinski triangle is painted.
  * <p>

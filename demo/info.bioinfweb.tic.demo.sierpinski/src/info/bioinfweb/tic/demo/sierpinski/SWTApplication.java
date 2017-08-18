@@ -27,6 +27,7 @@ import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Shell;
 
 
+
 /**
  * Example that demonstrates using TIC components in SWT applications.
  * <p>

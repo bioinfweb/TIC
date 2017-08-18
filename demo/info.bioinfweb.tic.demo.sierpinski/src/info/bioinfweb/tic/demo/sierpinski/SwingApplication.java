@@ -28,6 +28,7 @@ import javax.swing.JComponent;
 import javax.swing.JFrame;
 
 
+
 /**
  * Example that demonstrates using TIC components in Swing applications.
  * <p>
