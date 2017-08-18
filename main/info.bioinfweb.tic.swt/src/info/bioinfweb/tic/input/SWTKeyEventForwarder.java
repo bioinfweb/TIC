@@ -42,8 +42,8 @@ public class SWTKeyEventForwarder extends AbstractEventForwarder<TICKeyListener>
 	}
 
 
-	private TICKeyEvent createEvent(TICComponent source, org.eclipse.swt.events.KeyEvent swtEvent) {
-		return new TICKeyEvent(source, SWTSwingEventConversionTools.convertSWTEventTime(swtEvent.time), 
+	private TICKeyEvent createEvent(TICComponent source, int id, KeyEvent swtEvent) {
+		return new TICKeyEvent(source, id, SWTSwingEventConversionTools.convertSWTEventTime(swtEvent.time), 
 				SWTSwingEventConversionTools.convertSWTStateMask(swtEvent.stateMask, 0), 
 				SWTSwingEventConversionTools.convertSWTKeyCode(swtEvent.keyCode), 
 				SWTSwingEventConversionTools.convertSWTKeyLocation(swtEvent.keyLocation),	swtEvent.character);
@@ -53,7 +53,7 @@ public class SWTKeyEventForwarder extends AbstractEventForwarder<TICKeyListener>
 	@Override
 	public void keyPressed(KeyEvent event) {
 		for (TICKeyListener listener: getListenerSet().getListeners()) {
-			listener.keyPressed(createEvent(getListenerSet().getOwner(), event));
+			listener.keyPressed(createEvent(getListenerSet().getOwner(), java.awt.event.KeyEvent.KEY_PRESSED, event));
 		}
 	}
 
@@ -61,7 +61,7 @@ public class SWTKeyEventForwarder extends AbstractEventForwarder<TICKeyListener>
 	@Override
 	public void keyReleased(KeyEvent event) {
 		for (TICKeyListener listener: getListenerSet().getListeners()) {
-			listener.keyReleased(createEvent(getListenerSet().getOwner(), event));
+			listener.keyReleased(createEvent(getListenerSet().getOwner(), java.awt.event.KeyEvent.KEY_RELEASED, event));
 		}
 	}
 }

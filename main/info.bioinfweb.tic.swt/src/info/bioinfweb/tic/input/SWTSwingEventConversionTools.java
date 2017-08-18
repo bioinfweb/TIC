@@ -39,10 +39,10 @@ public class SWTSwingEventConversionTools {
 	
 	
 	/**
-	 * Converts a SWT event time value to a Swing time value.
+	 * Converts a <i>SWT</i> event time value to a <i>Swing</i> time value.
 	 * 
-	 * @param time - the SWT time value (unsigned {@code int})
-	 * @return a Swing time value (signed {@code long})
+	 * @param time the <i>TIC</i> time value (unsigned {@code int})
+	 * @return a <i>Swing</i> time value (signed {@code long})
 	 */
 	public static long convertSWTEventTime(int time) {
 		return time & 0xFFFFFFFFL;

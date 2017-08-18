@@ -48,8 +48,8 @@ public class SWTMouseEventForwarder extends AbstractSWTMouseEventForwarder<TICMo
 	}
 
 
-	private TICMouseEvent createEvent(TICComponent source, MouseEvent swtEvent) {
-		return new TICMouseEvent(source, SWTSwingEventConversionTools.convertSWTEventTime(swtEvent.time), 
+	private TICMouseEvent createEvent(TICComponent source, int id, MouseEvent swtEvent) {
+		return new TICMouseEvent(source, id, SWTSwingEventConversionTools.convertSWTEventTime(swtEvent.time), 
 				SWTSwingEventConversionTools.convertSWTStateMask(swtEvent.stateMask, swtEvent.button), 
 				swtEvent.button, swtEvent.count, false, transformMouseX(swtEvent.x), transformMouseY(swtEvent.y));
 		//TODO Determine popup trigger
@@ -59,7 +59,7 @@ public class SWTMouseEventForwarder extends AbstractSWTMouseEventForwarder<TICMo
 	@Override
 	public void mouseEnter(MouseEvent event) {
 		for (TICMouseListener listener: getListenerSet().getListeners()) {
-			listener.mouseEntered(createEvent(getListenerSet().getOwner(), event));
+			listener.mouseEntered(createEvent(getListenerSet().getOwner(), java.awt.event.MouseEvent.MOUSE_ENTERED, event));
 		}
 	}
 
@@ -67,7 +67,7 @@ public class SWTMouseEventForwarder extends AbstractSWTMouseEventForwarder<TICMo
 	@Override
 	public void mouseExit(MouseEvent event) {
 		for (TICMouseListener listener: getListenerSet().getListeners()) {
-			listener.mouseExited(createEvent(getListenerSet().getOwner(), event));
+			listener.mouseExited(createEvent(getListenerSet().getOwner(), java.awt.event.MouseEvent.MOUSE_EXITED, event));
 		}
 	}
 
@@ -80,12 +80,12 @@ public class SWTMouseEventForwarder extends AbstractSWTMouseEventForwarder<TICMo
 	public void mouseMove(MouseEvent event) {
 		if (lastPressedButton > 0) {
 			for (TICMouseListener listener: getListenerSet().getListeners()) {
-				listener.mouseDragged(createEvent(getListenerSet().getOwner(), event));
+				listener.mouseDragged(createEvent(getListenerSet().getOwner(), java.awt.event.MouseEvent.MOUSE_MOVED, event));
 			}
 		}
 		else {
 			for (TICMouseListener listener: getListenerSet().getListeners()) {
-				listener.mouseMoved(createEvent(getListenerSet().getOwner(), event));
+				listener.mouseMoved(createEvent(getListenerSet().getOwner(), java.awt.event.MouseEvent.MOUSE_MOVED, event));
 			}
 		}
 	}
@@ -99,7 +99,7 @@ public class SWTMouseEventForwarder extends AbstractSWTMouseEventForwarder<TICMo
 	public void mouseDown(MouseEvent event) {
 		lastPressedButton = event.button;
 		for (TICMouseListener listener: getListenerSet().getListeners()) {
-			listener.mousePressed(createEvent(getListenerSet().getOwner(), event));
+			listener.mousePressed(createEvent(getListenerSet().getOwner(), java.awt.event.MouseEvent.MOUSE_PRESSED, event));
 		}
 	}
 
@@ -108,7 +108,7 @@ public class SWTMouseEventForwarder extends AbstractSWTMouseEventForwarder<TICMo
 	public void mouseUp(MouseEvent event) {
 		lastPressedButton = 0;
 		for (TICMouseListener listener: getListenerSet().getListeners()) {
-			listener.mouseReleased(createEvent(getListenerSet().getOwner(), event));
+			listener.mouseReleased(createEvent(getListenerSet().getOwner(), java.awt.event.MouseEvent.MOUSE_RELEASED, event));
 		}
 	}
 }

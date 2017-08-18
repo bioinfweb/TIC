@@ -43,7 +43,8 @@ public class SWTMouseWheelEventForwarder extends AbstractSWTMouseEventForwarder<
 
 
 	private TICMouseWheelEvent createEvent(TICComponent source, MouseEvent swtEvent) {
-		return new TICMouseWheelEvent(source, SWTSwingEventConversionTools.convertSWTEventTime(swtEvent.time), 
+		return new TICMouseWheelEvent(source, java.awt.event.MouseWheelEvent.MOUSE_WHEEL, 
+				SWTSwingEventConversionTools.convertSWTEventTime(swtEvent.time), 
 				SWTSwingEventConversionTools.convertSWTStateMask(swtEvent.stateMask, swtEvent.button), 
 				swtEvent.button, swtEvent.count, false, transformMouseX(swtEvent.x), transformMouseY(swtEvent.y), 
 				-swtEvent.count, -swtEvent.count);
