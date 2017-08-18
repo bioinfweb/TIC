@@ -19,12 +19,12 @@
 package info.bioinfweb.tic.input;
 
 
-import java.awt.event.InputEvent;
-import java.awt.event.KeyEvent;
-import java.util.EventObject;
-
 import info.bioinfweb.commons.SystemUtils;
 import info.bioinfweb.tic.TICComponent;
+
+import java.awt.event.InputEvent;
+import java.awt.event.KeyEvent;
+import java.awt.event.MouseEvent;
 
 
 
@@ -34,7 +34,8 @@ import info.bioinfweb.tic.TICComponent;
  * @author Ben St&ouml;ver
  * @bioinfweb.module info.bioinfweb.tic.core
  */
-public class TICInputEvent extends EventObject {
+public class TICInputEvent extends TICEvent {
+	private int id; 
 	private long time;
 	private int modifiers;
 	
@@ -44,19 +45,20 @@ public class TICInputEvent extends EventObject {
 	 * class should be used instead.
 	 * 
 	 * @param source the <i>TIC</i> component triggering this event
+	 * @param id the <i>AWT</i> ID identifying the event (e.g. {@link KeyEvent#KEY_RELEASED} or {@link MouseEvent#MOUSE_CLICKED})
 	 * @param time the time (in milliseconds) when the event happened
 	 * @param modifiers the modifier keys in AWT format (see constants in {@link KeyEvent})
 	 */
-	public TICInputEvent(TICComponent source, long time, int modifiers) {
+	public TICInputEvent(TICComponent source, int id, long time, int modifiers) {
 		super(source);
+		this.id = id;
 		this.time = time;
 		this.modifiers = modifiers;
 	}
-	
-	
-  @Override
-	public TICComponent getSource() {
-		return (TICComponent)super.getSource();
+
+
+	public int getId() {
+		return id;
 	}
 
 

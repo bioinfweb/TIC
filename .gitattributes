@@ -40,6 +40,7 @@ main/info.bioinfweb.tic.core/src/info/bioinfweb/tic/TargetToolkit.java -text svn
 main/info.bioinfweb.tic.core/src/info/bioinfweb/tic/exception/ToolkitSpecificInstantiationException.java -text svneol=unset#text/plain
 main/info.bioinfweb.tic.core/src/info/bioinfweb/tic/exception/UnsupportedToolkitException.java -text svneol=unset#text/plain
 main/info.bioinfweb.tic.core/src/info/bioinfweb/tic/input/AbstractEventForwarder.java -text svneol=unset#text/plain
+main/info.bioinfweb.tic.core/src/info/bioinfweb/tic/input/TICEvent.java -text svneol=unset#text/plain
 main/info.bioinfweb.tic.core/src/info/bioinfweb/tic/input/TICInputEvent.java -text svneol=unset#text/plain
 main/info.bioinfweb.tic.core/src/info/bioinfweb/tic/input/TICKeyAdapter.java -text svneol=unset#text/plain
 main/info.bioinfweb.tic.core/src/info/bioinfweb/tic/input/TICKeyEvent.java -text svneol=unset#text/plain

@@ -19,25 +19,27 @@
 package info.bioinfweb.tic.input;
 
 
-import java.util.EventListener;
-
 import info.bioinfweb.tic.TICComponent;
+
+import java.util.EventObject;
 
 
 
 /**
- * Implement this interface to listen to mouse wheel events of {@link TICComponent}s.
+ * The base class of all events in the context of a {@link TICComponent}.
  * 
  * @author Ben St&ouml;ver
  * @bioinfweb.module info.bioinfweb.tic.core
+ * @since 0.3.0
  */
-public interface TICMouseWheelListener extends EventListener {
-  /**
-   * This method is called when the mouse wheel is moved.
-   * 
-   * @param event the object containing information about the event
-   * @return {@code true} if the event was consumed by this listener, {@code false otherwise} (See 
-   *         {@link TICComponent} for information on how the return value is used.) 
-   */
-	public boolean mouseWheelMoved(TICMouseWheelEvent event);
+public class TICEvent extends EventObject {
+	public TICEvent(TICComponent source) {
+		super(source);
+	}
+	
+	
+  @Override
+	public TICComponent getSource() {
+		return (TICComponent)super.getSource();
+	}
 }

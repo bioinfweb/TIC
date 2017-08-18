@@ -37,10 +37,10 @@ public class TICMouseEvent extends TICInputEvent {
 	private int componentY;
 	
 	
-	public TICMouseEvent(TICComponent source, long time, int modifiers,	int button, int clickCount, boolean popupTrigger, 
+	public TICMouseEvent(TICComponent source, int id, long time, int modifiers,	int button, int clickCount, boolean popupTrigger, 
 			int componentX,	int componentY) {
 		
-		super(source, time, modifiers);
+		super(source, id, time, modifiers);
 		this.button = button;
 		this.clickCount = clickCount;
 		this.popupTrigger = popupTrigger;

@@ -60,7 +60,7 @@ public abstract class AbstractEventForwarder<L extends EventListener> {
 		if (getListenerSet().getOwner().getCurrentToolkit().equals(TargetToolkit.SWING) && !consumed) {
 			JComponent component = (JComponent)getListenerSet().getOwner().getToolkitComponent(); 
 			component.getParent().dispatchEvent(SwingUtilities.convertMouseEvent(
-					component, event, component.getParent()));
+					component, event, component.getParent()));  //TODO Is there an infinite loop possible, if Swing passes the event back to the subcomponent? (It may do this according to its JavaDoc.)
 		}
 	}
 }

@@ -24,7 +24,7 @@ import info.bioinfweb.tic.TICComponent;
 
 
 /**
- * TIC event object that is used to represent a toolkit independent mouse wheel event. 
+ * <i>TIC</i> event object that is used to represent a toolkit independent mouse wheel event. 
  * 
  * @author Ben St&ouml;ver
  * @since 1.2.0
@@ -35,10 +35,10 @@ public class TICMouseWheelEvent extends TICMouseEvent {
 	private int wheelRotation;
 	
 	
-	public TICMouseWheelEvent(TICComponent source, long time, int modifiers, int button, int clickCount, boolean popupTrigger, 
+	public TICMouseWheelEvent(TICComponent source, int id, long time, int modifiers, int button, int clickCount, boolean popupTrigger, 
 			int componentX,	int componentY, int wheelRotation, double preciseWheelRotation) {
 		
-		super(source, time, modifiers, button, clickCount, popupTrigger, componentX, componentY);
+		super(source, id, time, modifiers, button, clickCount, popupTrigger, componentX, componentY);
 		this.wheelRotation = wheelRotation;
 		this.preciseWheelRotation = preciseWheelRotation;
 	}
@@ -47,7 +47,7 @@ public class TICMouseWheelEvent extends TICMouseEvent {
 	/**
 	 * Returns the number of "clicks" the mouse wheel was rotated, as a {@code double}. A partial rotation may occur if the mouse 
 	 * supports a high-resolution wheel and the underlying toolkit is Swing. In this case, the return value will include a 
-	 * fractional "click". If an underlying SWT component is used the return value of this method will always be identical with
+	 * fractional "click". If an underlying <i>SWT</i> component is used the return value of this method will always be identical with
 	 * {@link #getWheelRotation()}.
 	 * 
 	 * @return negative values if the mouse wheel was rotated up or away from the user, and positive values if the mouse wheel 

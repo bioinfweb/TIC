@@ -35,8 +35,8 @@ public class TICKeyEvent extends TICInputEvent {
 	private char keyCharacter;
 	
 	
-	public TICKeyEvent(TICComponent source, long time, int modifiers,	int keyCode, int keyLocation, char keyCharacter) {
-		super(source, time, modifiers);
+	public TICKeyEvent(TICComponent source, int id, long time, int modifiers,	int keyCode, int keyLocation, char keyCharacter) {
+		super(source, id, time, modifiers);
 		this.keyCode = keyCode;
 		this.keyLocation = keyLocation;
 		this.keyCharacter = keyCharacter;
