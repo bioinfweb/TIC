@@ -16,39 +16,34 @@
  * You should have received a copy of the GNU Lesser General Public License
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
-package info.bioinfweb.tic.input;
+package info.bioinfweb.tic.input.component;
+
+import info.bioinfweb.tic.input.AbstractEventForwarder;
+import info.bioinfweb.tic.input.TICListenerSet;
+import info.bioinfweb.tic.input.TICMouseWheelEvent;
+import info.bioinfweb.tic.input.TICMouseWheelListener;
 
 
 
 /**
- * An <i>TIC</i> key event listener that forwards all received {@link TICKeyEvent}s to a set of other 
- * {@link TICKeyListener}s.
+ * An <i>TIC</i> mouse wheel event listener that forwards all received {@link TICMouseWheelEvent}s to a set of other 
+ * {@link TICMouseWheelListener}s.
  * 
  * @author Ben St&ouml;ver
  * @since 3.0.0
  * @bioinfweb.module info.bioinfweb.tic.core
  */
-public class TICKeyEventForwarder extends AbstractEventForwarder<TICKeyListener> implements TICKeyListener {
-	public TICKeyEventForwarder(TICListenerSet<TICKeyListener> listenerSet) {
+public class TICMouseWheelEventForwarder extends AbstractEventForwarder<TICMouseWheelListener> implements TICMouseWheelListener {
+	public TICMouseWheelEventForwarder(TICListenerSet<TICMouseWheelListener> listenerSet) {
 		super(listenerSet);
 	}
 
 
 	@Override
-	public boolean keyPressed(TICKeyEvent event) {
+	public boolean mouseWheelMoved(TICMouseWheelEvent event) {
 		boolean consumed = false;
-		for (TICKeyListener listener: getListenerSet().getListeners()) {
-			consumed = consumed || listener.keyPressed(event);
-		}
-		return consumed;
-	}
-
-	
-	@Override
-	public boolean keyReleased(TICKeyEvent event) {
-		boolean consumed = false;
-		for (TICKeyListener listener: getListenerSet().getListeners()) {
-			consumed = consumed || listener.keyReleased(event);
+		for (TICMouseWheelListener listener: getListenerSet().getListeners()) {
+			consumed = consumed || listener.mouseWheelMoved(event);
 		}
 		return consumed;
 	}

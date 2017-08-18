@@ -16,7 +16,12 @@
  * You should have received a copy of the GNU Lesser General Public License
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
-package info.bioinfweb.tic.input;
+package info.bioinfweb.tic.input.component;
+
+import info.bioinfweb.tic.input.AbstractEventForwarder;
+import info.bioinfweb.tic.input.TICListenerSet;
+import info.bioinfweb.tic.input.TICMouseEvent;
+import info.bioinfweb.tic.input.TICMouseListener;
 
 
 

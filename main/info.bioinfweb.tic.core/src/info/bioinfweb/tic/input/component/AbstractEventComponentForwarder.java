@@ -16,29 +16,45 @@
  * You should have received a copy of the GNU Lesser General Public License
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
-package info.bioinfweb.tic.input;
+package info.bioinfweb.tic.input.component;
+
+
+import info.bioinfweb.tic.TICComponent;
+import info.bioinfweb.tic.input.TICEvent;
+import info.bioinfweb.tic.input.TICInputEvent;
+
+import java.util.HashSet;
+import java.util.Set;
 
 
 
 /**
- * An <i>TIC</i> mouse wheel event listener that forwards all received {@link TICMouseWheelEvent}s to a set of other 
- * {@link TICMouseWheelListener}s.
+ * The base class of all event forwarders that forward {@link TICEvent} from one {@link TICComponent} to a
+ * set of other {@link TICComponent}s.
  * 
  * @author Ben St&ouml;ver
- * @since 3.0.0
  * @bioinfweb.module info.bioinfweb.tic.core
+ * @since 3.0.0
  */
-public class TICMouseWheelEventForwarder extends AbstractEventForwarder<TICMouseWheelListener> implements TICMouseWheelListener {
-	public TICMouseWheelEventForwarder(TICListenerSet<TICMouseWheelListener> listenerSet) {
-		super(listenerSet);
+public class AbstractEventComponentForwarder {
+	private Set<TICComponent> components = new HashSet<>();
+
+	
+	public AbstractEventComponentForwarder(Set<TICComponent> components) {
+		super();
+		this.components = components;
 	}
 
 
-	@Override
-	public boolean mouseWheelMoved(TICMouseWheelEvent event) {
+	public Set<TICComponent> getComponents() {
+		return components;
+	}
+
+	
+	protected boolean dispatchEvent(TICInputEvent event) {
 		boolean consumed = false;
-		for (TICMouseWheelListener listener: getListenerSet().getListeners()) {
-			consumed = consumed || listener.mouseWheelMoved(event);
+		for (TICComponent component : getComponents()) {
+			consumed = consumed || component.dispatchEvent(event);
 		}
 		return consumed;
 	}

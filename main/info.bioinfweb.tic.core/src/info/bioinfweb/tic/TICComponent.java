@@ -21,13 +21,24 @@ package info.bioinfweb.tic;
 
 import info.bioinfweb.tic.TICPaintEvent;
 import info.bioinfweb.tic.TargetToolkit;
+import info.bioinfweb.tic.input.TICInputEvent;
+import info.bioinfweb.tic.input.TICKeyEvent;
 import info.bioinfweb.tic.input.TICListenerSet;
 import info.bioinfweb.tic.input.TICKeyListener;
+import info.bioinfweb.tic.input.TICMouseEvent;
 import info.bioinfweb.tic.input.TICMouseListener;
+import info.bioinfweb.tic.input.TICMouseWheelEvent;
 import info.bioinfweb.tic.input.TICMouseWheelListener;
 import info.bioinfweb.tic.toolkit.ToolkitComponent;
 
 import java.awt.Dimension;
+import java.awt.event.KeyEvent;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseWheelEvent;
+import java.util.Collections;
+import java.util.EventListener;
+import java.util.HashMap;
+import java.util.Map;
 
 
 
@@ -65,6 +76,29 @@ import java.awt.Dimension;
  * @bioinfweb.module info.bioinfweb.tic.core
  */
 public abstract class TICComponent {
+	private static interface EventDispatcher {
+		public boolean dispatch(TICInputEvent event, EventListener listener);
+	}
+	
+	
+	protected static final Map<Integer, EventDispatcher> DISPATCHER_MAP = fillDispatcherMap();
+	
+	
+	private static Map<Integer, EventDispatcher> fillDispatcherMap() {
+		Map<Integer, EventDispatcher> result = new HashMap<>();
+		result.put(KeyEvent.KEY_PRESSED,        (e, l) -> ((TICKeyListener)l).keyPressed((TICKeyEvent)e));
+		result.put(KeyEvent.KEY_RELEASED,       (e, l) -> ((TICKeyListener)l).keyReleased((TICKeyEvent)e));
+		result.put(MouseEvent.MOUSE_PRESSED,    (e, l) -> ((TICMouseListener)l).mousePressed((TICMouseEvent)e));
+		result.put(MouseEvent.MOUSE_RELEASED,   (e, l) -> ((TICMouseListener)l).mouseReleased((TICMouseEvent)e));
+		result.put(MouseEvent.MOUSE_MOVED,      (e, l) -> ((TICMouseListener)l).mouseMoved((TICMouseEvent)e));
+		result.put(MouseEvent.MOUSE_ENTERED,    (e, l) -> ((TICMouseListener)l).mouseEntered((TICMouseEvent)e));
+		result.put(MouseEvent.MOUSE_EXITED,     (e, l) -> ((TICMouseListener)l).mouseExited((TICMouseEvent)e));
+		result.put(MouseEvent.MOUSE_DRAGGED,    (e, l) -> ((TICMouseListener)l).mouseDragged((TICMouseEvent)e));
+		result.put(MouseWheelEvent.MOUSE_WHEEL, (e, l) -> ((TICMouseWheelListener)l).mouseWheelMoved((TICMouseWheelEvent)e));
+		return Collections.unmodifiableMap(result);
+	}
+	
+	
 	private ToolkitComponent toolkitComponent = null;
 	private TICListenerSet<TICKeyListener> keyListenersSet = new TICListenerSet<TICKeyListener>(this);
 	private TICListenerSet<TICMouseListener> mouseListenersSet = new TICListenerSet<TICMouseListener>(this);
@@ -302,7 +336,7 @@ public abstract class TICComponent {
 	/**
 	 * Adds a key listener to this component (and automatically to the underlying toolkit specific component).
 	 * 
-	 * @param listener - the object to listen to key events
+	 * @param listener the object to listen to key events
 	 */
 	public void addKeyListener(TICKeyListener listener) {
 		keyListenersSet.getListeners().add(listener);
@@ -312,7 +346,7 @@ public abstract class TICComponent {
 	/**
 	 * Removes the specified key listener from this component (and from the underlying toolkit specific component).
 	 * 
-	 * @param listener - the listener to be removed
+	 * @param listener the listener to be removed
 	 * @return {@code true} if the specified lister was contained in the list, {@code false} otherwise
 	 */
 	public boolean removeKeyListener(TICKeyListener listener) {
@@ -323,7 +357,7 @@ public abstract class TICComponent {
 	/**
 	 * Adds a mouse listener to this component (and automatically to the underlying toolkit specific component).
 	 * 
-	 * @param listener - the object to listen to mouse events
+	 * @param listener the object to listen to mouse events
 	 * @see #addMouseWheelListener(TICMouseWheelListener)
 	 */
 	public void addMouseListener(TICMouseListener listener) {
@@ -334,7 +368,7 @@ public abstract class TICComponent {
 	/**
 	 * Removes the specified mouse listener from this component (and from the underlying toolkit specific component).
 	 * 
-	 * @param listener - the listener to be removed
+	 * @param listener the listener to be removed
 	 * @return {@code true} if the specified lister was contained in the list, {@code false} otherwise
 	 */
 	public boolean removeMouseListener(TICMouseListener listener) {
@@ -345,7 +379,7 @@ public abstract class TICComponent {
 	/**
 	 * Adds a mouse wheel listener to this component (and automatically to the underlying toolkit specific component).
 	 * 
-	 * @param listener - the object to listen to mouse wheel events
+	 * @param listener the object to listen to mouse wheel events
 	 * @see #addMouseListener(TICMouseListener)
 	 */
 	public void addMouseWheelListener(TICMouseWheelListener listener) {
@@ -356,10 +390,36 @@ public abstract class TICComponent {
 	/**
 	 * Removes the specified mouse wheel listener from this component (and from the underlying toolkit specific component).
 	 * 
-	 * @param listener - the listener to be removed
+	 * @param listener the listener to be removed
 	 * @return {@code true} if the specified lister was contained in the list, {@code false} otherwise
 	 */
 	public boolean removeWheelMouseListener(TICMouseWheelListener listener) {
 		return mouseWheelListenersSet.getListeners().remove(listener);
+	}
+	
+	
+	public boolean dispatchEvent(TICInputEvent event) {
+		TICListenerSet<?> set = null;
+		if (event instanceof TICKeyEvent) {
+			set = keyListenersSet;
+		}
+		else if (event instanceof TICMouseWheelEvent) {  // Must be tested before TICMouseEvent.
+			set = mouseWheelListenersSet;
+		}
+		else if (event instanceof TICMouseEvent) {
+			set = mouseListenersSet;
+		}
+		
+		if (set != null) {
+			boolean consumed = false;
+			EventDispatcher d = DISPATCHER_MAP.get(event.getId());
+			for (EventListener listener : set.getListeners()) {
+				consumed = consumed || d.dispatch(event, listener);
+			}
+			return consumed;
+		}
+		else {
+			return false;
+		}
 	}
 }
