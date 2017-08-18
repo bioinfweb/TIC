@@ -85,6 +85,6 @@ public class SWTApplication {
 		triangle = new SierpinskiTriangleComponent();
 		
 		// Create SWT-specific component instance and add it to the SWT GUI:
-		SWTComponentFactory.getInstance().getSWTComponent(triangle, shell, SWT.NONE);
+		SWTComponentFactory.getInstance().getSWTComponent(triangle, shell, SWT.NO_BACKGROUND);
 	}
 }
