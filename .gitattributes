@@ -107,5 +107,6 @@ test/info.bioinfweb.tic.test/src/APACHE-LICENSE.txt -text svneol=unset#text/plai
 test/info.bioinfweb.tic.test/src/GPL.txt -text svneol=unset#text/plain
 test/info.bioinfweb.tic.test/src/LGPL.txt -text svneol=unset#text/plain
 test/info.bioinfweb.tic.test/src/NOTICE.txt -text svneol=unset#text/plain
+test/info.bioinfweb.tic.test/src/info/bioinfweb/tic/TICComponentTest.java -text svneol=unset#text/plain
 test/info.bioinfweb.tic.test/src/info/bioinfweb/tic/input/SWTSwingEventConversionToolsTest.java -text svneol=unset#text/plain
 test/info.bioinfweb.tic.test/src/info/bioinfweb/tic/test/tests/OverloadingTest.java -text svneol=unset#text/plain
