@@ -1,5 +1,5 @@
 /**
- * Contains classes providing adapters between Swing and SWT mouse and key event related classes.
+ * Contains classes providing adapters between mouse and key events from <i>Swing</i> or <i>SWT</i> and <i>TIC</i>.
  * 
  * @author Ben St&ouml;ver
  */
