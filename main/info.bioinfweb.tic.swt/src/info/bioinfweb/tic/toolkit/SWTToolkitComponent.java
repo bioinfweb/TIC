@@ -30,8 +30,8 @@ import org.eclipse.swt.widgets.Composite;
 
 
 /**
- * Extension of {@link ToolkitComponent} that implements a set of default methods. <i>SWT</i> implementations
- * should make use of this implementations.
+ * Extension of {@link ToolkitComponent} that implements a set of default methods. <i>SWT</i> toolkit components
+ * should make use of these implementations.
  * 
  * @author Ben St&ouml;ver
  * @bioinfweb.module info.bioinfweb.tic.swt
