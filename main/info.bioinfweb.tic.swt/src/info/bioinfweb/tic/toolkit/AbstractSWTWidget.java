@@ -85,4 +85,10 @@ public abstract class AbstractSWTWidget extends Canvas implements PaintListener,
 	public java.awt.Point getLocationInParent() {
 		return SWTComponentTools.getLocationInParent(this);
 	}
+
+
+	@Override
+	public boolean isFocusOwner() {
+		return SWTComponentTools.isFocusOwner(this);
+	}
 }

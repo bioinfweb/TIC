@@ -29,7 +29,8 @@ import org.eclipse.swt.widgets.Composite;
 
 
 /**
- * The SWT component implementing {@link ToolkitComponent}. Custom SWT components can be inherited from this class.
+ * The <i>SWT</i> component implementing {@link ToolkitComponent}. Custom <i>SWT</i> components can be 
+ * inherited from this class.
  *
  * @author Ben St&ouml;ver
  * @since 1.1.0
@@ -78,5 +79,11 @@ public class AbstractSWTComposite extends Composite implements ToolkitComponent 
 	@Override
 	public java.awt.Point getLocationInParent() {
 		return SWTComponentTools.getLocationInParent(this);
+	}
+
+
+	@Override
+	public boolean isFocusOwner() {
+		return SWTComponentTools.isFocusOwner(this);
 	}
 }

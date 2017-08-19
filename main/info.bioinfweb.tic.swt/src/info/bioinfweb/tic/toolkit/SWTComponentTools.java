@@ -57,4 +57,9 @@ public class SWTComponentTools {
 		Point location = composite.getLocation();
 		return new java.awt.Point(location.x, location.y);
 	}
+	
+	
+	public static boolean isFocusOwner(Composite composite) {
+		return composite.isFocusControl();
+	}
 }
