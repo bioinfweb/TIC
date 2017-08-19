@@ -25,7 +25,7 @@ import info.bioinfweb.tic.toolkit.layoutdata.SWTLayoutDataFactory;
 import java.awt.Dimension;
 
 import org.eclipse.swt.graphics.Point;
-import org.eclipse.swt.widgets.Composite;
+import org.eclipse.swt.widgets.Control;
 
 
 
@@ -45,20 +45,20 @@ public interface SWTToolkitComponent extends ToolkitComponent {
 
 	@Override
 	default public void repaint() {
-		((Composite)this).redraw();
+		((Control)this).redraw();
 	}
 
 
 	@Override
 	default public Dimension getToolkitSize() {
-		Point point = ((Composite)this).getSize();
+		Point point = ((Control)this).getSize();
 		return new Dimension(point.x, point.y);
 	}
 	
 	
 	@Override
 	default public void assignSize() {
-		Composite composite = (Composite)this;
+		Control composite = (Control)this;
 		Dimension size = ((ToolkitComponent)composite).getIndependentComponent().getSize();
 		Point point = new Point(size.width, size.height);
 		composite.setSize(point);
@@ -70,13 +70,13 @@ public interface SWTToolkitComponent extends ToolkitComponent {
 	
 	@Override
 	default public java.awt.Point getLocationInParent() {
-		Point location = ((Composite)this).getLocation();
+		Point location = ((Control)this).getLocation();
 		return new java.awt.Point(location.x, location.y);
 	}
 
 	
 	@Override
 	default public boolean isFocusOwner() {
-		return ((Composite)this).isFocusControl();
+		return ((Control)this).isFocusControl();
 	}
 }

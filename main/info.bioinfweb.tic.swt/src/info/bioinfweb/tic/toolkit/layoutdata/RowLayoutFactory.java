@@ -21,7 +21,7 @@ package info.bioinfweb.tic.toolkit.layoutdata;
 
 import org.eclipse.swt.graphics.Point;
 import org.eclipse.swt.layout.RowData;
-import org.eclipse.swt.widgets.Composite;
+import org.eclipse.swt.widgets.Control;
 
 
 
@@ -31,7 +31,7 @@ import org.eclipse.swt.widgets.Composite;
  */
 public class RowLayoutFactory implements SingleLayoutDataFactory {
 	@Override
-	public Object createLayoutData(Point size, Composite composite) {
+	public Object createLayoutData(Point size, Control composite) {
 		return new RowData(size);
 	}
 }

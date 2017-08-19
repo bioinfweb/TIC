@@ -24,7 +24,7 @@ import java.util.Map;
 
 import org.eclipse.swt.graphics.Point;
 import org.eclipse.swt.layout.RowLayout;
-import org.eclipse.swt.widgets.Composite;
+import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Layout;
 
 
@@ -65,7 +65,7 @@ public class SWTLayoutDataFactory {
 	}
 	
 	
-	public void setLayoutData(Layout layout, Point size, Composite child) {
+	public void setLayoutData(Layout layout, Point size, Control child) {
 		SingleLayoutDataFactory factory = getFactories().get(layout.getClass());
 		if (factory != null) {
 			Object data = factory.createLayoutData(size, child);

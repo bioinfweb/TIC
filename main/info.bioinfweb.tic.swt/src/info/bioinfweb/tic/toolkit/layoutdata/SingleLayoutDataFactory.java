@@ -20,7 +20,7 @@ package info.bioinfweb.tic.toolkit.layoutdata;
 
 
 import org.eclipse.swt.graphics.Point;
-import org.eclipse.swt.widgets.Composite;
+import org.eclipse.swt.widgets.Control;
 
 
 
@@ -29,5 +29,5 @@ import org.eclipse.swt.widgets.Composite;
  * @bioinfweb.module info.bioinfweb.tic.swt
  */
 public interface SingleLayoutDataFactory {
-	public Object createLayoutData(Point size, Composite composite);
+	public Object createLayoutData(Point size, Control composite);
 }
