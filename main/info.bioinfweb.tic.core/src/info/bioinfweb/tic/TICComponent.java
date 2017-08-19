@@ -133,14 +133,15 @@ public abstract class TICComponent {
 	
 	/**
 	 * Painting operations of the implementing class should be performed here, if a toolkit independent
-	 * painting method is provided. The coordinates in the provided context are relative to this are. 
+	 * painting method is provided. The coordinates in the provided context are relative to this component, 
 	 * (0, 0) represents the top left corner of this area.
 	 * <p>
 	 * If implementing classes provide custom toolkit specific components by overwriting 
-	 * {@link #doCreateSwingComponent()} and {@link #doCreateSWTWidget(Composite, int)} the 
-	 * implementation of this method can be empty.
+	 * {@link #getSwingComponentClassName(Object...)} and {@link #getSwingComponentClassName(Object...)}
+	 * the implementation of this method can be empty.
 	 * 
-	 * @param graphics - the graphics context used to perform the paint operations in <i>Swing</i> and <i>SWT</i>
+	 * @param event the paint event providing the graphics context and information on which part of the 
+	 *        component should be repainted
 	 */
 	public abstract void paint(TICPaintEvent event);
 	
