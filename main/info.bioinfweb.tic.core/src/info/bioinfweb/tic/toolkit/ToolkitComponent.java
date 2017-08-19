@@ -70,6 +70,13 @@ public interface ToolkitComponent {
 	public Point getLocationInParent();
 	
 	/**
+	 * Determines whether this component currently has the user-interface focus.
+	 * 
+	 * @return {@code true} if this component currently has the user-interface focus, {@code false} otherwise
+	 */
+	public boolean isFocusOwner();
+	
+	/**
 	 * Returns the current size of this component.
 	 * 
 	 * @return the size this component currently has
