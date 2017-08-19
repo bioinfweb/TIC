@@ -19,10 +19,7 @@
 package info.bioinfweb.tic.toolkit;
 
 
-import java.awt.Dimension;
-
 import info.bioinfweb.tic.TICComponent;
-import info.bioinfweb.tic.TargetToolkit;
 
 import org.eclipse.swt.events.PaintListener;
 import org.eclipse.swt.widgets.Canvas;
@@ -40,7 +37,7 @@ import org.eclipse.swt.widgets.Composite;
  * @since 1.0.0
  * @bioinfweb.module info.bioinfweb.tic.swt
  */
-public abstract class AbstractSWTWidget extends Canvas implements PaintListener, ToolkitComponent {
+public abstract class AbstractSWTWidget extends Canvas implements PaintListener, SWTToolkitComponent {
 	private TICComponent independentComponent;
 
 	
@@ -54,41 +51,5 @@ public abstract class AbstractSWTWidget extends Canvas implements PaintListener,
 	@Override
 	public TICComponent getIndependentComponent() {
 		return independentComponent;
-	}
-
-
-	@Override
-	public void repaint() {
-		redraw();
-	}
-	
-	
-	@Override
-	public Dimension getToolkitSize() {
-		return SWTComponentTools.getToolkitSize(this);
-	}
-
-
-	@Override
-	public void assignSize() {
-		SWTComponentTools.assignSize(this);
-	}
-
-
-	@Override
-	public TargetToolkit getTargetToolkit() {
-		return TargetToolkit.SWT;
-	}
-
-
-	@Override
-	public java.awt.Point getLocationInParent() {
-		return SWTComponentTools.getLocationInParent(this);
-	}
-
-
-	@Override
-	public boolean isFocusOwner() {
-		return SWTComponentTools.isFocusOwner(this);
 	}
 }

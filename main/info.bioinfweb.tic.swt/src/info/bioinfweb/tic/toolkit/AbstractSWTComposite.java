@@ -19,10 +19,7 @@
 package info.bioinfweb.tic.toolkit;
 
 
-import java.awt.Dimension;
-
 import info.bioinfweb.tic.TICComponent;
-import info.bioinfweb.tic.TargetToolkit;
 
 import org.eclipse.swt.widgets.Composite;
 
@@ -36,7 +33,7 @@ import org.eclipse.swt.widgets.Composite;
  * @since 1.1.0
  * @bioinfweb.module info.bioinfweb.tic.swt
  */
-public class AbstractSWTComposite extends Composite implements ToolkitComponent {
+public class AbstractSWTComposite extends Composite implements SWTToolkitComponent {
 	private TICComponent independentComponent;
 
 	
@@ -49,41 +46,5 @@ public class AbstractSWTComposite extends Composite implements ToolkitComponent 
 	@Override
 	public TICComponent getIndependentComponent() {
 		return independentComponent;
-	}
-
-
-	@Override
-	public void repaint() {
-		redraw();
-	}
-
-
-	@Override
-	public Dimension getToolkitSize() {
-		return SWTComponentTools.getToolkitSize(this);
-	}
-
-
-	@Override
-	public void assignSize() {
-		SWTComponentTools.assignSize(this);
-	}
-
-
-	@Override
-	public TargetToolkit getTargetToolkit() {
-		return TargetToolkit.SWT;
-	}
-
-
-	@Override
-	public java.awt.Point getLocationInParent() {
-		return SWTComponentTools.getLocationInParent(this);
-	}
-
-
-	@Override
-	public boolean isFocusOwner() {
-		return SWTComponentTools.isFocusOwner(this);
 	}
 }

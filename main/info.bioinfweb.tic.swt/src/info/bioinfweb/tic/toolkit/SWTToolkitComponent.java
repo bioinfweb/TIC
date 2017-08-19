@@ -19,6 +19,7 @@
 package info.bioinfweb.tic.toolkit;
 
 
+import info.bioinfweb.tic.TargetToolkit;
 import info.bioinfweb.tic.toolkit.layoutdata.SWTLayoutDataFactory;
 
 import java.awt.Dimension;
@@ -28,22 +29,29 @@ import org.eclipse.swt.widgets.Composite;
 
 
 
-/**
- * Tool collection for shared functionality of {@link AbstractSWTWidget} and {@link AbstractSWTComposite} or
- * SWT components implementing {@link ToolkitComponent} which cannot inherit from {@link AbstractSWTComposite}.
- * 
- * @author Ben St&ouml;ver
- * @since 2.0.0
- * @bioinfweb.module info.bioinfweb.tic.swt
- */
-public class SWTComponentTools {
-	public static Dimension getToolkitSize(Composite composite) {
-		Point point = composite.getSize();
+public interface SWTToolkitComponent extends ToolkitComponent {
+	@Override
+	default public TargetToolkit getTargetToolkit() {
+		return TargetToolkit.SWT;
+	}
+
+
+	@Override
+	default public void repaint() {
+		((Composite)this).redraw();
+	}
+
+
+	@Override
+	default public Dimension getToolkitSize() {
+		Point point = ((Composite)this).getSize();
 		return new Dimension(point.x, point.y);
 	}
 	
 	
-	public static void assignSize(Composite composite) {
+	@Override
+	default public void assignSize() {
+		Composite composite = (Composite)this;
 		Dimension size = ((ToolkitComponent)composite).getIndependentComponent().getSize();
 		Point point = new Point(size.width, size.height);
 		composite.setSize(point);
@@ -53,13 +61,15 @@ public class SWTComponentTools {
 	}
 	
 	
-	public static java.awt.Point getLocationInParent(Composite composite) {
-		Point location = composite.getLocation();
+	@Override
+	default public java.awt.Point getLocationInParent() {
+		Point location = ((Composite)this).getLocation();
 		return new java.awt.Point(location.x, location.y);
 	}
+
 	
-	
-	public static boolean isFocusOwner(Composite composite) {
-		return composite.isFocusControl();
+	@Override
+	default public boolean isFocusOwner() {
+		return ((Composite)this).isFocusControl();
 	}
 }
