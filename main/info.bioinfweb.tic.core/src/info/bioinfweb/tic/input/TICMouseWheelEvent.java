@@ -86,4 +86,34 @@ public class TICMouseWheelEvent extends TICMouseEvent {
 	public TICMouseWheelEvent clone() {
 		return (TICMouseWheelEvent)super.clone();
 	}
+
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = super.hashCode();
+		long temp;
+		temp = Double.doubleToLongBits(preciseWheelRotation);
+		result = prime * result + (int) (temp ^ (temp >>> 32));
+		result = prime * result + wheelRotation;
+		return result;
+	}
+
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (!super.equals(obj))
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		TICMouseWheelEvent other = (TICMouseWheelEvent) obj;
+		if (Double.doubleToLongBits(preciseWheelRotation) != Double
+				.doubleToLongBits(other.preciseWheelRotation))
+			return false;
+		if (wheelRotation != other.wheelRotation)
+			return false;
+		return true;
+	}
 }
