@@ -80,7 +80,7 @@ public class SWTMouseEventForwarder extends AbstractSWTMouseEventForwarder<TICMo
 	public void mouseMove(MouseEvent event) {
 		if (lastPressedButton > 0) {
 			for (TICMouseListener listener: getListenerSet().getListeners()) {
-				listener.mouseDragged(createEvent(getListenerSet().getOwner(), java.awt.event.MouseEvent.MOUSE_MOVED, event));
+				listener.mouseDragged(createEvent(getListenerSet().getOwner(), java.awt.event.MouseEvent.MOUSE_DRAGGED, event));
 			}
 		}
 		else {
