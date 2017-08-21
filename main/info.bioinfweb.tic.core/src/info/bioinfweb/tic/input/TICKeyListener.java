@@ -35,7 +35,7 @@ public interface TICKeyListener extends EventListener {
   /**
    * This method is called when a key on the keyboard is pressed down.
    * 
-   * @param event - the object containing information about the event 
+   * @param event the object containing information about the event 
    * @return {@code true} if the event was consumed by this listener, {@code false otherwise} (See 
    *         {@link TICComponent} for information on how the return value is used.) 
    */
@@ -44,7 +44,7 @@ public interface TICKeyListener extends EventListener {
   /**
    * This method is called when a key on the keyboard is released.
    * 
-   * @param event - the object containing information about the event 
+   * @param event the object containing information about the event 
    * @return {@code true} if the event was consumed by this listener, {@code false otherwise} (See 
    *         {@link TICComponent} for information on how the return value is used.) 
    */
