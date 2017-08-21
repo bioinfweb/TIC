@@ -80,4 +80,33 @@ public class TICMouseEvent extends TICInputEvent {
 	public int getComponentY() {
 		return componentY;
 	}
+
+
+  /**
+   * Creates a copy of this event with all properties set to identical values but with a 
+   * different source and shifted x- and y-coordinates.
+   * 
+   * @param source the source component to be used for the created copy
+	 * @param shiftX the shift on x (The new event will have {@code x = getComponentX() + shiftX}.)
+	 * @param shiftY the shift on y (The new event will have {@code y = getComponentY() + shiftY}.)
+   * @return the modified copy of this instance
+	 */
+	public TICMouseEvent cloneWithNewSourceTranslated(TICComponent source, int shiftX, int shiftY) {
+		TICMouseEvent result = cloneWithNewSource(source);
+		result.componentX += shiftX;
+		result.componentY += shiftY;
+		return result;
+	}
+	
+	
+	@Override
+	public TICMouseEvent cloneWithNewSource(TICComponent source) {
+		return (TICMouseEvent)super.cloneWithNewSource(source);
+	}
+
+
+	@Override
+	public TICMouseEvent clone() {
+		return (TICMouseEvent)super.clone();
+	}
 }

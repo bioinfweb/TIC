@@ -57,7 +57,7 @@ public class TICInputEvent extends TICEvent {
 	}
 
 
-	public int getId() {
+	public int getID() {
 		return id;
 	}
 
@@ -165,5 +165,17 @@ public class TICInputEvent extends TICEvent {
 	 */
 	public boolean isMenuShortcutKeyDown() {
 		return (isMetaDown() && SystemUtils.IS_OS_MAC) || (isControlDown()&&  !SystemUtils.IS_OS_MAC);  // This workaround needs to be done, because getMenuShortcutKeyMask() does not return extended modifiers.
+	}
+
+
+	@Override
+	public TICInputEvent cloneWithNewSource(TICComponent source) {
+		return (TICInputEvent)super.cloneWithNewSource(source);
+	}
+
+
+	@Override
+	public TICInputEvent clone() {
+		return (TICInputEvent)super.clone();
 	}
 }

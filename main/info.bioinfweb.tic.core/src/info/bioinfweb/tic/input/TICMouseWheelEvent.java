@@ -68,4 +68,22 @@ public class TICMouseWheelEvent extends TICMouseEvent {
 	public int getWheelRotation() {
 		return wheelRotation;
 	}
+	
+	
+	@Override
+	public TICMouseWheelEvent cloneWithNewSourceTranslated(TICComponent source, int offsetX, int offsetY) {
+		return (TICMouseWheelEvent)super.cloneWithNewSourceTranslated(source, offsetX, offsetY);
+	}
+	
+	
+	@Override
+	public TICMouseWheelEvent cloneWithNewSource(TICComponent source) {
+		return (TICMouseWheelEvent)super.cloneWithNewSource(source);
+	}
+
+
+	@Override
+	public TICMouseWheelEvent clone() {
+		return (TICMouseWheelEvent)super.clone();
+	}
 }

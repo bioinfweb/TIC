@@ -32,7 +32,7 @@ import java.util.EventObject;
  * @bioinfweb.module info.bioinfweb.tic.core
  * @since 0.3.0
  */
-public class TICEvent extends EventObject {
+public class TICEvent extends EventObject implements Cloneable {
 	public TICEvent(TICComponent source) {
 		super(source);
 	}
@@ -41,5 +41,30 @@ public class TICEvent extends EventObject {
   @Override
 	public TICComponent getSource() {
 		return (TICComponent)super.getSource();
+	}
+  
+  
+  /**
+   * Creates a copy of this event with all properties set to identical values but with a 
+   * different source.
+   * 
+   * @param source the source component to be used for the created copy
+   * @return the modified copy of this instance
+   */
+  public TICEvent cloneWithNewSource(TICComponent source) {
+  	TICEvent result = clone();
+  	result.source = source;
+  	return result;
+  }
+
+
+	@Override
+	public TICEvent clone() {
+		try {
+			return (TICEvent)super.clone();
+		}
+		catch (CloneNotSupportedException e) {
+			throw new InternalError(e);
+		}
 	}
 }

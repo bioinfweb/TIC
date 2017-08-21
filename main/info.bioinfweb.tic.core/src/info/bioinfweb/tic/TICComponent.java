@@ -413,7 +413,7 @@ public abstract class TICComponent {
 		
 		if (set != null) {
 			boolean consumed = false;
-			EventDispatcher d = DISPATCHER_MAP.get(event.getId());
+			EventDispatcher d = DISPATCHER_MAP.get(event.getID());
 			for (EventListener listener : set.getListeners()) {
 				consumed = consumed || d.dispatch(event, listener);
 			}

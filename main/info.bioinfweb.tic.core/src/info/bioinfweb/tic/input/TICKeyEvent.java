@@ -62,4 +62,16 @@ public class TICKeyEvent extends TICInputEvent {
 	public char getKeyCharacter() {
 		return keyCharacter;
 	}
+
+
+	@Override
+	public TICKeyEvent cloneWithNewSource(TICComponent source) {
+		return (TICKeyEvent)super.cloneWithNewSource(source);
+	}
+
+
+	@Override
+	public TICKeyEvent clone() {
+		return (TICKeyEvent)super.clone();
+	}
 }
