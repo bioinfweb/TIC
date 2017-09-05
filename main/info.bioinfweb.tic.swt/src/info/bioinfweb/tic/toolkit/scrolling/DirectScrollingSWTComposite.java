@@ -16,7 +16,9 @@
  * You should have received a copy of the GNU Lesser General Public License
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
-package info.bioinfweb.tic.toolkit;
+package info.bioinfweb.tic.toolkit.scrolling;
+
+import java.util.Set;
 
 
 
@@ -62,4 +64,6 @@ public interface DirectScrollingSWTComposite {
 	 * @param scrollOffsetY the new shift of the painting coordinate origin on y
 	 */
 	public void setScrollOffset(int scrollOffsetX, int scrollOffsetY);
+	
+	public Set<ScrollListener> getScrollListeners();
 }

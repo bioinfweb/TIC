@@ -19,7 +19,7 @@
 package info.bioinfweb.tic.input;
 
 
-import info.bioinfweb.tic.toolkit.DirectScrollingSWTComposite;
+import info.bioinfweb.tic.toolkit.scrolling.DirectScrollingSWTComposite;
 
 import java.util.EventListener;
 

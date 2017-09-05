@@ -16,13 +16,16 @@
  * You should have received a copy of the GNU Lesser General Public License
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
-package info.bioinfweb.tic.toolkit;
+package info.bioinfweb.tic.toolkit.scrolling;
 
 
 
 import info.bioinfweb.tic.TICComponent;
+import info.bioinfweb.tic.toolkit.DefaultSWTComposite;
 
 import java.awt.Dimension;
+import java.util.HashSet;
+import java.util.Set;
 
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.graphics.Point;
@@ -35,11 +38,12 @@ import org.eclipse.swt.widgets.Listener;
 
 public class DefaultScrolledSWTComposite extends DefaultSWTComposite implements DirectScrollingSWTComposite {
 	private Point origin = new Point (0, 0);
+	private Set<ScrollListener> scrollListeners = new HashSet<>();
 	
 	
 	public DefaultScrolledSWTComposite(TICComponent ticComponent, Composite parent, int style) {
 		super(ticComponent, parent, style | SWT.V_SCROLL | SWT.H_SCROLL);
-		
+	
 		getHorizontalBar().addListener(SWT.Selection, new Listener() {
 			@Override
 			public void handleEvent(Event event) {
@@ -48,6 +52,7 @@ public class DefaultScrolledSWTComposite extends DefaultSWTComposite implements 
 				Dimension dimension = getIndependentComponent().getSize();
 				scroll(destX, 0, 0, 0, dimension.width, dimension.height, false);
 				origin.x = -hSelection;
+				fireControlScrolled(false, true);
 			}
 		});
 
@@ -59,6 +64,7 @@ public class DefaultScrolledSWTComposite extends DefaultSWTComposite implements 
 				Dimension dimension = getIndependentComponent().getSize();
 				scroll(0, destY, 0, 0, dimension.width, dimension.height, false);
 				origin.y = -vSelection;
+				fireControlScrolled(true, false);
 			}
 		});
 		
@@ -104,7 +110,8 @@ public class DefaultScrolledSWTComposite extends DefaultSWTComposite implements 
 		getHorizontalBar().setSelection(-scrollOffsetX);
 		origin.x = scrollOffsetX;
 		repaint();
-	}
+		fireControlScrolled(false, true);
+}
 
 
 	@Override
@@ -118,6 +125,7 @@ public class DefaultScrolledSWTComposite extends DefaultSWTComposite implements 
 		getVerticalBar().setSelection(-scrollOffsetY);
 		origin.y = scrollOffsetY;
 		repaint();
+		fireControlScrolled(true, false);
 	}
 
 
@@ -128,6 +136,7 @@ public class DefaultScrolledSWTComposite extends DefaultSWTComposite implements 
 		origin.x = scrollOffsetX;
 		origin.y = scrollOffsetY;
 		repaint();
+		fireControlScrolled(true, true);
 	}
 	
 
@@ -159,6 +168,20 @@ public class DefaultScrolledSWTComposite extends DefaultSWTComposite implements 
 
 		if ((x != -origin.x) || (y != -origin.y)) {
 			setScrollOffset(-x, -y);
+		}
+	}
+
+
+	@Override
+	public Set<ScrollListener> getScrollListeners() {
+		return scrollListeners;
+	}
+	
+	
+	protected void fireControlScrolled(boolean verticalChange, boolean horizontalChange) {
+		ScrollEvent event = new ScrollEvent(this, verticalChange, horizontalChange);
+		for (ScrollListener listener : scrollListeners) {
+			listener.controlScrolled(event);
 		}
 	}
 }
