@@ -18,11 +18,14 @@
  */
 package info.bioinfweb.tic.toolkit.scrolling;
 
+
+import info.bioinfweb.tic.toolkit.SWTToolkitComponent;
+
 import java.util.Set;
 
 
 
-public interface DirectScrollingSWTComposite {
+public interface DirectScrollingSWTComposite extends SWTToolkitComponent {
 	/**
 	 * Returns the current painting offset on x. If this property is e.g. set -10, the component will be painted as if
 	 * it would be scrolled to the right by 10 px. (The left-most 10 px are not visible.)

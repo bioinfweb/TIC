@@ -37,6 +37,9 @@ import org.eclipse.swt.widgets.Control;
  * @bioinfweb.module info.bioinfweb.tic.swt
  */
 public interface SWTToolkitComponent extends ToolkitComponent {
+	public Control getSWTComponent();
+	
+	
 	@Override
 	default public TargetToolkit getTargetToolkit() {
 		return TargetToolkit.SWT;
@@ -45,20 +48,20 @@ public interface SWTToolkitComponent extends ToolkitComponent {
 
 	@Override
 	default public void repaint() {
-		((Control)this).redraw();
+		getSWTComponent().redraw();
 	}
 
 
 	@Override
 	default public Dimension getToolkitSize() {
-		Point point = ((Control)this).getSize();
+		Point point = getSWTComponent().getSize();
 		return new Dimension(point.x, point.y);
 	}
 	
 	
 	@Override
 	default public void assignSize() {
-		Control control = (Control)this;
+		Control control = getSWTComponent();
 		Dimension size = ((ToolkitComponent)control).getIndependentComponent().getSize();
 		Point point = new Point(size.width, size.height);
 		control.setSize(point);
@@ -70,13 +73,13 @@ public interface SWTToolkitComponent extends ToolkitComponent {
 	
 	@Override
 	default public java.awt.Point getLocationInParent() {
-		Point location = ((Control)this).getLocation();
+		Point location = getSWTComponent().getLocation();
 		return new java.awt.Point(location.x, location.y);
 	}
 
 	
 	@Override
 	default public boolean isFocusOwner() {
-		return ((Control)this).isFocusControl();
+		return getSWTComponent().isFocusControl();
 	}
 }

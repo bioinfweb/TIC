@@ -22,6 +22,7 @@ package info.bioinfweb.tic.toolkit;
 import info.bioinfweb.tic.TICComponent;
 
 import org.eclipse.swt.widgets.Composite;
+import org.eclipse.swt.widgets.Control;
 
 
 
@@ -40,6 +41,12 @@ public class AbstractSWTComposite extends Composite implements SWTToolkitCompone
 	public AbstractSWTComposite(TICComponent ticComponent, Composite parent, int style) {
 		super(parent, style);
 		independentComponent = ticComponent;
+	}
+
+
+	@Override
+	public Control getSWTComponent() {
+		return this;
 	}
 
 

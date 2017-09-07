@@ -32,6 +32,7 @@ import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.graphics.ImageData;
 import org.eclipse.swt.graphics.PaletteData;
 import org.eclipse.swt.widgets.Composite;
+import org.eclipse.swt.widgets.Control;
 
 
 
@@ -55,6 +56,12 @@ public class DefaultSWTComposite extends AbstractSWTWidget {
 	}
 	
 	
+	@Override
+	public Control getSWTComponent() {
+		return this;
+	}
+
+
 	protected int getScrollOffsetX() {
 		return 0;
 	}
