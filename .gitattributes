@@ -78,6 +78,11 @@ main/info.bioinfweb.tic.core/src/info/bioinfweb/tic/input/component/TICMouseWhee
 main/info.bioinfweb.tic.core/src/info/bioinfweb/tic/input/component/package-info.java -text svneol=unset#text/plain
 main/info.bioinfweb.tic.core/src/info/bioinfweb/tic/input/package-info.java -text svneol=unset#text/plain
 main/info.bioinfweb.tic.core/src/info/bioinfweb/tic/package-info.java -text svneol=unset#text/plain
+main/info.bioinfweb.tic.core/src/info/bioinfweb/tic/scrolling/ScrollingTICComponent.java -text svneol=unset#text/plain
+main/info.bioinfweb.tic.core/src/info/bioinfweb/tic/scrolling/TICScrollEvent.java -text svneol=unset#text/plain
+main/info.bioinfweb.tic.core/src/info/bioinfweb/tic/scrolling/TICScrollListener.java -text svneol=unset#text/plain
+main/info.bioinfweb.tic.core/src/info/bioinfweb/tic/scrolling/package-info.java -text svneol=unset#text/plain
+main/info.bioinfweb.tic.core/src/info/bioinfweb/tic/toolkit/ScrollingToolkitComponent.java -text svneol=unset#text/plain
 main/info.bioinfweb.tic.core/src/info/bioinfweb/tic/toolkit/ToolkitComponent.java -text svneol=unset#text/plain
 main/info.bioinfweb.tic.swing/.classpath -text svneol=unset#text/plain
 main/info.bioinfweb.tic.swing/.project -text svneol=unset#text/plain
