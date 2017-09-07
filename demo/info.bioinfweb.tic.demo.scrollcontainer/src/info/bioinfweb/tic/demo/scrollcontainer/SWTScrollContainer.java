@@ -45,7 +45,6 @@ public class SWTScrollContainer extends ScrolledComposite implements ScrollingSW
 		Composite swtOutputComponent = SWTComponentFactory.getInstance().getSWTComponent(
 				getIndependentComponent().getOutputComponent(), this, SWT.NO_BACKGROUND);
 		setContent(swtOutputComponent);
-		getIndependentComponent().getOutputComponent().assignSize();  // Make sure the SWT component has the correct size.
 	}
 
 
