@@ -99,7 +99,9 @@ main/info.bioinfweb.tic.swing/src/info/bioinfweb/tic/input/SwingMouseEventForwar
 main/info.bioinfweb.tic.swing/src/info/bioinfweb/tic/input/SwingMouseWheelEventForwarder.java -text svneol=unset#text/plain
 main/info.bioinfweb.tic.swing/src/info/bioinfweb/tic/toolkit/AbstractSwingComponent.java -text svneol=unset#text/plain
 main/info.bioinfweb.tic.swing/src/info/bioinfweb/tic/toolkit/DefaultSwingComponent.java -text svneol=unset#text/plain
+main/info.bioinfweb.tic.swing/src/info/bioinfweb/tic/toolkit/ScrollingSwingToolkitComponent.java -text svneol=unset#text/plain
 main/info.bioinfweb.tic.swing/src/info/bioinfweb/tic/toolkit/SwingComponentTools.java -text svneol=unset#text/plain
+main/info.bioinfweb.tic.swing/src/info/bioinfweb/tic/toolkit/SwingToolkitComponent.java -text svneol=unset#text/plain
 main/info.bioinfweb.tic.swt/.classpath -text svneol=unset#text/plain
 main/info.bioinfweb.tic.swt/.project -text svneol=unset#text/plain
 main/info.bioinfweb.tic.swt/.settings/org.eclipse.jdt.core.prefs -text svneol=unset#text/plain
