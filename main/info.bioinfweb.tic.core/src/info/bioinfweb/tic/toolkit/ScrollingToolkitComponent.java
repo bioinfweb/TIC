@@ -19,11 +19,20 @@
 package info.bioinfweb.tic.toolkit;
 
 
+import info.bioinfweb.tic.scrolling.ScrollingTICComponent;
+
 import java.awt.Rectangle;
 import java.awt.geom.Rectangle2D;
 
 
 
+/**
+ * Interface to be implemented by all toolkit components used by scrolling <i>TIC</i> components. 
+ * {@link ScrollingTICComponent} uses the defined methods to scroll the toolkit component.
+ * 
+ * @author Ben St&ouml;ver
+ * @since 3.0.0
+ */
 public interface ScrollingToolkitComponent extends ToolkitComponent {
 	public void setScrollOffset(int x, int y);
 	
