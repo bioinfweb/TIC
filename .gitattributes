@@ -7,10 +7,10 @@ demo/info.bioinfweb.tic.demo.simplecomponent/src/APACHE-LICENSE.txt -text svneol
 demo/info.bioinfweb.tic.demo.simplecomponent/src/GPL.txt -text svneol=unset#text/plain
 demo/info.bioinfweb.tic.demo.simplecomponent/src/LGPL.txt -text svneol=unset#text/plain
 demo/info.bioinfweb.tic.demo.simplecomponent/src/NOTICE.txt -text svneol=unset#text/plain
-demo/info.bioinfweb.tic.demo.simplecomponent/src/info/bioinfweb/tic/demo/sierpinski/SWTApplication.java -text svneol=unset#text/plain
-demo/info.bioinfweb.tic.demo.simplecomponent/src/info/bioinfweb/tic/demo/sierpinski/SierpinskiTriangleComponent.java -text svneol=unset#text/plain
-demo/info.bioinfweb.tic.demo.simplecomponent/src/info/bioinfweb/tic/demo/sierpinski/SierpinskiTrianglePainter.java -text svneol=unset#text/plain
-demo/info.bioinfweb.tic.demo.simplecomponent/src/info/bioinfweb/tic/demo/sierpinski/SwingApplication.java -text svneol=unset#text/plain
+demo/info.bioinfweb.tic.demo.simplecomponent/src/info/bioinfweb/tic/demo/simplecomponent/SWTApplication.java -text svneol=unset#text/plain
+demo/info.bioinfweb.tic.demo.simplecomponent/src/info/bioinfweb/tic/demo/simplecomponent/SierpinskiTriangleComponent.java -text svneol=unset#text/plain
+demo/info.bioinfweb.tic.demo.simplecomponent/src/info/bioinfweb/tic/demo/simplecomponent/SierpinskiTrianglePainter.java -text svneol=unset#text/plain
+demo/info.bioinfweb.tic.demo.simplecomponent/src/info/bioinfweb/tic/demo/simplecomponent/SwingApplication.java -text svneol=unset#text/plain
 main/info.bioinfweb.tic.core/.classpath -text svneol=unset#text/plain
 main/info.bioinfweb.tic.core/.project -text svneol=unset#text/plain
 main/info.bioinfweb.tic.core/.settings/org.eclipse.jdt.core.prefs -text svneol=unset#text/plain

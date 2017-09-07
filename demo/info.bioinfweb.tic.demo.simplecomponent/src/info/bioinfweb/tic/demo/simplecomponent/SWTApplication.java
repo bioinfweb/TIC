@@ -16,21 +16,20 @@
  * You should have received a copy of the GNU Lesser General Public License
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
-package info.bioinfweb.tic.demo.sierpinski;
+package info.bioinfweb.tic.demo.simplecomponent;
 
 
-import info.bioinfweb.tic.SwingComponentFactory;
+import info.bioinfweb.tic.SWTComponentFactory;
 
-import java.awt.BorderLayout;
-import java.awt.EventQueue;
-
-import javax.swing.JComponent;
-import javax.swing.JFrame;
+import org.eclipse.swt.SWT;
+import org.eclipse.swt.layout.FillLayout;
+import org.eclipse.swt.widgets.Display;
+import org.eclipse.swt.widgets.Shell;
 
 
 
 /**
- * Example that demonstrates using <i>TIC</i> components in <i>Swing</i> applications.
+ * Example that demonstrates using <i>TIC</i> components in <i>SWT</i> applications.
  * <p>
  * This example is used in the 
  * <a href="http://bioinfweb.info/TIC/Documentation">TIC documentation</a>.
@@ -38,53 +37,55 @@ import javax.swing.JFrame;
  * @author Sarah Wiechers
  * @author Ben St&ouml;ver
  */
-public class SwingApplication {
-	private JFrame frame;
+public class SWTApplication {	
+	protected Shell shell;
 	private SierpinskiTriangleComponent triangle;
-
+	
 	
 	/**
 	 * Launch the application.
+	 * 
+	 * @param args
 	 */
 	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					SwingApplication window = new SwingApplication();
-					window.frame.setVisible(true);
-				} 
-				catch (Exception e) {
-					e.printStackTrace();
-				}
+		try {
+			SWTApplication window = new SWTApplication();
+			window.open();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	
+	/**
+	 * Open the window.
+	 */
+	public void open() {
+		Display display = Display.getDefault();
+		createContents();
+		shell.open();
+		shell.layout();
+		while (!shell.isDisposed()) {
+			if (!display.readAndDispatch()) {
+				display.sleep();
 			}
-		});
+		}
 	}
-
+	
 	
 	/**
-	 * Create the application.
+	 * Create contents of the window.
 	 */
-	public SwingApplication() {
-		initialize();
-	}
-
-	
-	/**
-	 * Initialize the contents of the frame.
-	 */
-	private void initialize() {
-		frame = new JFrame();
-		frame.setBounds(100, 100, 450, 300);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.setTitle("Swing Application");
+	protected void createContents() {
+		shell = new Shell();
+		shell.setSize(450, 300);
+		shell.setText("SWT Application");
+		shell.setLayout(new FillLayout(SWT.HORIZONTAL));
 
 		// Create TIC component instance:
 		triangle = new SierpinskiTriangleComponent();
 		
-		// Create Swing-specific component instance:
-		JComponent swingTriangle = SwingComponentFactory.getInstance().getSwingComponent(triangle);
-		
-		// Add Swing component to GUI:
-		frame.getContentPane().add(swingTriangle, BorderLayout.CENTER);
+		// Create SWT-specific component instance and add it to the SWT GUI:
+		SWTComponentFactory.getInstance().getSWTComponent(triangle, shell, SWT.NO_BACKGROUND);
 	}
 }
