@@ -1,4 +1,7 @@
 * text=auto !eol
+demo/info.bioinfweb.tic.demo.directscrolling/.classpath -text svneol=unset#text/plain
+demo/info.bioinfweb.tic.demo.directscrolling/.project -text svneol=unset#text/plain
+demo/info.bioinfweb.tic.demo.directscrolling/.settings/org.eclipse.jdt.core.prefs -text svneol=unset#text/plain
 demo/info.bioinfweb.tic.demo.simplecomponent/.classpath -text svneol=unset#text/plain
 demo/info.bioinfweb.tic.demo.simplecomponent/.project -text svneol=unset#text/plain
 demo/info.bioinfweb.tic.demo.simplecomponent/.settings/org.eclipse.jdt.core.prefs -text svneol=unset#text/plain
