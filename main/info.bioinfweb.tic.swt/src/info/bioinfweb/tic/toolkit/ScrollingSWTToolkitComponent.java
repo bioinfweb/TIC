@@ -27,6 +27,20 @@ import org.eclipse.swt.graphics.Point;
 
 
 
+/**
+ * Scrollable <i>SWT</i> components (implementing {@link ScrollingToolkitComponent}) can implement this
+ * interface, if they provide scrolling functionality using a {@link ScrolledComposite}. It contains
+ * default method implementations that delegate the scrolling methods of {@link ScrollingToolkitComponent}
+ * to {@link ScrolledComposite}.
+ * <p>
+ * Note that this interface is not meant and does not tag a class to provide any functionality in addition
+ * to {@link ScrollingToolkitComponent}. <i>SWT</i> components that provide scrolling functionality 
+ * directly instead of relying in {@link ScrolledComposite} should implement 
+ * {@link ScrollingToolkitComponent} directly and implement its methods respectively.
+ * 
+ * @author Ben St&uoml;ver
+ * @since 3.0.0
+ */
 public interface ScrollingSWTToolkitComponent extends ScrollingToolkitComponent, SWTToolkitComponent {
 	public ScrolledComposite getScrolledComposite();
 	
@@ -39,15 +53,6 @@ public interface ScrollingSWTToolkitComponent extends ScrollingToolkitComponent,
 	
 	@Override
 	public default void scrollRectangleToVisible(Rectangle2D rectangle) {
-		Rectangle r;
-		if (rectangle instanceof Rectangle) {
-			r = (Rectangle)rectangle;
-		}
-		else {
-			r = new Rectangle((int)Math.round(rectangle.getMinX()), (int)Math.round(rectangle.getMinY()), 
-					(int)Math.round(rectangle.getWidth()), (int)Math.round(rectangle.getHeight()));
-		}
-		
 		Point origin = getScrolledComposite().getOrigin();
 		Rectangle visibleRect = getVisibleRectangle();
 
