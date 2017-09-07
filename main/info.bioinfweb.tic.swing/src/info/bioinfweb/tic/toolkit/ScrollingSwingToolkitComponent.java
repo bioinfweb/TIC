@@ -50,19 +50,6 @@ public interface ScrollingSwingToolkitComponent extends ScrollingToolkitComponen
 	}
 	
 	
-	public default void scrollRectangleToVisible(Rectangle2D rectangle) {
-		Rectangle r;
-		if (rectangle instanceof Rectangle) {
-			r = (Rectangle)rectangle;
-		}
-		else {
-			r = new Rectangle((int)Math.round(rectangle.getMinX()), (int)Math.round(rectangle.getMinY()), 
-					(int)Math.round(rectangle.getWidth()), (int)Math.round(rectangle.getHeight()));
-		}
-		getScrollPane().getViewport().scrollRectToVisible(r);
-	}
-	
-	
 	public default Rectangle getVisibleRectangle() {
 		return getScrollPane().getViewport().getViewRect();
 	}
