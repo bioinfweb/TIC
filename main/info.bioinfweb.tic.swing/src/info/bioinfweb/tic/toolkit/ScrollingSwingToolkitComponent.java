@@ -26,6 +26,20 @@ import javax.swing.JScrollPane;
 
 
 
+/**
+ * Scrollable <i>Swing</i> components (implementing {@link ScrollingToolkitComponent}) can implement this
+ * interface, if they provide scrolling functionality using a {@link JScrollPane}. It contains
+ * default method implementations that delegate the scrolling methods of {@link ScrollingToolkitComponent}
+ * to {@link JScrollPane}.
+ * <p>
+ * Note that this interface is not meant and does not tag a class to provide any functionality in addition
+ * to {@link ScrollingToolkitComponent}. <i>Swing</i> components that provide scrolling functionality 
+ * directly instead of relying in {@link JScrollPane} should implement 
+ * {@link ScrollingToolkitComponent} directly and implement its methods respectively.
+ * 
+ * @author Ben St&uoml;ver
+ * @since 3.0.0
+ */
 public interface ScrollingSwingToolkitComponent extends ScrollingToolkitComponent, SwingToolkitComponent {
 	public JScrollPane getScrollPane();
 	
