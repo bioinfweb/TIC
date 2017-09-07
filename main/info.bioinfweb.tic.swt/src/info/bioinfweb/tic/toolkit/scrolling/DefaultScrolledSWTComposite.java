@@ -22,10 +22,9 @@ package info.bioinfweb.tic.toolkit.scrolling;
 
 import info.bioinfweb.tic.TICComponent;
 import info.bioinfweb.tic.toolkit.DefaultSWTComposite;
+import info.bioinfweb.tic.toolkit.ScrollingToolkitComponent;
 
 import java.awt.Dimension;
-import java.util.HashSet;
-import java.util.Set;
 
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.graphics.Point;
@@ -36,11 +35,11 @@ import org.eclipse.swt.widgets.Listener;
 
 
 
-public class DefaultScrolledSWTComposite extends DefaultSWTComposite implements DirectScrollingSWTComposite {
+public class DefaultScrolledSWTComposite extends DefaultSWTComposite implements ScrollingToolkitComponent {
 	private Point origin = new Point (0, 0);
-	private Set<ScrollListener> scrollListeners = new HashSet<>();
 	
 	
+	//TODO Should ticComponent be ScrolledTICComponent? If so, would the factories (and respective JavaDoc) need to adjusted?
 	public DefaultScrolledSWTComposite(TICComponent ticComponent, Composite parent, int style) {
 		super(ticComponent, parent, style | SWT.V_SCROLL | SWT.H_SCROLL);
 	
@@ -99,33 +98,16 @@ public class DefaultScrolledSWTComposite extends DefaultSWTComposite implements 
 	}
   
 	
+	//TODO Refactor superclass so that the algebraic sign of these methods is identical with that of the methods in ScrolledTICCompnent, so that values do not have to be negated in getVisibleRectangle() below.
 	@Override
-	public int getScrollOffsetX() {
+	protected int getScrollOffsetX() {
 		return origin.x;
 	}
 
 
 	@Override
-	public void setScrollOffsetX(int scrollOffsetX) {
-		getHorizontalBar().setSelection(-scrollOffsetX);
-		origin.x = scrollOffsetX;
-		repaint();
-		fireControlScrolled(false, true);
-}
-
-
-	@Override
-	public int getScrollOffsetY() {
+	protected int getScrollOffsetY() {
 		return origin.y;
-	}
-
-
-	@Override
-	public void setScrollOffsetY(int scrollOffsetY) {
-		getVerticalBar().setSelection(-scrollOffsetY);
-		origin.y = scrollOffsetY;
-		repaint();
-		fireControlScrolled(true, false);
 	}
 
 
@@ -136,52 +118,20 @@ public class DefaultScrolledSWTComposite extends DefaultSWTComposite implements 
 		origin.x = scrollOffsetX;
 		origin.y = scrollOffsetY;
 		repaint();
-		fireControlScrolled(true, true);
+		fireControlScrolled(true, true);  //TODO Should this be done here or e.g. in ScrolledTICComponent?
 	}
 	
 
-	public Rectangle getVisibleRectangle() {
+	public java.awt.Rectangle getVisibleRectangle() {
 		Rectangle client = getClientArea();
-		return new Rectangle(-origin.x, -origin.y, client.width, client.height);
-	}
-
-	
-	public void scrollRectToVisible(Rectangle rectangle) {
-		//Rectangle rectangle = new Rectangle(Math.max(0, r.x), Math.max(0, r.y), r.width, r.height);  //TODO Edit values according to upper bound or this automatically done by the scrollbars?
-		Rectangle visibleRect = getVisibleRectangle();
-
-		int x = -origin.x;  // Do not scroll
-		if (rectangle.x < visibleRect.x) {
-			x = rectangle.x;  // Scroll left
-		}
-		else if (rectangle.x + rectangle.width > visibleRect.x + visibleRect.width) {
-			x = rectangle.x + rectangle.width - visibleRect.width;  // Scroll right
-		}
-
-		int y = -origin.y;  // Do not scroll
-		if (rectangle.y < visibleRect.y) {
-			y = rectangle.y;  // Scroll up
-		}
-		if (rectangle.y + rectangle.height > visibleRect.y + visibleRect.height) {
-			y = rectangle.y + rectangle.height - visibleRect.height;  // Scroll down
-		}
-
-		if ((x != -origin.x) || (y != -origin.y)) {
-			setScrollOffset(-x, -y);
-		}
+		return new java.awt.Rectangle(-origin.x, -origin.y, client.width, client.height);
 	}
 
 
-	@Override
-	public Set<ScrollListener> getScrollListeners() {
-		return scrollListeners;
-	}
-	
-	
 	protected void fireControlScrolled(boolean verticalChange, boolean horizontalChange) {
-		ScrollEvent event = new ScrollEvent(this, verticalChange, horizontalChange);
-		for (ScrollListener listener : scrollListeners) {
-			listener.controlScrolled(event);
-		}
+//		TICScrollEvent event = new TICScrollEvent(this, verticalChange, horizontalChange);
+//		for (ScrollListener listener : getIndependentComponent().getS) {
+//			listener.controlScrolled(event);
+//		}
 	}
 }

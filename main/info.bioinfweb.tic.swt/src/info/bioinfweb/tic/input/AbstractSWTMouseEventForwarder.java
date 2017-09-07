@@ -19,7 +19,7 @@
 package info.bioinfweb.tic.input;
 
 
-import info.bioinfweb.tic.toolkit.scrolling.DirectScrollingSWTComposite;
+import info.bioinfweb.tic.toolkit.ScrollingToolkitComponent;
 
 import java.util.EventListener;
 
@@ -48,9 +48,9 @@ public class AbstractSWTMouseEventForwarder<L extends EventListener> extends Abs
 	 * @return the transformed x-coordinate
 	 */
 	protected int transformMouseX(int x) {
-		if (getListenerSet().getOwner().getToolkitComponent() instanceof DirectScrollingSWTComposite) {
-			DirectScrollingSWTComposite composite = (DirectScrollingSWTComposite)getListenerSet().getOwner().getToolkitComponent();
-			x -= (int)Math.round(composite.getScrollOffsetX());
+		if (getListenerSet().getOwner().getToolkitComponent() instanceof ScrollingToolkitComponent) {
+			ScrollingToolkitComponent composite = (ScrollingToolkitComponent)getListenerSet().getOwner().getToolkitComponent();
+			x -= (int)Math.round(composite.getVisibleRectangle().getMinX());
 		}
 		return x;
 	}
@@ -64,9 +64,9 @@ public class AbstractSWTMouseEventForwarder<L extends EventListener> extends Abs
 	 * @return the transformed y-coordinate
 	 */
 	protected int transformMouseY(int y) {
-		if (getListenerSet().getOwner().getToolkitComponent() instanceof DirectScrollingSWTComposite) {
-			DirectScrollingSWTComposite composite = (DirectScrollingSWTComposite)getListenerSet().getOwner().getToolkitComponent();
-			y -= (int)Math.round(composite.getScrollOffsetY());
+		if (getListenerSet().getOwner().getToolkitComponent() instanceof ScrollingToolkitComponent) {
+			ScrollingToolkitComponent composite = (ScrollingToolkitComponent)getListenerSet().getOwner().getToolkitComponent();
+			y -= (int)Math.round(composite.getVisibleRectangle().getMinY());
 		}
 		return y;
 	}

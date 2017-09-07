@@ -20,7 +20,6 @@ package info.bioinfweb.tic.toolkit;
 
 
 import java.awt.Rectangle;
-import java.awt.geom.Rectangle2D;
 
 import org.eclipse.swt.custom.ScrolledComposite;
 import org.eclipse.swt.graphics.Point;
@@ -48,31 +47,6 @@ public interface ScrollingSWTToolkitComponent extends ScrollingToolkitComponent,
 	@Override
 	public default void setScrollOffset(int x, int y) {
 		getScrolledComposite().setOrigin(x, y);
-	}
-	
-	
-	@Override
-	public default void scrollRectangleToVisible(Rectangle2D rectangle) {
-		Point origin = getScrolledComposite().getOrigin();
-		Rectangle visibleRect = getVisibleRectangle();
-
-		double x = origin.x;  // Do not scroll
-		if (rectangle.getMinX() < visibleRect.getMinX()) {
-			x = rectangle.getMinX();  // Scroll left
-		}
-		else if (rectangle.getMaxX()  > visibleRect.getMaxX()) {
-			x = rectangle.getMaxX() - visibleRect.getWidth();  // Scroll right
-		}
-
-		double y = origin.y;  // Do not scroll
-		if (rectangle.getMinY() < visibleRect.getMinY()) {
-			y = rectangle.getMinY();  // Scroll up
-		}
-		if (rectangle.getMaxY() > visibleRect.getMaxY()) {
-			y = rectangle.getMaxY() - visibleRect.getHeight();  // Scroll down
-		}
-	
-		getScrolledComposite().setOrigin((int)Math.round(x), (int)Math.round(y));
 	}
 	
 	
