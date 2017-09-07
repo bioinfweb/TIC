@@ -29,8 +29,9 @@ import java.awt.geom.Path2D;
 
 
 /**
- * This class paints a Sierpinski triangle that is used as an example TIC component content. The detailed
- * contents of this class are not relevant for the TIC usage example.
+ * This class paints a Sierpinski triangle that is used as an example <i>TIC</i> component content. The painting
+ * algorithms in this class is not important for the purpose of this demo application, that is to show how to 
+ * create a <i>TIC</i> that paints the same output in <i>Swing</i> and <i>SWT</i>.
  * 
  * @author Sarah Wiechers
  * @author Ben St&ouml;ver

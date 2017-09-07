@@ -30,7 +30,7 @@ import javax.swing.JFrame;
 
 
 /**
- * Example that demonstrates using TIC components in Swing applications.
+ * Example that demonstrates using <i>TIC</i> components in <i>Swing</i> applications.
  * <p>
  * This example is used in the 
  * <a href="http://bioinfweb.info/TIC/Documentation">TIC documentation</a>.

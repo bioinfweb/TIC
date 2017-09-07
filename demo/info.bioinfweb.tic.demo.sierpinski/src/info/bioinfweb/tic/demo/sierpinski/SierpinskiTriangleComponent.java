@@ -29,7 +29,7 @@ import info.bioinfweb.tic.TICPaintEvent;
 
 
 /**
- * Example TIC component in which a Sierpinski triangle is painted.
+ * Example <i>TIC</i> component in which a Sierpinski triangle is painted.
  * <p>
  * This example is used in the 
  * <a href="http://bioinfweb.info/TIC/Documentation">TIC documentation</a>.
@@ -52,7 +52,7 @@ public class SierpinskiTriangleComponent extends TICComponent {
 
 	/**
 	 * Returns the current size of the underlying toolkit specific component. This allows the toolkit-specific layout 
-	 * manager to determine the size of this TIC component.
+	 * manager to determine the size of this <i>TIC</i> component.
 	 * 
 	 * @see info.bioinfweb.tic.TICComponent#getSize()
 	 */

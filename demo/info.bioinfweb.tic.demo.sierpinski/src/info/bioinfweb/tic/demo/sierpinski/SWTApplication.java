@@ -29,7 +29,7 @@ import org.eclipse.swt.widgets.Shell;
 
 
 /**
- * Example that demonstrates using TIC components in SWT applications.
+ * Example that demonstrates using <i>TIC</i> components in <i>SWT</i> applications.
  * <p>
  * This example is used in the 
  * <a href="http://bioinfweb.info/TIC/Documentation">TIC documentation</a>.
