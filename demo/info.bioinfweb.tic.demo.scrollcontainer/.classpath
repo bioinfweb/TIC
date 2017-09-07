@@ -7,5 +7,6 @@
 	<classpathentry combineaccessrules="false" kind="src" path="/info.bioinfweb.tic.demo.simplecomponent"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/info.bioinfweb.tic.swing"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/info.bioinfweb.tic.swt"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/org.eclipse.swt"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

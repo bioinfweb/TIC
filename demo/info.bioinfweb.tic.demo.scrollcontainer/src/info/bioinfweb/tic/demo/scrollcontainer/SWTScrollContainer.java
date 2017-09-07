@@ -19,40 +19,33 @@
 package info.bioinfweb.tic.demo.scrollcontainer;
 
 
-import info.bioinfweb.tic.SwingComponentFactory;
-import info.bioinfweb.tic.toolkit.ScrollingSwingToolkitComponent;
+import info.bioinfweb.tic.SWTComponentFactory;
+import info.bioinfweb.tic.toolkit.ScrollingSWTToolkitComponent;
 
-import javax.swing.JComponent;
-import javax.swing.JScrollPane;
+import org.eclipse.swt.SWT;
+import org.eclipse.swt.custom.ScrolledComposite;
+import org.eclipse.swt.widgets.Composite;
+import org.eclipse.swt.widgets.Control;
 
 
 
-/**
- * The toolkit-specific <i>Swing</i> implementation for the scroll container of this demo.
- * <p>
- * This class inherits from {@link JScrollPane} and sets the <i>Swing</i> component created
- * from {@link OutputComponent} as its viewport view to be scrolled. 
- * <p>
- * A number of method implementations are inherited from {@link ScrollingSwingToolkitComponent}, which 
- * provides respective default methods. This class only needs to provide references to its 
- * instances by implementing {@link #getSwingComponent()} and {@link #getScrollPane()}.
- * 
- * @author Ben St&ouml;ver
- * @since 3.0.0
- */
-public class SwingScrollContainer extends JScrollPane implements ScrollingSwingToolkitComponent {
+public class SWTScrollContainer extends ScrolledComposite implements ScrollingSWTToolkitComponent {
 	private ScrollContainer independentComponent;
+
 	
-	
-	public SwingScrollContainer(ScrollContainer independentComponent) {
-		super();
+	public SWTScrollContainer(ScrollContainer independentComponent, Composite parent, int style) {
+		super(parent, style | SWT.V_SCROLL | SWT.H_SCROLL);
 		this.independentComponent = independentComponent;
+		setAlwaysShowScrollBars(true);
 		init();
 	}
 	
 	
 	private void init() {
-		setViewportView(SwingComponentFactory.getInstance().getSwingComponent(getIndependentComponent().getOutputComponent()));
+		Composite swtOutputComponent = SWTComponentFactory.getInstance().getSWTComponent(
+				getIndependentComponent().getOutputComponent(), this, SWT.NO_BACKGROUND);
+		setContent(swtOutputComponent);
+		getIndependentComponent().getOutputComponent().assignSize();  // Make sure the SWT component has the correct size.
 	}
 
 
@@ -63,13 +56,13 @@ public class SwingScrollContainer extends JScrollPane implements ScrollingSwingT
 
 
 	@Override
-	public JComponent getSwingComponent() {
+	public Control getSWTComponent() {
 		return this;
 	}
-	
-	
+
+
 	@Override
-	public JScrollPane getScrollPane() {
+	public ScrolledComposite getScrolledComposite() {
 		return this;
 	}
 }
