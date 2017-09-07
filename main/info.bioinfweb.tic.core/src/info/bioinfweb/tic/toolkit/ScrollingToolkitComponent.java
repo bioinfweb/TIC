@@ -22,7 +22,6 @@ package info.bioinfweb.tic.toolkit;
 import info.bioinfweb.tic.scrolling.ScrollingTICComponent;
 
 import java.awt.Rectangle;
-import java.awt.geom.Rectangle2D;
 
 
 
@@ -35,8 +34,6 @@ import java.awt.geom.Rectangle2D;
  */
 public interface ScrollingToolkitComponent extends ToolkitComponent {
 	public void setScrollOffset(int x, int y);
-	
-	public void scrollRectangleToVisible(Rectangle2D rectangle);
 	
 	public Rectangle getVisibleRectangle();
 }

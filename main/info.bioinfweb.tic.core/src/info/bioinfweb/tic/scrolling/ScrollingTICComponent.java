@@ -115,7 +115,25 @@ public abstract class ScrollingTICComponent extends TICComponent {
    * @param rectangle the rectangle that shall become fully visible
    */
 	public void scrollRectangleToVisible(Rectangle2D rectangle) {
-		getToolkitComponent().scrollRectangleToVisible(rectangle);
+		Rectangle visibleRect = getVisibleRectangle();
+
+		double x = getScrollOffsetX();  // Do not scroll
+		if (rectangle.getMinX() < visibleRect.getMinX()) {
+			x = rectangle.getMinX();  // Scroll left
+		}
+		else if (rectangle.getMaxX()  > visibleRect.getMaxX()) {
+			x = rectangle.getMaxX() - visibleRect.getWidth();  // Scroll right
+		}
+
+		double y = getScrollOffsetY();  // Do not scroll
+		if (rectangle.getMinY() < visibleRect.getMinY()) {
+			y = rectangle.getMinY();  // Scroll up
+		}
+		if (rectangle.getMaxY() > visibleRect.getMaxY()) {
+			y = rectangle.getMaxY() - visibleRect.getHeight();  // Scroll down
+		}
+	
+		setScrollOffset((int)Math.round(x), (int)Math.round(y));
 	}
 	
 	
