@@ -8,7 +8,7 @@ Developers who need to offer components that work with *Swing* and *SWT* in the 
 
 ## Getting started
 
-The [documentation](http://bioinfweb.info/TIC/Documentation) and the [JavaDoc](http://bioinfweb.info/TIC/Documentation/API/Latest/) are available on the website. A basic demo application can be found [here](https://github.com/bioinfweb/TIC/tree/master/demo/info.bioinfweb.tic.demo.sierpinski/src/info/bioinfweb/tic/demo/sierpinski).
+The [documentation](http://bioinfweb.info/TIC/Documentation) and the [JavaDoc](http://bioinfweb.info/TIC/Documentation/API/Latest/) are available on the website. A basic demo application can be found [here](https://github.com/bioinfweb/TIC/tree/master/demo/info.bioinfweb.tic.demo.simplecomponent/src/info/bioinfweb/tic/demo/simplecomponent).
 
 If you have further questions, feel free to contact support@bioinfweb.info.
 
