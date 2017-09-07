@@ -22,6 +22,7 @@ package info.bioinfweb.tic.toolkit;
 import info.bioinfweb.tic.TICComponent;
 import info.bioinfweb.tic.TICPaintEvent;
 
+import java.awt.Dimension;
 import java.awt.Graphics2D;
 import java.awt.geom.Rectangle2D;
 import java.awt.image.BufferedImage;
@@ -31,6 +32,7 @@ import org.eclipse.swt.events.PaintEvent;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.graphics.ImageData;
 import org.eclipse.swt.graphics.PaletteData;
+import org.eclipse.swt.graphics.Point;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
 
@@ -53,6 +55,7 @@ import org.eclipse.swt.widgets.Control;
 public class DefaultSWTComposite extends AbstractSWTWidget {
 	public DefaultSWTComposite(TICComponent ticComponent, Composite parent, int style) {
 		super(ticComponent, parent, style);
+		assignSize();
 	}
 	
 	
@@ -100,5 +103,18 @@ public class DefaultSWTComposite extends AbstractSWTWidget {
 		finally {
 			g.dispose();
 		}
+	}
+
+
+	@Override
+	public Point computeSize(int wHint, int hHint) {
+		Dimension d = getIndependentComponent().getSize();
+		return new Point(d.width, d.height);
+	}
+
+
+	@Override
+	public Point computeSize(int wHint, int hHint, boolean changed) {
+		return computeSize(wHint, hHint);
 	}
 }
