@@ -7,6 +7,14 @@ demo/info.bioinfweb.tic.demo.directscrolling/src/APACHE-LICENSE.txt -text svneol
 demo/info.bioinfweb.tic.demo.directscrolling/src/GPL.txt -text svneol=unset#text/plain
 demo/info.bioinfweb.tic.demo.directscrolling/src/LGPL.txt -text svneol=unset#text/plain
 demo/info.bioinfweb.tic.demo.directscrolling/src/NOTICE.txt -text svneol=unset#text/plain
+demo/info.bioinfweb.tic.demo.scrollcontainer/.classpath -text svneol=unset#text/plain
+demo/info.bioinfweb.tic.demo.scrollcontainer/.project -text svneol=unset#text/plain
+demo/info.bioinfweb.tic.demo.scrollcontainer/.settings/org.eclipse.jdt.core.prefs -text svneol=unset#text/plain
+demo/info.bioinfweb.tic.demo.scrollcontainer/.settings/org.eclipse.jdt.ui.prefs -text svneol=unset#text/plain
+demo/info.bioinfweb.tic.demo.scrollcontainer/src/APACHE-LICENSE.txt -text svneol=unset#text/plain
+demo/info.bioinfweb.tic.demo.scrollcontainer/src/GPL.txt -text svneol=unset#text/plain
+demo/info.bioinfweb.tic.demo.scrollcontainer/src/LGPL.txt -text svneol=unset#text/plain
+demo/info.bioinfweb.tic.demo.scrollcontainer/src/NOTICE.txt -text svneol=unset#text/plain
 demo/info.bioinfweb.tic.demo.simplecomponent/.classpath -text svneol=unset#text/plain
 demo/info.bioinfweb.tic.demo.simplecomponent/.project -text svneol=unset#text/plain
 demo/info.bioinfweb.tic.demo.simplecomponent/.settings/org.eclipse.jdt.core.prefs -text svneol=unset#text/plain
