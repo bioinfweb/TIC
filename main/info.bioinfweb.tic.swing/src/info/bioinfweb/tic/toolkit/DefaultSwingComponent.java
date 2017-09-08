@@ -52,6 +52,11 @@ public class DefaultSwingComponent extends AbstractSwingComponent {
 	@Override
 	@Transient
 	public Dimension getPreferredSize() {
-		return getIndependentComponent().getSize();
+		if (getIndependentComponent().hasDefinedSize()) {
+			return getIndependentComponent().getSize();
+		}
+		else {
+			return super.getPreferredSize();
+		}
 	}
 }
