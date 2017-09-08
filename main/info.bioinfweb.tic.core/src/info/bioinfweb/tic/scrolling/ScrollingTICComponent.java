@@ -51,6 +51,20 @@ public abstract class ScrollingTICComponent extends TICComponent {
 	
 	
 	/**
+	 * Default implementation that returns {@code info.bioinfweb.tic.toolkit.DirectScrollingSWTComposite}.
+	 * 
+	 * @see info.bioinfweb.tic.TICComponent#getSWTComponentClassName(java.lang.Object[])
+	 */
+	@Override
+	protected String getSWTComponentClassName(Object... parameters) {
+		return "info.bioinfweb.tic.toolkit.DirectScrollingSWTComposite";
+	}
+
+	
+	//TODO Also return default Swing implementation?
+	
+
+	/**
 	 * Sets the current painting offset on x and y. This method should be used, if both coordinates are changed, instead
 	 * of calling {@link #setScrollOffsetX(int)} and {@link #setScrollOffsetY(int)} separately to avoid unnecessary
 	 * repainting.
