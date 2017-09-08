@@ -19,12 +19,11 @@
 package info.bioinfweb.tic.demo.simplecomponent;
 
 
-import java.awt.Dimension;
-import java.awt.Graphics2D;
-import java.awt.RenderingHints;
-
 import info.bioinfweb.tic.TICComponent;
 import info.bioinfweb.tic.TICPaintEvent;
+
+import java.awt.Graphics2D;
+import java.awt.RenderingHints;
 
 
 
@@ -46,23 +45,6 @@ public class SierpinskiTriangleComponent extends TICComponent {
 		Graphics2D g = event.getGraphics();
 		g.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);	
 		
-		SierpinskiTrianglePainter.paintSierpinskiTriangle(g, getSize());
-	}
-	
-
-	/**
-	 * Returns the current size of the underlying toolkit specific component. This allows the toolkit-specific layout 
-	 * manager to determine the size of this <i>TIC</i> component.
-	 * 
-	 * @see info.bioinfweb.tic.TICComponent#getSize()
-	 */
-	@Override
-	public Dimension getSize() {
-		if (hasToolkitComponent()) {
-			return getToolkitComponent().getToolkitSize();
-		}
-		else {
-			return new Dimension(0, 0);
-		}
+		SierpinskiTrianglePainter.paintSierpinskiTriangle(g, getToolkitComponent().getToolkitSize());
 	}
 }
