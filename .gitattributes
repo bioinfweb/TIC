@@ -7,6 +7,8 @@ demo/info.bioinfweb.tic.demo.directscrolling/src/APACHE-LICENSE.txt -text svneol
 demo/info.bioinfweb.tic.demo.directscrolling/src/GPL.txt -text svneol=unset#text/plain
 demo/info.bioinfweb.tic.demo.directscrolling/src/LGPL.txt -text svneol=unset#text/plain
 demo/info.bioinfweb.tic.demo.directscrolling/src/NOTICE.txt -text svneol=unset#text/plain
+demo/info.bioinfweb.tic.demo.directscrolling/src/info/bioinfweb/tic/demo/directscrolling/SWTApplication.java -text svneol=unset#text/plain
+demo/info.bioinfweb.tic.demo.directscrolling/src/info/bioinfweb/tic/demo/directscrolling/ScrollingOutputComponent.java -text svneol=unset#text/plain
 demo/info.bioinfweb.tic.demo.scrollcontainer/.classpath -text svneol=unset#text/plain
 demo/info.bioinfweb.tic.demo.scrollcontainer/.project -text svneol=unset#text/plain
 demo/info.bioinfweb.tic.demo.scrollcontainer/.settings/org.eclipse.jdt.core.prefs -text svneol=unset#text/plain
