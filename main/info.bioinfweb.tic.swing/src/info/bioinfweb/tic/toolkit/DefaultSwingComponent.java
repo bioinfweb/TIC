@@ -19,14 +19,13 @@
 package info.bioinfweb.tic.toolkit;
 
 
+import info.bioinfweb.tic.TICComponent;
+import info.bioinfweb.tic.TICPaintEvent;
+
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
-import java.awt.geom.Dimension2D;
 import java.beans.Transient;
-
-import info.bioinfweb.tic.TICComponent;
-import info.bioinfweb.tic.TICPaintEvent;
 
 
 
@@ -53,7 +52,6 @@ public class DefaultSwingComponent extends AbstractSwingComponent {
 	@Override
 	@Transient
 	public Dimension getPreferredSize() {
-		Dimension2D size = getIndependentComponent().getSize();
-		return new Dimension((int)Math.round(size.getWidth()), (int)Math.round(size.getHeight()));
+		return getIndependentComponent().getSize();
 	}
 }

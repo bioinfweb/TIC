@@ -35,9 +35,12 @@ import javax.swing.JComponent;
  */
 public class SwingComponentTools {
 	public static void assignSize(JComponent component) {
-		Dimension size = ((ToolkitComponent)component).getIndependentComponent().getSize();
-		component.setSize(size);
-		component.setPreferredSize(size);
+		ToolkitComponent toolkitComponent = (ToolkitComponent)component; 
+		if (toolkitComponent.getIndependentComponent().hasDefinedSize()) {
+			Dimension size = toolkitComponent.getIndependentComponent().getSize();
+			component.setSize(size);
+			component.setPreferredSize(size);
+		}
 	}
 	
 	
