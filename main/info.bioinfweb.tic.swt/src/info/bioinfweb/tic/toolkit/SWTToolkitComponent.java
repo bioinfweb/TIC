@@ -61,12 +61,14 @@ public interface SWTToolkitComponent extends ToolkitComponent {
 	
 	@Override
 	default public void assignSize() {
-		Control control = getSWTComponent();
-		Dimension size = ((ToolkitComponent)control).getIndependentComponent().getSize();
-		Point point = new Point(size.width, size.height);
-		control.setSize(point);
-		if ((control.getParent() != null) && (control.getParent().getLayout() != null)) {
-			SWTLayoutDataFactory.getInstance().setLayoutData(control.getParent().getLayout(), point, control);
+		if (getIndependentComponent().hasDefinedSize()) {
+			Control control = getSWTComponent();
+			Dimension size = ((ToolkitComponent)control).getIndependentComponent().getSize();
+			Point point = new Point(size.width, size.height);
+			control.setSize(point);
+			if ((control.getParent() != null) && (control.getParent().getLayout() != null)) {
+				SWTLayoutDataFactory.getInstance().setLayoutData(control.getParent().getLayout(), point, control);
+			}
 		}
 	}
 	

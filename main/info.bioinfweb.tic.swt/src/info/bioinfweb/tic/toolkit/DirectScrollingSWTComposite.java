@@ -16,12 +16,11 @@
  * You should have received a copy of the GNU Lesser General Public License
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
-package info.bioinfweb.tic.toolkit.scrolling;
+package info.bioinfweb.tic.toolkit;
 
 
 
 import info.bioinfweb.tic.TICComponent;
-import info.bioinfweb.tic.toolkit.DefaultSWTComposite;
 import info.bioinfweb.tic.toolkit.ScrollingToolkitComponent;
 
 import java.awt.Dimension;
@@ -35,12 +34,12 @@ import org.eclipse.swt.widgets.Listener;
 
 
 
-public class DefaultScrolledSWTComposite extends DefaultSWTComposite implements ScrollingToolkitComponent {
+public class DirectScrollingSWTComposite extends DefaultSWTComposite implements ScrollingToolkitComponent {
 	private Point origin = new Point (0, 0);
 	
 	
 	//TODO Should ticComponent be ScrolledTICComponent? If so, would the factories (and respective JavaDoc) need to adjusted?
-	public DefaultScrolledSWTComposite(TICComponent ticComponent, Composite parent, int style) {
+	public DirectScrollingSWTComposite(TICComponent ticComponent, Composite parent, int style) {
 		super(ticComponent, parent, style | SWT.V_SCROLL | SWT.H_SCROLL);
 	
 		getHorizontalBar().addListener(SWT.Selection, new Listener() {
@@ -70,16 +69,16 @@ public class DefaultScrolledSWTComposite extends DefaultSWTComposite implements 
 		addListener(SWT.Resize, new Listener() {
 			@Override
 			public void handleEvent(Event event) {
-				Dimension dimension = getIndependentComponent().getSize();
+				Dimension dimension = getIndependentComponent().getSize();  //TODO The size of the scrolled area should be stored independent of the component size. The size of the TIC component should be equal to the actual size of the scrolling toolkit component.
 				Rectangle client = getClientArea();
 				getHorizontalBar().setMaximum(dimension.width);
 				getVerticalBar().setMaximum(dimension.height);
-				getHorizontalBar().setThumb(Math.min (dimension.width, client.width));
-				getVerticalBar().setThumb(Math.min (dimension.height, client.height));
+				getHorizontalBar().setThumb(Math.min(dimension.width, client.width));
+				getVerticalBar().setThumb(Math.min(dimension.height, client.height));
 				int hPage = dimension.width - client.width;
 				int vPage = dimension.height - client.height;
-				int hSelection = getHorizontalBar().getSelection ();
-				int vSelection = getVerticalBar().getSelection ();
+				int hSelection = getHorizontalBar().getSelection();
+				int vSelection = getVerticalBar().getSelection();
 				if (hSelection >= hPage) {
 					if (hPage <= 0) {
 						hSelection = 0;

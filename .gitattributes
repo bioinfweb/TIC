@@ -122,13 +122,12 @@ main/info.bioinfweb.tic.swt/src/info/bioinfweb/tic/input/SWTSwingEventConversion
 main/info.bioinfweb.tic.swt/src/info/bioinfweb/tic/toolkit/AbstractSWTComposite.java -text svneol=unset#text/plain
 main/info.bioinfweb.tic.swt/src/info/bioinfweb/tic/toolkit/AbstractSWTWidget.java -text svneol=unset#text/plain
 main/info.bioinfweb.tic.swt/src/info/bioinfweb/tic/toolkit/DefaultSWTComposite.java -text svneol=unset#text/plain
+main/info.bioinfweb.tic.swt/src/info/bioinfweb/tic/toolkit/DirectScrollingSWTComposite.java -text svneol=unset#text/plain
 main/info.bioinfweb.tic.swt/src/info/bioinfweb/tic/toolkit/SWTToolkitComponent.java -text svneol=unset#text/plain
 main/info.bioinfweb.tic.swt/src/info/bioinfweb/tic/toolkit/ScrollingSWTToolkitComponent.java -text svneol=unset#text/plain
 main/info.bioinfweb.tic.swt/src/info/bioinfweb/tic/toolkit/layoutdata/RowLayoutFactory.java -text svneol=unset#text/plain
 main/info.bioinfweb.tic.swt/src/info/bioinfweb/tic/toolkit/layoutdata/SWTLayoutDataFactory.java -text svneol=unset#text/plain
 main/info.bioinfweb.tic.swt/src/info/bioinfweb/tic/toolkit/layoutdata/SingleLayoutDataFactory.java -text svneol=unset#text/plain
-main/info.bioinfweb.tic.swt/src/info/bioinfweb/tic/toolkit/scrolling/DefaultScrolledSWTComposite.java -text svneol=unset#text/plain
-main/info.bioinfweb.tic.swt/src/info/bioinfweb/tic/toolkit/scrolling/package-info.java -text svneol=unset#text/plain
 test/info.bioinfweb.tic.test/.classpath -text svneol=unset#text/plain
 test/info.bioinfweb.tic.test/.project -text svneol=unset#text/plain
 test/info.bioinfweb.tic.test/.settings/org.eclipse.jdt.core.prefs -text svneol=unset#text/plain
