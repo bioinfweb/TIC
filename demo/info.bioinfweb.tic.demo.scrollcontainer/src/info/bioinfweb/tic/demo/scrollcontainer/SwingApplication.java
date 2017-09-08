@@ -30,6 +30,7 @@ import javax.swing.JFrame;
 
 
 /**
+ * The <i>Swing</i> application class of this demo making use of {@link ScrollContainer} and its subcomponents.
  * 
  * @author Ben St&ouml;ver
  */

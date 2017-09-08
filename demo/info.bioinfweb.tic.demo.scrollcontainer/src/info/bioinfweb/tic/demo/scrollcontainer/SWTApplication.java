@@ -29,12 +29,8 @@ import org.eclipse.swt.widgets.Shell;
 
 
 /**
- * Example that demonstrates using <i>TIC</i> components in <i>SWT</i> applications.
- * <p>
- * This example is used in the 
- * <a href="http://bioinfweb.info/TIC/Documentation">TIC documentation</a>.
+ * The <i>SWT</i> application class of this demo making use of {@link ScrollContainer} and its subcomponents.
  * 
- * @author Sarah Wiechers
  * @author Ben St&ouml;ver
  */
 public class SWTApplication {	
