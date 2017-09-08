@@ -51,19 +51,8 @@ public class ScrollContainer extends ScrollingTICComponent {
 	public void paint(TICPaintEvent event) {}  // Nothing to do, since special toolkit-specific components are provided instead.
 	
 
-	/**
-	 * Returns the current size of the underlying toolkit specific component. This allows the toolkit-specific layout 
-	 * manager to determine the size of this <i>TIC</i> component.
-	 * 
-	 * @see info.bioinfweb.tic.TICComponent#getSize()
-	 */
 	@Override
 	public Dimension getSize() {
-		if (hasToolkitComponent()) {
-			return getToolkitComponent().getToolkitSize();
-		}
-		else {
-			return new Dimension(0, 0);
-		}
+		return getOutputComponent().getSize();
 	}
 }

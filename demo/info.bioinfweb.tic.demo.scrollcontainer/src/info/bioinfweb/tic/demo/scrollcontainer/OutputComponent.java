@@ -31,7 +31,7 @@ import java.awt.RenderingHints;
 
 public class OutputComponent extends TICComponent {
 	public static final int WIDTH = 1000;
-	public static final int HEIGHT = (int)(Math.sin(Math.PI / 3) * WIDTH);
+	public static final int HEIGHT = (int)(Math.sin(Math.PI / 3) * WIDTH);  // Set a height that fits the bounding box of the equilateral triangle.
 	
 	
 	@Override
