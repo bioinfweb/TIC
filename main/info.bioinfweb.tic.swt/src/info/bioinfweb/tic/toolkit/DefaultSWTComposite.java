@@ -108,13 +108,23 @@ public class DefaultSWTComposite extends AbstractSWTWidget {
 
 	@Override
 	public Point computeSize(int wHint, int hHint) {
-		Dimension d = getIndependentComponent().getSize();
-		return new Point(d.width, d.height);
+		if (getIndependentComponent().hasDefinedSize()) {
+			Dimension d = getIndependentComponent().getSize();
+			return new Point(d.width, d.height);
+		}
+		else {
+			return super.computeSize(wHint, hHint);
+		}
 	}
 
 
 	@Override
 	public Point computeSize(int wHint, int hHint, boolean changed) {
-		return computeSize(wHint, hHint);
+		if (getIndependentComponent().hasDefinedSize()) {
+			return computeSize(wHint, hHint);
+		}
+		else {
+			return super.computeSize(wHint, hHint, changed);
+		}
 	}
 }

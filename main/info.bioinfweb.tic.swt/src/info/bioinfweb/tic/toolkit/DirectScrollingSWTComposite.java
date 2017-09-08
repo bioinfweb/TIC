@@ -42,6 +42,10 @@ public class DirectScrollingSWTComposite extends DefaultSWTComposite implements 
 	public DirectScrollingSWTComposite(TICComponent ticComponent, Composite parent, int style) {
 		super(ticComponent, parent, style | SWT.V_SCROLL | SWT.H_SCROLL);
 	
+		if (!ticComponent.hasDefinedSize()) {
+			throw new IllegalArgumentException("The associated TIC component must have a defined size and must not return null for getSize() in order to be scrolled.");
+		}
+		
 		getHorizontalBar().addListener(SWT.Selection, new Listener() {
 			@Override
 			public void handleEvent(Event event) {
@@ -69,7 +73,7 @@ public class DirectScrollingSWTComposite extends DefaultSWTComposite implements 
 		addListener(SWT.Resize, new Listener() {
 			@Override
 			public void handleEvent(Event event) {
-				Dimension dimension = getIndependentComponent().getSize();  //TODO The size of the scrolled area should be stored independent of the component size. The size of the TIC component should be equal to the actual size of the scrolling toolkit component.
+				Dimension dimension = getIndependentComponent().getSize();
 				Rectangle client = getClientArea();
 				getHorizontalBar().setMaximum(dimension.width);
 				getVerticalBar().setMaximum(dimension.height);
