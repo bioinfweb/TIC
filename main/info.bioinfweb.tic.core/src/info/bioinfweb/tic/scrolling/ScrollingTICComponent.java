@@ -19,13 +19,13 @@
 package info.bioinfweb.tic.scrolling;
 
 
+import info.bioinfweb.tic.TICComponent;
+import info.bioinfweb.tic.toolkit.ScrollingToolkitComponent;
+
 import java.awt.Rectangle;
 import java.awt.geom.Rectangle2D;
 import java.util.HashSet;
 import java.util.Set;
-
-import info.bioinfweb.tic.TICComponent;
-import info.bioinfweb.tic.toolkit.ScrollingToolkitComponent;
 
 
 

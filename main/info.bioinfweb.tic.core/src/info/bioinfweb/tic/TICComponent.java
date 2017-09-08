@@ -29,6 +29,8 @@ import info.bioinfweb.tic.input.TICMouseEvent;
 import info.bioinfweb.tic.input.TICMouseListener;
 import info.bioinfweb.tic.input.TICMouseWheelEvent;
 import info.bioinfweb.tic.input.TICMouseWheelListener;
+import info.bioinfweb.tic.scrolling.ScrollingTICComponent;
+import info.bioinfweb.tic.toolkit.ScrollingToolkitComponent;
 import info.bioinfweb.tic.toolkit.ToolkitComponent;
 
 import java.awt.Dimension;
@@ -43,22 +45,25 @@ import java.util.Map;
 
 
 /**
- * This is the parent class of all GUI components based in TIC. Inherited classes are toolkit independent GUI 
+ * This is the parent class of all GUI components based in <i>TIC</i>. Inherited classes are toolkit independent GUI 
  * components that can be used in both <i>Swing</i> and <i>SWT</i> GUIs. To create toolkit specific instances of inherited
- * classes {@code SwingComponentFactory} and {@code SWTComponentFactory} from the according <i>TIC</i> modules 
+ * classes {@code SwingComponentFactory} and {@code SWTComponentFactory} from the respective <i>TIC</i> modules 
  * can be used.
+ * 
+ * <h3><a id="create"></a>Creating <i>TIC</i> components</h3> 
  * <p>
- * To create a concrete <i>TIC</i> component, the abstract methods {@link #paint(TICPaintEvent)} and 
- * {@link #getSize()} need to be implemented, which is sufficient for creating components that paint their 
- * contents directly. If toolkit specific classes containing subcomponents from <i>Swing</i> or <i>SWT</i> are created instead,
- * {@link #getSwingComponentClassName()} and {@link #getSWTComponentClassName()} must be overwritten respectively
- * and the implementation of {@link #paint(TICPaintEvent)} may remain empty.  
+ * To create a concrete <i>TIC</i> component either the {@link #paint(TICPaintEvent)} method must be overwritten 
+ * with code painting the component or toolkit specific classes for <i>Swing</i> and <i>SWT</i> that do not need
+ * a toolkit-independent paint method must be provided by overwriting {@link #getSwingComponentClassName(Object...)} 
+ * and {@link #getSWTComponentClassName(Object...)()}.
+ * <p>
+ * {@link #getSize()} should be overwritten if a component requires a certain (minimal) size.  
  * <p>
  * Note that depending on your GUI design {@link #assignSize()} might not have the desired effect if 
  * {@link #assignSizeToSWTLayoutData(org.eclipse.swt.graphics.Point, Composite)} is not overwritten with an 
  * respective implementation.
- * <p>
- * <b>Mouse and keyboard events</b>
+ * 
+ * <h3><a id="input"></a>Mouse and keyboard events</h3> 
  * <p>
  * <i>TIC</i> components support adding <i>TIC</i> event listeners for mouse and keyboard events. Due to the implementation of this 
  * behavior the toolkit specific components always have mouse and key listeners attached, no matter if a <i>TIC</i> listener 
@@ -73,6 +78,8 @@ import java.util.Map;
  * is influenced by the return value of <i>TIC</i> event listeners.)
  * 
  * @author Ben St&ouml;ver
+ * @see ScrollingTICComponent
+ * @see ToolkitComponent
  * @bioinfweb.module info.bioinfweb.tic.core
  */
 public abstract class TICComponent {
@@ -138,20 +145,50 @@ public abstract class TICComponent {
 	 * <p>
 	 * If implementing classes provide custom toolkit specific components by overwriting 
 	 * {@link #getSwingComponentClassName(Object...)} and {@link #getSwingComponentClassName(Object...)}
-	 * the implementation of this method can be empty.
+	 * the implementation of this method may remain empty.
+	 * <p>
+	 * This default implementation is empty. Inherited classes must either overwrite it or overwrite
+	 * {@link #getSwingComponentClassName(Object...)} and {@link #getSWTComponentClassName(Object...)}
+	 * to provide toolkit components that do not need an implementation of this method.
 	 * 
 	 * @param event the paint event providing the graphics context and information on which part of the 
 	 *        component should be repainted
 	 */
-	public abstract void paint(TICPaintEvent event);
+	public void paint(TICPaintEvent event) {}
 	
 	
 	/**
 	 * Returns the size this object needs to be painted completely.
+	 * <p>
+	 * Components may specify their minimal size or the only acceptable fixed size here. The respective 
+	 * toolkit components should be implemented respectively. Returning {@code null} if the component 
+	 * does not prefer any size is also valid.
+	 * <p>
+	 * Note that this size may differ from the actual size of the toolkit component, e.g. if it specifies
+	 * a preferred size. In case of scrolling <i>TIC</i> components (e.g. classes inherited from 
+	 * {@link ScrollingToolkitComponent}) the size returned here denotes the component size that would be
+	 * needed to display all contents without scroll bars. If the toolkit component shows scroll bars, its
+	 * size would be smaller than the size returned here.
+	 * <p>
+	 * This default implementation always returns {@code null}.
 	 * 
-	 * @return the dimension in pixels
+	 * @return the dimension in pixels needed to completely paint this component or {@code null}
+	 * @see ToolkitComponent#getToolkitSize()
 	 */
-	public abstract Dimension getSize();
+	public Dimension getSize() {
+		return null;
+	}
+	
+	
+	/**
+	 * Determines whether this component specifies a defined size. See {@link #getSize()} for details.
+	 * 
+	 * @return {@code true} if this component returns a defined size in {@link #getSize()} or {@code false} if
+	 *         this component does not have any preferred size and {@link #getSize()} returns {@code null}
+	 */
+	public boolean hasDefinedSize() {
+		return getSize() != null;
+	}
 	
 	
 	/**
