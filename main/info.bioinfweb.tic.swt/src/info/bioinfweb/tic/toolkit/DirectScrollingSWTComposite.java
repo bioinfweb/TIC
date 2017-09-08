@@ -19,7 +19,6 @@
 package info.bioinfweb.tic.toolkit;
 
 
-
 import info.bioinfweb.tic.TICComponent;
 import info.bioinfweb.tic.toolkit.ScrollingToolkitComponent;
 
