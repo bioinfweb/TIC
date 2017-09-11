@@ -37,7 +37,7 @@ import org.eclipse.swt.graphics.Point;
  * directly instead of relying in {@link ScrolledComposite} should implement 
  * {@link ScrollingToolkitComponent} directly and implement its methods respectively.
  * 
- * @author Ben St&uoml;ver
+ * @author Ben St&ouml;ver
  * @since 3.0.0
  */
 public interface ScrollingSWTToolkitComponent extends ScrollingToolkitComponent, SWTToolkitComponent {
