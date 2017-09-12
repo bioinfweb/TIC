@@ -102,8 +102,9 @@ main/info.bioinfweb.tic.swing/src/info/bioinfweb/tic/input/SwingKeyEventForwarde
 main/info.bioinfweb.tic.swing/src/info/bioinfweb/tic/input/SwingMouseEventForwarder.java -text svneol=unset#text/plain
 main/info.bioinfweb.tic.swing/src/info/bioinfweb/tic/input/SwingMouseWheelEventForwarder.java -text svneol=unset#text/plain
 main/info.bioinfweb.tic.swing/src/info/bioinfweb/tic/toolkit/AbstractSwingComponent.java -text svneol=unset#text/plain
+main/info.bioinfweb.tic.swing/src/info/bioinfweb/tic/toolkit/BoundedRangeModelSwingToolkitComponent.java -text svneol=unset#text/plain
 main/info.bioinfweb.tic.swing/src/info/bioinfweb/tic/toolkit/DefaultSwingComponent.java -text svneol=unset#text/plain
-main/info.bioinfweb.tic.swing/src/info/bioinfweb/tic/toolkit/ScrollingSwingToolkitComponent.java -text svneol=unset#text/plain
+main/info.bioinfweb.tic.swing/src/info/bioinfweb/tic/toolkit/ScrollPaneSwingToolkitComponent.java -text svneol=unset#text/plain
 main/info.bioinfweb.tic.swing/src/info/bioinfweb/tic/toolkit/SwingComponentTools.java -text svneol=unset#text/plain
 main/info.bioinfweb.tic.swing/src/info/bioinfweb/tic/toolkit/SwingToolkitComponent.java -text svneol=unset#text/plain
 main/info.bioinfweb.tic.swt/.classpath -text svneol=unset#text/plain

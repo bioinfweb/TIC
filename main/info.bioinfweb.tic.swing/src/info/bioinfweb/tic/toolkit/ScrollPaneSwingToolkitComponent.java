@@ -20,7 +20,6 @@ package info.bioinfweb.tic.toolkit;
 
 
 import java.awt.Rectangle;
-import java.awt.geom.Rectangle2D;
 
 import javax.swing.JScrollPane;
 
@@ -35,12 +34,15 @@ import javax.swing.JScrollPane;
  * Note that this interface is not meant and does not tag a class to provide any functionality in addition
  * to {@link ScrollingToolkitComponent}. <i>Swing</i> components that provide scrolling functionality 
  * directly instead of relying in {@link JScrollPane} should implement 
- * {@link ScrollingToolkitComponent} directly and implement its methods respectively.
+ * {@link BoundedRangeModelSwingToolkitComponent} or {@link ScrollingToolkitComponent} directly and 
+ * implement its methods respectively.
  * 
  * @author Ben St&uoml;ver
  * @since 3.0.0
+ * @see ScrollingToolkitComponent
+ * @see BoundedRangeModelSwingToolkitComponent
  */
-public interface ScrollingSwingToolkitComponent extends ScrollingToolkitComponent, SwingToolkitComponent {
+public interface ScrollPaneSwingToolkitComponent extends ScrollingToolkitComponent, SwingToolkitComponent {
 	public JScrollPane getScrollPane();
 	
 	
