@@ -161,8 +161,29 @@ public abstract class ScrollingTICComponent extends TICComponent {
 	}
 	
 	
+	/**
+	 * Returns an editable set of scroll listeners that will be notified by on scroll events happening 
+	 * within this component.
+	 * 
+	 * @return the set of registered scroll listeners
+	 */
 	public Set<TICScrollListener> getScrollListeners() {
 		return scrollListeners;
 	}
 	//TODO Make sure listeners are informed by toolkit components.
+	
+	
+	/**
+	 * Informs all listeners that the contained component was scrolled.
+	 * <p>
+	 * This method is meant to be called by scrolling toolkit components. Application will not have to call 
+	 * this method directly, unless it implements custom scrolling toolkit components.  
+	 * 
+	 * @param event the object describing the scroll event
+	 */
+	public void fireControlScrolled(TICScrollEvent event) {
+		for (TICScrollListener listener : scrollListeners) {
+			listener.controlScrolled(event);
+		}
+	}
 }
