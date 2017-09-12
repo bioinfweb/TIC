@@ -20,6 +20,7 @@ package info.bioinfweb.tic.demo.scrollcontainer;
 
 
 import info.bioinfweb.tic.SWTComponentFactory;
+import info.bioinfweb.tic.toolkit.SWTComponentTools;
 import info.bioinfweb.tic.toolkit.ScrolledCompositeToolkitComponent;
 
 import org.eclipse.swt.SWT;
@@ -45,6 +46,7 @@ public class SWTScrollContainer extends ScrolledComposite implements ScrolledCom
 		Composite swtOutputComponent = SWTComponentFactory.getInstance().getSWTComponent(
 				getIndependentComponent().getOutputComponent(), this, SWT.NO_BACKGROUND);
 		setContent(swtOutputComponent);
+		SWTComponentTools.registerScrollEventForwarders(this);
 	}
 
 

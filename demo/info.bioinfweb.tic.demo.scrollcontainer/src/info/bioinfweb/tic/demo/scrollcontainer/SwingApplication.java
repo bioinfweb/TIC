@@ -91,6 +91,7 @@ public class SwingApplication {
 		frame.setSize(500, 500);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setTitle("Swing Scroll Container Application");
+		frame.getContentPane().setLayout(new BorderLayout(0, 0));
 
 		// Create TIC component instance:
 		scrollContainer = new ScrollContainer();
@@ -99,7 +100,6 @@ public class SwingApplication {
 		JComponent swingScrollContainer = SwingComponentFactory.getInstance().getSwingComponent(scrollContainer);
 		
 		// Add Swing component to GUI:
-		frame.getContentPane().setLayout(new BorderLayout(0, 0));
 		frame.getContentPane().add(swingScrollContainer, BorderLayout.CENTER);
 		
 		
