@@ -94,10 +94,10 @@ public class SWTApplication {
 		MenuItem mntmScroll = new MenuItem(menu, SWT.CASCADE);
 		mntmScroll.setText("Scroll");
 		
-		Menu menu_1 = new Menu(mntmScroll);
-		mntmScroll.setMenu(menu_1);
+		Menu menuScroll = new Menu(mntmScroll);
+		mntmScroll.setMenu(menuScroll);
 		
-		MenuItem mntmTopLeft = new MenuItem(menu_1, SWT.NONE);
+		MenuItem mntmTopLeft = new MenuItem(menuScroll, SWT.NONE);
 		mntmTopLeft.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
@@ -106,7 +106,7 @@ public class SWTApplication {
 		});
 		mntmTopLeft.setText("Top left");
 		
-		MenuItem mntmCenter = new MenuItem(menu_1, SWT.NONE);
+		MenuItem mntmCenter = new MenuItem(menuScroll, SWT.NONE);
 		mntmCenter.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
