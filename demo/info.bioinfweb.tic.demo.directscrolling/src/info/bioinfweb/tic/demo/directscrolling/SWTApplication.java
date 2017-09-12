@@ -19,16 +19,20 @@
 package info.bioinfweb.tic.demo.directscrolling;
 
 
+import info.bioinfweb.tic.SWTComponentFactory;
+import info.bioinfweb.tic.scrolling.TICScrollEvent;
+import info.bioinfweb.tic.scrolling.TICScrollListener;
+
 import java.awt.Dimension;
 import java.awt.Rectangle;
-
-import info.bioinfweb.tic.SWTComponentFactory;
 
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
-import org.eclipse.swt.layout.FillLayout;
+import org.eclipse.swt.layout.GridData;
+import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Display;
+import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Menu;
 import org.eclipse.swt.widgets.MenuItem;
 import org.eclipse.swt.widgets.Shell;
@@ -78,13 +82,45 @@ public class SWTApplication {
 		shell = new Shell();
 		shell.setSize(500, 500);
 		shell.setText("SWT Scroll Container Application");
-		shell.setLayout(new FillLayout(SWT.HORIZONTAL));
+		
+		GridLayout layout = new GridLayout(1, false);
+		layout.verticalSpacing = 0;
+		layout.marginWidth = 0;
+		layout.marginHeight = 0;
+		layout.horizontalSpacing = 0;
+		shell.setLayout(layout);
 
 		// Create TIC component instance:
 		scrollingComponent = new ScrollingOutputComponent();
 		
 		// Create SWT-specific component instance and add it to the SWT GUI:
-		SWTComponentFactory.getInstance().getSWTComponent(scrollingComponent, shell, SWT.NONE);
+		GridData gridData = new GridData();
+	  gridData.horizontalAlignment = GridData.FILL;
+	  gridData.verticalAlignment = GridData.FILL;
+	  gridData.grabExcessHorizontalSpace = true;
+	  gridData.grabExcessVerticalSpace = true;
+	
+		SWTComponentFactory.getInstance().getSWTComponent(scrollingComponent, shell, SWT.NONE).setLayoutData(gridData);
+		
+		
+		// Create status bar below the scroll container to demonstrate listening to scroll events:
+		gridData = new GridData();
+	  gridData.horizontalAlignment = GridData.FILL;
+	  gridData.grabExcessHorizontalSpace = true;
+	  gridData.horizontalIndent = 3;
+	  
+		final Label statusLabel = new Label(shell, SWT.NONE);
+		statusLabel.setText(" ");
+		statusLabel.setLayoutData(gridData);
+
+		scrollingComponent.getScrollListeners().add(new TICScrollListener() {
+			@Override
+			public void controlScrolled(TICScrollEvent event) {
+				statusLabel.setText("Scroll position: (" + scrollingComponent.getScrollOffsetX() + ", " + 
+						scrollingComponent.getScrollOffsetY() + ")");
+			}
+		});
+		
 		
 		// Create main menu to demonstrate programmatic scrolling:
 		Menu menu = new Menu(shell, SWT.BAR);
