@@ -26,29 +26,16 @@ import java.util.EventObject;
 
 
 public class TICScrollEvent extends EventObject {
-	private boolean verticalChange;
-	private boolean horizontalChange;
-	
-	
-	public TICScrollEvent(ScrollingToolkitComponent source, boolean verticalChange, boolean horizontalChange) {
+	private static final long serialVersionUID = 1L;
+
+
+	public TICScrollEvent(ScrollingToolkitComponent source) {
 		super(source);
-		this.verticalChange = verticalChange;
-		this.horizontalChange = horizontalChange;
 	}
 
 
 	@Override
 	public ScrollingToolkitComponent getSource() {
 		return (ScrollingToolkitComponent)super.getSource();
-	}
-
-
-	public boolean isVerticalChange() {
-		return verticalChange;
-	}
-
-
-	public boolean isHorizontalChange() {
-		return horizontalChange;
 	}
 }

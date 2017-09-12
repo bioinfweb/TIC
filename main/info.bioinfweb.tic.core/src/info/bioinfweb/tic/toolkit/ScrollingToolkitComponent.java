@@ -36,4 +36,7 @@ public interface ScrollingToolkitComponent extends ToolkitComponent {
 	public void setScrollOffset(int x, int y);
 	
 	public Rectangle getVisibleRectangle();
+	
+	@Override
+  public ScrollingTICComponent getIndependentComponent();
 }
