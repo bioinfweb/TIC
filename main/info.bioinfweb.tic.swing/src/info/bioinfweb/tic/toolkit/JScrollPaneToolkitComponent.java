@@ -19,6 +19,8 @@
 package info.bioinfweb.tic.toolkit;
 
 
+import info.bioinfweb.tic.scrolling.ScrollingTICComponent;
+
 import java.awt.Rectangle;
 
 import javax.swing.JScrollPane;
@@ -31,18 +33,22 @@ import javax.swing.JScrollPane;
  * default method implementations that delegate the scrolling methods of {@link ScrollingToolkitComponent}
  * to {@link JScrollPane}.
  * <p>
+ * Implementations of this interface must call 
+ * {@link SwingComponentTools#registerScrollEventForwarders(JScrollPaneToolkitComponent)} in their 
+ * constructor to ensure the associated {@link ScrollingTICComponent} fires correct scroll events. 
+ * <p>
  * Note that this interface is not meant and does not tag a class to provide any functionality in addition
  * to {@link ScrollingToolkitComponent}. <i>Swing</i> components that provide scrolling functionality 
  * directly instead of relying in {@link JScrollPane} should implement 
- * {@link BoundedRangeModelSwingToolkitComponent} or {@link ScrollingToolkitComponent} directly and 
+ * {@link JScrollBarsToolkitComponent} or {@link ScrollingToolkitComponent} directly and 
  * implement its methods respectively.
  * 
  * @author Ben St&uoml;ver
  * @since 3.0.0
  * @see ScrollingToolkitComponent
- * @see BoundedRangeModelSwingToolkitComponent
+ * @see JScrollBarsToolkitComponent
  */
-public interface ScrollPaneSwingToolkitComponent extends ScrollingToolkitComponent, SwingToolkitComponent {
+public interface JScrollPaneToolkitComponent extends ScrollingToolkitComponent, SwingToolkitComponent {
 	public JScrollPane getScrollPane();
 	
 	

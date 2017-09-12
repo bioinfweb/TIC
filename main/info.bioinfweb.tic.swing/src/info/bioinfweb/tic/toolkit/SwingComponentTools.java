@@ -19,9 +19,12 @@
 package info.bioinfweb.tic.toolkit;
 
 
+import info.bioinfweb.tic.scrolling.ScrollingTICComponent;
+
 import java.awt.Dimension;
 
 import javax.swing.JComponent;
+import javax.swing.JScrollPane;
 
 
 
@@ -48,5 +51,36 @@ public class SwingComponentTools {
 		Dimension preferredSize = component.getPreferredSize();
 		return new Dimension(Math.max(superMaxSize.width, preferredSize.width), 
 				Math.max(superMaxSize.height, preferredSize.height));
+	}
+	
+	
+	/**
+	 * Tool method to be used by implementations of {@link JScrollPaneToolkitComponent}. It should
+	 * be called within the constructor of such classes in order to ensure correct firing of scroll
+	 * events in their associated {@link ScrollingTICComponent}.
+	 * 
+	 * @param component the toolkit component providing the scroll functionality
+	 */
+	public static void registerScrollEventForwarders(JScrollPaneToolkitComponent component) {
+		JScrollPane scrollPane = component.getScrollPane();
+		AdjustmentScrollListenerForwarder listener = new AdjustmentScrollListenerForwarder(component);
+		scrollPane.getHorizontalScrollBar().addAdjustmentListener(listener);
+		scrollPane.getVerticalScrollBar().addAdjustmentListener(listener);
+		// Registering a change listener to the model instead does not work, since the event there is fired before the scroll position is updated.
+		// Registering a component listener and react to moving events is alternatively possible for ScrollPanes. (Such events are not fired, when the whole container is moved.) This solution would become a problem, if the scrolled component would be switched during runtime.
+	}
+	
+	
+	/**
+	 * Tool method to be used by implementations of {@link JScrollBarsToolkitComponent}. It should
+	 * be called within the constructor of such classes in order to ensure correct firing of scroll
+	 * events in their associated {@link ScrollingTICComponent}.
+	 * 
+	 * @param component the toolkit component providing the scroll functionality
+	 */
+	public static void registerScrollEventForwarders(JScrollBarsToolkitComponent component) {
+		AdjustmentScrollListenerForwarder listener = new AdjustmentScrollListenerForwarder(component);
+		component.getHorizontalScrollBar().addAdjustmentListener(listener);
+		component.getVerticalScrollBar().addAdjustmentListener(listener);
 	}
 }

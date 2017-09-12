@@ -19,18 +19,23 @@
 package info.bioinfweb.tic.toolkit;
 
 
+import info.bioinfweb.tic.scrolling.ScrollingTICComponent;
+
 import java.awt.Rectangle;
 
-import javax.swing.BoundedRangeModel;
 import javax.swing.JScrollBar;
 
 
 
 /**
  * Scrollable <i>Swing</i> components (implementing {@link ScrollingToolkitComponent}) can implement this
- * interface, if they provide scrolling functionality using a horizontal and a vertical {@link BoundedRangeModel},
+ * interface, if they provide scrolling functionality using a horizontal and a vertical {@link JScrollBar},
  * e.g. with {@link JScrollBar}s. It contains default method implementations that delegate the scrolling methods 
- * of {@link ScrollingToolkitComponent} to methods of the two {@link BoundedRangeModel}s.
+ * of {@link ScrollingToolkitComponent} to methods of the two {@link JScrollBar}s.
+ * <p>
+ * Implementations of this interface must call 
+ * {@link SwingComponentTools#registerScrollEventForwarders(JScrollBarsToolkitComponent)} in their 
+ * constructor to ensure the associated {@link ScrollingTICComponent} fires correct scroll events. 
  * <p>
  * Note that the default methods of this interface assume that value and extend of the models are given in pixels.
  * If there is e.g. a linear factor between the values of the models and pixel coordinate system of the scrolled
@@ -39,23 +44,23 @@ import javax.swing.JScrollBar;
  * @author Ben St&ouml;ver
  * @since 3.0.0
  * @see ScrollingToolkitComponent
- * @see ScrollPaneSwingToolkitComponent
+ * @see JScrollPaneToolkitComponent
  */
-public interface BoundedRangeModelSwingToolkitComponent extends ScrollingToolkitComponent {
-	public BoundedRangeModel getHorizontalModel();
+public interface JScrollBarsToolkitComponent extends ScrollingToolkitComponent {
+	public JScrollBar getHorizontalScrollBar();
 	
 	
-	public BoundedRangeModel getVerticalModel();
+	public JScrollBar getVerticalScrollBar();
 
 	
 	public default void setScrollOffset(int x, int y) {
-		getHorizontalModel().setValue(x);
-		getVerticalModel().setValue(y);
+		getHorizontalScrollBar().setValue(x);
+		getVerticalScrollBar().setValue(y);
 	}
 	
 	
 	public default Rectangle getVisibleRectangle() {
-		return new Rectangle(getHorizontalModel().getValue(), getVerticalModel().getValue(), 
-				getHorizontalModel().getExtent(), getVerticalModel().getExtent());
+		return new Rectangle(getHorizontalScrollBar().getValue(), getVerticalScrollBar().getValue(), 
+				getHorizontalScrollBar().getModel().getExtent(), getVerticalScrollBar().getModel().getExtent());
 	}
 }
