@@ -100,7 +100,7 @@ public class SwingApplication {
 		JMenuBar menuBar = new JMenuBar();
 		frame.setJMenuBar(menuBar);
 		
-		// Main menu to demonstrate scrolling programmatically:
+		// Create main menu to demonstrate programmatic scrolling:
 		JMenu mnScroll = new JMenu("Scroll");
 		menuBar.add(mnScroll);
 		

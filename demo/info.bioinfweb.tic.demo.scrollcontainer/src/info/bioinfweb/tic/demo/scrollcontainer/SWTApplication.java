@@ -88,6 +88,7 @@ public class SWTApplication {
 		// Create SWT-specific component instance and add it to the SWT GUI:
 		SWTComponentFactory.getInstance().getSWTComponent(scrollContainer, shell, SWT.NONE);
 		
+		// Create main menu to demonstrate programmatic scrolling:
 		Menu menu = new Menu(shell, SWT.BAR);
 		shell.setMenuBar(menu);
 		
