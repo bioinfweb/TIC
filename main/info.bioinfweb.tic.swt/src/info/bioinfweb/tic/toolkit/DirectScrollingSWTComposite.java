@@ -19,9 +19,8 @@
 package info.bioinfweb.tic.toolkit;
 
 
-import info.bioinfweb.tic.TICComponent;
 import info.bioinfweb.tic.scrolling.ScrollingTICComponent;
-import info.bioinfweb.tic.toolkit.ScrollingToolkitComponent;
+import info.bioinfweb.tic.scrolling.TICScrollEvent;
 
 import java.awt.Dimension;
 
@@ -38,8 +37,7 @@ public class DirectScrollingSWTComposite extends DefaultSWTComposite implements 
 	private Point origin = new Point (0, 0);
 	
 	
-	//TODO Should ticComponent be ScrolledTICComponent? If so, would the factories (and respective JavaDoc) need to adjusted?
-	public DirectScrollingSWTComposite(TICComponent ticComponent, Composite parent, int style) {
+	public DirectScrollingSWTComposite(ScrollingTICComponent ticComponent, Composite parent, int style) {
 		super(ticComponent, parent, style | SWT.V_SCROLL | SWT.H_SCROLL);
 	
 		if (!ticComponent.hasDefinedSize()) {
@@ -54,7 +52,7 @@ public class DirectScrollingSWTComposite extends DefaultSWTComposite implements 
 				Dimension dimension = getIndependentComponent().getSize();
 				scroll(destX, 0, 0, 0, dimension.width, dimension.height, false);
 				origin.x = -hSelection;
-				fireControlScrolled(false, true);
+				fireControlScrolled();
 			}
 		});
 
@@ -66,7 +64,7 @@ public class DirectScrollingSWTComposite extends DefaultSWTComposite implements 
 				Dimension dimension = getIndependentComponent().getSize();
 				scroll(0, destY, 0, 0, dimension.width, dimension.height, false);
 				origin.y = -vSelection;
-				fireControlScrolled(true, false);
+				fireControlScrolled();
 			}
 		});
 		
@@ -127,7 +125,7 @@ public class DirectScrollingSWTComposite extends DefaultSWTComposite implements 
 		origin.x = -scrollOffsetX;
 		origin.y = -scrollOffsetY;
 		repaint();
-		fireControlScrolled(true, true);  //TODO Should this be done here or e.g. in ScrolledTICComponent?
+		fireControlScrolled();
 	}
 	
 
@@ -137,10 +135,7 @@ public class DirectScrollingSWTComposite extends DefaultSWTComposite implements 
 	}
 
 
-	protected void fireControlScrolled(boolean verticalChange, boolean horizontalChange) {
-//		TICScrollEvent event = new TICScrollEvent(this, verticalChange, horizontalChange);
-//		for (ScrollListener listener : getIndependentComponent().getS) {
-//			listener.controlScrolled(event);
-//		}
+	protected void fireControlScrolled() {
+		getIndependentComponent().fireControlScrolled(new TICScrollEvent(this));
 	}
 }
