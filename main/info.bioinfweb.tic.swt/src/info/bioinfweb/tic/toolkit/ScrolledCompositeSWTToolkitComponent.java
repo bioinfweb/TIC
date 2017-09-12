@@ -40,7 +40,7 @@ import org.eclipse.swt.graphics.Point;
  * @author Ben St&ouml;ver
  * @since 3.0.0
  */
-public interface ScrollingSWTToolkitComponent extends ScrollingToolkitComponent, SWTToolkitComponent {
+public interface ScrolledCompositeSWTToolkitComponent extends ScrollingToolkitComponent, SWTToolkitComponent {
 	public ScrolledComposite getScrolledComposite();
 	
 

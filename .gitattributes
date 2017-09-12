@@ -127,7 +127,7 @@ main/info.bioinfweb.tic.swt/src/info/bioinfweb/tic/toolkit/AbstractSWTWidget.jav
 main/info.bioinfweb.tic.swt/src/info/bioinfweb/tic/toolkit/DefaultSWTComposite.java -text svneol=unset#text/plain
 main/info.bioinfweb.tic.swt/src/info/bioinfweb/tic/toolkit/DirectScrollingSWTComposite.java -text svneol=unset#text/plain
 main/info.bioinfweb.tic.swt/src/info/bioinfweb/tic/toolkit/SWTToolkitComponent.java -text svneol=unset#text/plain
-main/info.bioinfweb.tic.swt/src/info/bioinfweb/tic/toolkit/ScrollingSWTToolkitComponent.java -text svneol=unset#text/plain
+main/info.bioinfweb.tic.swt/src/info/bioinfweb/tic/toolkit/ScrolledCompositeSWTToolkitComponent.java -text svneol=unset#text/plain
 main/info.bioinfweb.tic.swt/src/info/bioinfweb/tic/toolkit/layoutdata/RowLayoutFactory.java -text svneol=unset#text/plain
 main/info.bioinfweb.tic.swt/src/info/bioinfweb/tic/toolkit/layoutdata/SWTLayoutDataFactory.java -text svneol=unset#text/plain
 main/info.bioinfweb.tic.swt/src/info/bioinfweb/tic/toolkit/layoutdata/SingleLayoutDataFactory.java -text svneol=unset#text/plain
