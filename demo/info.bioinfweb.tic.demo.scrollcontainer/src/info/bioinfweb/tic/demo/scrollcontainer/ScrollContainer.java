@@ -20,6 +20,7 @@ package info.bioinfweb.tic.demo.scrollcontainer;
 
 
 import java.awt.Dimension;
+import java.awt.Rectangle;
 
 import info.bioinfweb.tic.TICPaintEvent;
 import info.bioinfweb.tic.scrolling.ScrollingTICComponent;
@@ -54,5 +55,17 @@ public class ScrollContainer extends ScrollingTICComponent {
 	@Override
 	public Dimension getSize() {
 		return getOutputComponent().getSize();
+	}
+	
+	
+	public void scrollToCenter() {
+		Dimension size = getSize();
+		Rectangle r = getVisibleRectangle();
+		setScrollOffset((size.width - r.width) / 2, (size.height - r.height) / 2);
+	}
+	
+	
+	public void scrollToTopLeft() {
+		setScrollOffset(0, 0);
 	}
 }

@@ -22,15 +22,24 @@ package info.bioinfweb.tic.demo.scrollcontainer;
 import info.bioinfweb.tic.SwingComponentFactory;
 
 import java.awt.BorderLayout;
+import java.awt.Dimension;
 import java.awt.EventQueue;
+import java.awt.Rectangle;
 
 import javax.swing.JComponent;
 import javax.swing.JFrame;
+import javax.swing.JMenuBar;
+import javax.swing.JMenu;
+import javax.swing.JMenuItem;
+import javax.swing.UIManager;
+
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 
 
 /**
- * The <i>Swing</i> application class of this demo making use of {@link ScrollContainer} and its subcomponents.
+ * The <i>Swing</i> application class of this demo, making use of {@link ScrollContainer} and its subcomponents.
  * 
  * @author Ben St&ouml;ver
  */
@@ -69,6 +78,11 @@ public class SwingApplication {
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
+		try {
+			UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+		}
+		catch (Exception e) {}		
+		
 		frame = new JFrame();
 		frame.setSize(500, 500);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -82,5 +96,28 @@ public class SwingApplication {
 		
 		// Add Swing component to GUI:
 		frame.getContentPane().add(swingScrollContainer, BorderLayout.CENTER);
+		
+		JMenuBar menuBar = new JMenuBar();
+		frame.setJMenuBar(menuBar);
+		
+		// Main menu to demonstrate scrolling programmatically:
+		JMenu mnScroll = new JMenu("Scroll");
+		menuBar.add(mnScroll);
+		
+		JMenuItem mntmTopLeft = new JMenuItem("Top left");
+		mntmTopLeft.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				scrollContainer.scrollToTopLeft();
+			}
+		});
+		mnScroll.add(mntmTopLeft);
+		
+		JMenuItem mntmCenter = new JMenuItem("Center");
+		mntmCenter.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				scrollContainer.scrollToCenter();
+			}
+		});
+		mnScroll.add(mntmCenter);
 	}
 }

@@ -25,6 +25,10 @@ import org.eclipse.swt.SWT;
 import org.eclipse.swt.layout.FillLayout;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Shell;
+import org.eclipse.swt.widgets.Menu;
+import org.eclipse.swt.widgets.MenuItem;
+import org.eclipse.swt.events.SelectionAdapter;
+import org.eclipse.swt.events.SelectionEvent;
 
 
 
@@ -83,5 +87,32 @@ public class SWTApplication {
 		
 		// Create SWT-specific component instance and add it to the SWT GUI:
 		SWTComponentFactory.getInstance().getSWTComponent(scrollContainer, shell, SWT.NONE);
+		
+		Menu menu = new Menu(shell, SWT.BAR);
+		shell.setMenuBar(menu);
+		
+		MenuItem mntmScroll = new MenuItem(menu, SWT.CASCADE);
+		mntmScroll.setText("Scroll");
+		
+		Menu menu_1 = new Menu(mntmScroll);
+		mntmScroll.setMenu(menu_1);
+		
+		MenuItem mntmTopLeft = new MenuItem(menu_1, SWT.NONE);
+		mntmTopLeft.addSelectionListener(new SelectionAdapter() {
+			@Override
+			public void widgetSelected(SelectionEvent e) {
+				scrollContainer.scrollToTopLeft();
+			}
+		});
+		mntmTopLeft.setText("Top left");
+		
+		MenuItem mntmCenter = new MenuItem(menu_1, SWT.NONE);
+		mntmCenter.addSelectionListener(new SelectionAdapter() {
+			@Override
+			public void widgetSelected(SelectionEvent e) {
+				scrollContainer.scrollToCenter();
+			}
+		});
+		mntmCenter.setText("Center");
 	}
 }
