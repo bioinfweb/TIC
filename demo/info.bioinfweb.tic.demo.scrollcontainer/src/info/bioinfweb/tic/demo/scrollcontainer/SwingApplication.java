@@ -20,6 +20,8 @@ package info.bioinfweb.tic.demo.scrollcontainer;
 
 
 import info.bioinfweb.tic.SwingComponentFactory;
+import info.bioinfweb.tic.scrolling.TICScrollEvent;
+import info.bioinfweb.tic.scrolling.TICScrollListener;
 
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
@@ -32,6 +34,11 @@ import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.UIManager;
+import javax.swing.JPanel;
+
+import java.awt.FlowLayout;
+
+import javax.swing.JLabel;
 
 
 
@@ -92,12 +99,30 @@ public class SwingApplication {
 		JComponent swingScrollContainer = SwingComponentFactory.getInstance().getSwingComponent(scrollContainer);
 		
 		// Add Swing component to GUI:
+		frame.getContentPane().setLayout(new BorderLayout(0, 0));
 		frame.getContentPane().add(swingScrollContainer, BorderLayout.CENTER);
 		
+		
+		// Create status bar below the scroll container to demonstrate listening to scroll events:
+		JPanel statusPanel = new JPanel();
+		((FlowLayout)statusPanel.getLayout()).setAlignment(FlowLayout.LEFT);
+		frame.getContentPane().add(statusPanel, BorderLayout.SOUTH);
+		final JLabel statusLabel = new JLabel();
+		statusPanel.add(statusLabel);
+		
+		scrollContainer.getScrollListeners().add(new TICScrollListener() {
+			@Override
+			public void controlScrolled(TICScrollEvent event) {
+				statusLabel.setText("Scroll position: (" + scrollContainer.getScrollOffsetX() + ", " + 
+						scrollContainer.getScrollOffsetY() + ")");
+			}
+		});
+		
+		
+		// Create main menu to demonstrate programmatic scrolling:
 		JMenuBar menuBar = new JMenuBar();
 		frame.setJMenuBar(menuBar);
 		
-		// Create main menu to demonstrate programmatic scrolling:
 		JMenu mnScroll = new JMenu("Scroll");
 		menuBar.add(mnScroll);
 		

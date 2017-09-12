@@ -20,7 +20,8 @@ package info.bioinfweb.tic.demo.scrollcontainer;
 
 
 import info.bioinfweb.tic.SwingComponentFactory;
-import info.bioinfweb.tic.toolkit.ScrollPaneSwingToolkitComponent;
+import info.bioinfweb.tic.toolkit.JScrollPaneToolkitComponent;
+import info.bioinfweb.tic.toolkit.SwingComponentTools;
 
 import javax.swing.JComponent;
 import javax.swing.JScrollPane;
@@ -33,14 +34,14 @@ import javax.swing.JScrollPane;
  * This class inherits from {@link JScrollPane} and sets the <i>Swing</i> component created
  * from {@link OutputComponent} as its viewport view to be scrolled. 
  * <p>
- * A number of method implementations are inherited from {@link ScrollPaneSwingToolkitComponent}, which 
+ * A number of method implementations are inherited from {@link JScrollPaneToolkitComponent}, which 
  * provides respective default methods. This class only needs to provide references to its 
  * instances by implementing {@link #getSwingComponent()} and {@link #getScrollPane()}.
  * 
  * @author Ben St&ouml;ver
  * @since 3.0.0
  */
-public class SwingScrollContainer extends JScrollPane implements ScrollPaneSwingToolkitComponent {
+public class SwingScrollContainer extends JScrollPane implements JScrollPaneToolkitComponent {
 	private ScrollContainer independentComponent;
 	
 	
@@ -53,6 +54,7 @@ public class SwingScrollContainer extends JScrollPane implements ScrollPaneSwing
 	
 	private void init() {
 		setViewportView(SwingComponentFactory.getInstance().getSwingComponent(getIndependentComponent().getOutputComponent()));
+		SwingComponentTools.registerScrollEventForwarders(this);
 	}
 
 

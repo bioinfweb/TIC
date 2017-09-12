@@ -20,7 +20,7 @@ package info.bioinfweb.tic.demo.scrollcontainer;
 
 
 import info.bioinfweb.tic.SWTComponentFactory;
-import info.bioinfweb.tic.toolkit.ScrolledCompositeSWTToolkitComponent;
+import info.bioinfweb.tic.toolkit.ScrolledCompositeToolkitComponent;
 
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.ScrolledComposite;
@@ -29,7 +29,7 @@ import org.eclipse.swt.widgets.Control;
 
 
 
-public class SWTScrollContainer extends ScrolledComposite implements ScrolledCompositeSWTToolkitComponent {
+public class SWTScrollContainer extends ScrolledComposite implements ScrolledCompositeToolkitComponent {
 	private ScrollContainer independentComponent;
 
 	
