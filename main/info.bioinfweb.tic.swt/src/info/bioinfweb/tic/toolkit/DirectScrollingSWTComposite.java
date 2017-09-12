@@ -115,10 +115,10 @@ public class DirectScrollingSWTComposite extends DefaultSWTComposite implements 
 
 	@Override
 	public void setScrollOffset(int scrollOffsetX, int scrollOffsetY) {
-		getHorizontalBar().setSelection(-scrollOffsetX);
-		getVerticalBar().setSelection(-scrollOffsetY);
-		origin.x = scrollOffsetX;
-		origin.y = scrollOffsetY;
+		getHorizontalBar().setSelection(scrollOffsetX);
+		getVerticalBar().setSelection(scrollOffsetY);
+		origin.x = -scrollOffsetX;
+		origin.y = -scrollOffsetY;
 		repaint();
 		fireControlScrolled(true, true);  //TODO Should this be done here or e.g. in ScrolledTICComponent?
 	}
