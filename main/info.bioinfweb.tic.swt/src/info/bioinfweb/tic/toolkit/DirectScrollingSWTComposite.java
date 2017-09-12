@@ -20,6 +20,7 @@ package info.bioinfweb.tic.toolkit;
 
 
 import info.bioinfweb.tic.TICComponent;
+import info.bioinfweb.tic.scrolling.ScrollingTICComponent;
 import info.bioinfweb.tic.toolkit.ScrollingToolkitComponent;
 
 import java.awt.Dimension;
@@ -100,6 +101,12 @@ public class DirectScrollingSWTComposite extends DefaultSWTComposite implements 
 	}
   
 	
+	@Override
+	public ScrollingTICComponent getIndependentComponent() {
+		return (ScrollingTICComponent)super.getIndependentComponent();
+	}
+
+
 	//TODO Refactor superclass so that the algebraic sign of these methods is identical with that of the methods in ScrolledTICCompnent, so that values do not have to be negated in getVisibleRectangle() below.
 	@Override
 	protected int getScrollOffsetX() {
