@@ -34,12 +34,12 @@ import org.eclipse.swt.widgets.Listener;
 
 
 
-public class DirectScrollingSWTComposite extends DefaultSWTComposite implements ScrollingToolkitComponent {
+public class DirectPaintingSWTScrollContainer extends DefaultSWTComposite implements ScrollingToolkitComponent {
 	private TICComponent outputComponent;
 	private Point origin = new Point (0, 0);
 	
 	
-	public DirectScrollingSWTComposite(ScrollingTICComponent ticComponent, Composite parent, int style, 
+	public DirectPaintingSWTScrollContainer(ScrollingTICComponent ticComponent, Composite parent, int style, 
 			TICComponent outputComponent) {
 		
 		super(ticComponent, parent, style | SWT.V_SCROLL | SWT.H_SCROLL);

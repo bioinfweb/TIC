@@ -41,8 +41,8 @@ public class AbstractSWTMouseEventForwarder<L extends EventListener> extends Abs
 	
 	
 	/**
-	 * Edits the x-coordinate of a mouse event according to the values of {@link DirectScrollingSWTComposite#getScrollOffsetX()}
-	 * if the owner of the listener set implements {@link DirectScrollingSWTComposite}. Otherwise the value remains unchanged. 
+	 * Edits the x-coordinate of a mouse event according to the values of {@link DirectPaintingSWTScrollContainer#getScrollOffsetX()}
+	 * if the owner of the listener set implements {@link DirectPaintingSWTScrollContainer}. Otherwise the value remains unchanged. 
 	 * 
 	 * @param x the x-coordinate to be edited
 	 * @return the transformed x-coordinate
@@ -57,8 +57,8 @@ public class AbstractSWTMouseEventForwarder<L extends EventListener> extends Abs
 	
 	
 	/**
-	 * Edits the y-coordinate of a mouse event according to the values of {@link DirectScrollingSWTComposite#getScrollOffsetY()}
-	 * if the owner of the listener set implements {@link DirectScrollingSWTComposite}. Otherwise the value remains unchanged. 
+	 * Edits the y-coordinate of a mouse event according to the values of {@link DirectPaintingSWTScrollContainer#getScrollOffsetY()}
+	 * if the owner of the listener set implements {@link DirectPaintingSWTScrollContainer}. Otherwise the value remains unchanged. 
 	 * 
 	 * @param y the y-coordinate to be edited
 	 * @return the transformed y-coordinate
