@@ -65,13 +65,37 @@ public class DefaultSWTComposite extends AbstractSWTWidget {
 	}
 
 
+	/**
+	 * This method can be overwritten be inherited classes to provide direct scrolling. This
+	 * default implementation always returns 0. 
+	 * 
+	 * @return the paint offset on x
+	 */
 	protected int getScrollOffsetX() {
 		return 0;
 	}
 
 
+	/**
+	 * This method can be overwritten be inherited classes to provide direct scrolling. This
+	 * default implementation always returns 0. 
+	 * 
+	 * @return the paint offset on y
+	 */
 	protected int getScrollOffsetY() {
 		return 0;
+	}
+	
+	
+	/**
+	 * This method may be overwritten be inherited classes to paint a <i>TIC</i> component that is not
+	 * the associated independent component, e.g. for direct scrolling of another {@link TICComponent}.
+	 * This default implementation returns the same instance of {@link #getIndependentComponent()}.
+	 * 
+	 * @return the <i>TIC</i> component to provide the paint method used by this toolkit component
+	 */
+	protected TICComponent getOutputComponent() {
+		return getIndependentComponent();
 	}
 
 
@@ -93,7 +117,7 @@ public class DefaultSWTComposite extends AbstractSWTWidget {
 			double offsetX = 1 + getScrollOffsetX();
 			double offsetY = 1 + getScrollOffsetY();
 			g.translate(-e.x + offsetX, -e.y + offsetY);
-			getIndependentComponent().paint(new TICPaintEvent(this, g, new Rectangle2D.Double(
+			getOutputComponent().paint(new TICPaintEvent(this, g, new Rectangle2D.Double(
 					e.x - offsetX, e.y - offsetY, e.width + 1, e.height + 1)));
       ImageData data = new ImageData(refreshArea.getWidth(), refreshArea.getHeight(), 24, 
       		new PaletteData(0xff, 0xff00, 0xff0000), 3 * refreshArea.getWidth(), 

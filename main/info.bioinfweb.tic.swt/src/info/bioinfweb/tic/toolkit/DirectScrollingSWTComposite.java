@@ -19,6 +19,7 @@
 package info.bioinfweb.tic.toolkit;
 
 
+import info.bioinfweb.tic.TICComponent;
 import info.bioinfweb.tic.scrolling.ScrollingTICComponent;
 import info.bioinfweb.tic.scrolling.TICScrollEvent;
 
@@ -34,22 +35,22 @@ import org.eclipse.swt.widgets.Listener;
 
 
 public class DirectScrollingSWTComposite extends DefaultSWTComposite implements ScrollingToolkitComponent {
+	private TICComponent outputComponent;
 	private Point origin = new Point (0, 0);
 	
 	
-	public DirectScrollingSWTComposite(ScrollingTICComponent ticComponent, Composite parent, int style) {
+	public DirectScrollingSWTComposite(ScrollingTICComponent ticComponent, Composite parent, int style, 
+			TICComponent outputComponent) {
+		
 		super(ticComponent, parent, style | SWT.V_SCROLL | SWT.H_SCROLL);
-	
-		if (!ticComponent.hasDefinedSize()) {
-			throw new IllegalArgumentException("The associated TIC component must have a defined size and must not return null for getSize() in order to be scrolled.");
-		}
+		this.outputComponent = outputComponent;
 		
 		getHorizontalBar().addListener(SWT.Selection, new Listener() {
 			@Override
 			public void handleEvent(Event event) {
 				int hSelection = getHorizontalBar().getSelection();
 				int destX = -hSelection - origin.x;
-				Dimension dimension = getIndependentComponent().getSize();
+				Dimension dimension = getOutputComponent().getSize();
 				scroll(destX, 0, 0, 0, dimension.width, dimension.height, false);
 				origin.x = -hSelection;
 				fireControlScrolled();
@@ -61,7 +62,7 @@ public class DirectScrollingSWTComposite extends DefaultSWTComposite implements 
 			public void handleEvent(Event event) {
 				int vSelection = getVerticalBar().getSelection();
 				int destY = -vSelection - origin.y;
-				Dimension dimension = getIndependentComponent().getSize();
+				Dimension dimension = getOutputComponent().getSize();
 				scroll(0, destY, 0, 0, dimension.width, dimension.height, false);
 				origin.y = -vSelection;
 				fireControlScrolled();
@@ -71,7 +72,7 @@ public class DirectScrollingSWTComposite extends DefaultSWTComposite implements 
 		addListener(SWT.Resize, new Listener() {
 			@Override
 			public void handleEvent(Event event) {
-				Dimension dimension = getIndependentComponent().getSize();
+				Dimension dimension = getOutputComponent().getSize();
 				Rectangle client = getClientArea();
 				getHorizontalBar().setMaximum(dimension.width);
 				getVerticalBar().setMaximum(dimension.height);
@@ -102,6 +103,16 @@ public class DirectScrollingSWTComposite extends DefaultSWTComposite implements 
 	@Override
 	public ScrollingTICComponent getIndependentComponent() {
 		return (ScrollingTICComponent)super.getIndependentComponent();
+	}
+
+
+	/**
+	 * Overwrites the method in {@link DefaultSWTComposite} to make sure that the output component and not 
+	 * the associated independent component is used to paint. 
+	 */
+	@Override
+	public TICComponent getOutputComponent() {
+		return outputComponent;
 	}
 
 
