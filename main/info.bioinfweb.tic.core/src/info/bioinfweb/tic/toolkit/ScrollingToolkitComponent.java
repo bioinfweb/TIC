@@ -26,17 +26,18 @@ import java.awt.Rectangle;
 
 
 /**
- * Interface to be implemented by all toolkit components used by scrolling <i>TIC</i> components. 
- * {@link ScrollingTICComponent} uses the defined methods to scroll the toolkit component.
+ * Interface to be implemented by all toolkit component scroll containers associated with scrolling 
+ * <i>TIC</i> components. {@link ScrollingTICComponent} delegates to {@link #setScrollOffset(int, int)}
+ * and {@link #getVisibleRectangle()}to scroll its content.
  * 
  * @author Ben St&ouml;ver
  * @since 3.0.0
  */
 public interface ScrollingToolkitComponent extends ToolkitComponent {
+	@Override
+  public ScrollingTICComponent getIndependentComponent();
+	
 	public void setScrollOffset(int x, int y);
 	
 	public Rectangle getVisibleRectangle();
-	
-	@Override
-  public ScrollingTICComponent getIndependentComponent();
 }

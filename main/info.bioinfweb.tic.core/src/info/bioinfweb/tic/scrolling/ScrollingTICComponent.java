@@ -20,6 +20,7 @@ package info.bioinfweb.tic.scrolling;
 
 
 import info.bioinfweb.tic.TICComponent;
+import info.bioinfweb.tic.exception.UnsupportedToolkitException;
 import info.bioinfweb.tic.toolkit.ScrollingToolkitComponent;
 
 import java.awt.Rectangle;
@@ -33,8 +34,9 @@ import java.util.Set;
  * All <i>TIC</i> components that contain scrolled content should be inherited from this class. It offer
  * toolkit-independent methods to control and manipulate the scroll position.
  * <p>
- * Inherited classes must make sure that their toolkit components implement 
- * {@link ScrollingToolkitComponent}. 
+ * Note that {@link #getSwingComponentClassName(Object...)} and {@link #getSWTComponentClassName(Object...)}
+ * must be overwritten to return names of classes that implement {@link ScrollingToolkitComponent}.
+ * The default implementations of this class throw an {@link UnsupportedToolkitException}.
  * 
  * @author Ben St&ouml;ver
  * @since 3.0.0
@@ -49,20 +51,26 @@ public abstract class ScrollingTICComponent extends TICComponent {
 		return (ScrollingToolkitComponent)super.getToolkitComponent();
 	}
 	
-	
+
 	/**
-	 * Default implementation that returns {@code info.bioinfweb.tic.toolkit.DirectScrollingSWTComposite}.
-	 * 
-	 * @see info.bioinfweb.tic.TICComponent#getSWTComponentClassName(java.lang.Object[])
+	 * Throws an {@link UnsupportedToolkitException}. Inherited classes should overwrite this method to
+	 * provide a <i>Swing</i> toolkit component that implements {@link ScrollingToolkitComponent}.
+	 */
+	@Override
+	protected String getSwingComponentClassName(Object... parameters) {
+		throw new UnsupportedToolkitException("This class does not provide any Swing toolkit component.");
+	}
+
+
+	/**
+	 * Throws an {@link UnsupportedToolkitException}. Inherited classes should overwrite this method to
+	 * provide an <i>SWT</i> toolkit component that implements {@link ScrollingToolkitComponent}.
 	 */
 	@Override
 	protected String getSWTComponentClassName(Object... parameters) {
-		return "info.bioinfweb.tic.toolkit.DirectScrollingSWTComposite";
+		throw new UnsupportedToolkitException("This class does not provide any SWT toolkit component.");
 	}
 
-	
-	//TODO Also return default Swing implementation?
-	
 
 	/**
 	 * Sets the current painting offset on x and y. This method should be used, if both coordinates are changed, instead
