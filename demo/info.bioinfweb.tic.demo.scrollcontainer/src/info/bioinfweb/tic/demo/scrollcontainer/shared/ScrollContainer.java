@@ -16,7 +16,7 @@
  * You should have received a copy of the GNU Lesser General Public License
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
-package info.bioinfweb.tic.demo.scrollcontainer;
+package info.bioinfweb.tic.demo.scrollcontainer.shared;
 
 
 import java.awt.Dimension;
@@ -38,13 +38,13 @@ public class ScrollContainer extends ScrollingTICComponent {
 
 	@Override
 	protected String getSwingComponentClassName(Object... parameters) {
-		return "info.bioinfweb.tic.demo.scrollcontainer.SwingScrollContainer";
+		return "info.bioinfweb.tic.demo.scrollcontainer.swing.SwingScrollContainer";
 	}
 
 
 	@Override
 	protected String getSWTComponentClassName(Object... parameters) {
-		return "info.bioinfweb.tic.demo.scrollcontainer.SWTScrollContainer";
+		return "info.bioinfweb.tic.demo.scrollcontainer.swt.SWTScrollContainer";
 	}
 
 

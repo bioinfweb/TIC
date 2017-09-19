@@ -16,10 +16,11 @@
  * You should have received a copy of the GNU Lesser General Public License
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
-package info.bioinfweb.tic.demo.scrollcontainer;
+package info.bioinfweb.tic.demo.scrollcontainer.swing;
 
 
 import info.bioinfweb.tic.SwingComponentFactory;
+import info.bioinfweb.tic.demo.scrollcontainer.shared.ScrollContainer;
 import info.bioinfweb.tic.scrolling.TICScrollEvent;
 import info.bioinfweb.tic.scrolling.TICScrollListener;
 
