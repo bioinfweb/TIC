@@ -19,35 +19,21 @@
 package info.bioinfweb.tic.demo.directscrolling;
 
 
+import info.bioinfweb.tic.TICComponent;
 import info.bioinfweb.tic.TICPaintEvent;
 import info.bioinfweb.tic.demo.simplecomponent.SierpinskiTrianglePainter;
-import info.bioinfweb.tic.scrolling.ScrollingTICComponent;
 
 import java.awt.Dimension;
 import java.awt.Graphics2D;
 import java.awt.RenderingHints;
 
-import org.eclipse.swt.custom.ScrolledComposite;
 
 
-
-/**
- * An example implementation of a <i>TIC</i> component that paints its fixed-sized contents on scrollable
- * toolkit components. In contrast to the scroll container demo, the toolkit components associated with
- * this class perform scrolling directly without using a scroll container like {@link ScrolledComposite}.
- * 
- * @author Ben St&ouml;ver
- */
-public class ScrollingOutputComponent extends ScrollingTICComponent {
+public class OutputComponent extends TICComponent {
 	public static final int WIDTH = 1000;
 	public static final int HEIGHT = (int)(Math.sin(Math.PI / 3) * WIDTH);  // Set a height that fits the bounding box of the equilateral triangle.
 	
 	
-	/**
-	 * Paints a Sierpinski triangle as an example component content.
-	 * 
-	 * @see info.bioinfweb.tic.TICComponent#paint(info.bioinfweb.tic.TICPaintEvent)
-	 */
 	@Override
 	public void paint(TICPaintEvent event) {
 		Graphics2D g = event.getGraphics();
@@ -57,14 +43,6 @@ public class ScrollingOutputComponent extends ScrollingTICComponent {
 	}
 
 	
-	/**
-	 * Returns the size this component would need to paint its entire contents. Note that this size differs 
-	 * (and may differ) from the actual component size (the size of the respective toolkit component),
-	 * if scroll bars are used to scroll the content. 
-	 * 
-	 * @return the size the component contents would need to be painted
-	 * @see info.bioinfweb.tic.TICComponent#getSize()
-	 */
 	@Override
 	public Dimension getSize() {
 		return new Dimension(WIDTH, HEIGHT);

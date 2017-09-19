@@ -41,7 +41,7 @@ import org.eclipse.swt.widgets.Shell;
 
 public class SWTApplication {	
 	protected Shell shell;
-	private ScrollingOutputComponent scrollingComponent;
+	private ScrollContainer scrollingComponent;
 	
 	
 	/**
@@ -91,7 +91,7 @@ public class SWTApplication {
 		shell.setLayout(layout);
 
 		// Create TIC component instance:
-		scrollingComponent = new ScrollingOutputComponent();
+		scrollingComponent = new ScrollContainer();
 		
 		// Create SWT-specific component instance and add it to the SWT GUI:
 		GridData gridData = new GridData();
@@ -151,6 +151,5 @@ public class SWTApplication {
 			}
 		});
 		mntmCenter.setText("Center");
-		
 	}
 }
