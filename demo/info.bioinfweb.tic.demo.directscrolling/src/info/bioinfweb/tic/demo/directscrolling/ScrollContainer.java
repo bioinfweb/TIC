@@ -20,7 +20,7 @@ package info.bioinfweb.tic.demo.directscrolling;
 
 
 import info.bioinfweb.tic.scrolling.ScrollingTICComponent;
-import info.bioinfweb.tic.toolkit.DirectScrollingSWTComposite;
+import info.bioinfweb.tic.toolkit.DirectPaintingSWTScrollContainer;
 
 import org.eclipse.swt.custom.ScrolledComposite;
 
@@ -44,13 +44,13 @@ public class ScrollContainer extends ScrollingTICComponent {
 	
 	@Override
 	protected String getSWTComponentClassName(Object... parameters) {
-		return "info.bioinfweb.tic.toolkit.DirectScrollingSWTComposite";
+		return "info.bioinfweb.tic.toolkit.DirectPaintingSWTScrollContainer";
 	}
 
 
 	/**
 	 * Passes the associated output component instances as the expected additional constructor
-	 * parameter to {@link DirectScrollingSWTComposite}.
+	 * parameter to {@link DirectPaintingSWTScrollContainer}.
 	 * 
 	 * @return an array containing the result of {@link #getOutputComponent()} as its only element.
 	 */
