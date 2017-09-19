@@ -165,10 +165,7 @@ public abstract class TICComponent {
 	 * does not prefer any size is also valid.
 	 * <p>
 	 * Note that this size may differ from the actual size of the toolkit component, e.g. if it specifies
-	 * a preferred size. In case of scrolling <i>TIC</i> components (e.g. classes inherited from 
-	 * {@link ScrollingToolkitComponent}) the size returned here denotes the component size that would be
-	 * needed to display all contents without scroll bars. If the toolkit component shows scroll bars, its
-	 * size would be smaller than the size returned here.
+	 * a preferred size.
 	 * <p>
 	 * This default implementation always returns {@code null}.
 	 * 
