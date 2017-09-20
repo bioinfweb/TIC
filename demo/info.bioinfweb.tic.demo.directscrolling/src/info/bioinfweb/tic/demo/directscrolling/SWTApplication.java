@@ -115,7 +115,7 @@ public class SWTApplication {
 
 		scrollingComponent.getScrollListeners().add(new TICScrollListener() {
 			@Override
-			public void controlScrolled(TICScrollEvent event) {
+			public void contentScrolled(TICScrollEvent event) {
 				statusLabel.setText("Scroll position: (" + scrollingComponent.getScrollOffsetX() + ", " + 
 						scrollingComponent.getScrollOffsetY() + ")");
 			}
