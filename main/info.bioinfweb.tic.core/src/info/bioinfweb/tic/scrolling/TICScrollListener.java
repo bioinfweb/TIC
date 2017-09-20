@@ -21,5 +21,5 @@ package info.bioinfweb.tic.scrolling;
 
 
 public interface TICScrollListener {
-	public void controlScrolled(TICScrollEvent event);
+	public void contentScrolled(TICScrollEvent event);
 }

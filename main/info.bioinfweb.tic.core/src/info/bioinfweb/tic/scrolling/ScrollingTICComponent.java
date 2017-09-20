@@ -191,7 +191,7 @@ public abstract class ScrollingTICComponent extends TICComponent {
 	 */
 	public void fireControlScrolled(TICScrollEvent event) {
 		for (TICScrollListener listener : scrollListeners) {
-			listener.controlScrolled(event);
+			listener.contentScrolled(event);
 		}
 	}
 }
