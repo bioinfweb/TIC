@@ -56,7 +56,7 @@ public class SwingScrollContainer extends JScrollPane implements JScrollPaneTool
 	
 	private void init() {
 		setViewportView(SwingComponentFactory.getInstance().getSwingComponent(getIndependentComponent().getOutputComponent()));
-		SwingComponentTools.registerScrollEventForwarders(this);
+		SwingComponentTools.registerScrollEventForwarders(this);  // All Swing implementations of ScrollingToolkirComponent need to do this in order to have scroll events working in the associated Scrolling TICComponent.
 	}
 
 

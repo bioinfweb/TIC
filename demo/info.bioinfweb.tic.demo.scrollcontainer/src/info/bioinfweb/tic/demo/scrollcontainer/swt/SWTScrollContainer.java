@@ -47,7 +47,7 @@ public class SWTScrollContainer extends ScrolledComposite implements ScrolledCom
 		Composite swtOutputComponent = SWTComponentFactory.getInstance().getSWTComponent(
 				getIndependentComponent().getOutputComponent(), this, SWT.NO_BACKGROUND);
 		setContent(swtOutputComponent);
-		SWTComponentTools.registerScrollEventForwarders(this);
+		SWTComponentTools.registerScrollEventForwarders(this);  // All SWT implementations of ScrollingToolkirComponent need to do this in order to have scroll events working in the associated Scrolling TICComponent.
 	}
 
 
