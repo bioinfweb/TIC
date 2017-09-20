@@ -25,15 +25,34 @@ import java.util.EventObject;
 
 
 
+/**
+ * An object describing a scroll event of a {@link ScrollingTICComponent}. 
+ * 
+ * @author Ben St&ouml;ver
+ * @since 3.0.0
+ */
 public class TICScrollEvent extends EventObject {
 	private static final long serialVersionUID = 1L;
 
 
+	/**
+	 * Creates a new instance of this class.
+	 * 
+	 * @param source the source component triggering the event
+	 */
 	public TICScrollEvent(ScrollingToolkitComponent source) {
 		super(source);
 	}
 
 
+	/**
+	 * Returns the {@link ScrollingTICComponent} that triggered the event.
+	 * <p>
+	 * Use {@link ScrollingTICComponent#getScrollOffsetX()} and {@link ScrollingTICComponent#getScrollOffsetY()}
+	 * to determine the new scroll position. 
+	 * 
+	 * @return a reference to the scroll container where the scrolling took place
+	 */
 	@Override
 	public ScrollingToolkitComponent getSource() {
 		return (ScrollingToolkitComponent)super.getSource();

@@ -20,6 +20,18 @@ package info.bioinfweb.tic.scrolling;
 
 
 
+/**
+ * Listener interface to be implemented by classes that want to be informed in changes of the scroll position
+ * of instances of {@link ScrollingTICComponent}.
+ * 
+ * @author Ben St&ouml;ver
+ * @since 3.0.0
+ */
 public interface TICScrollListener {
+	/**
+	 * Fired after the contents of a {@link ScrollingTICComponent} have been scrolled.
+	 * 
+	 * @param event an object describing the scroll event 
+	 */
 	public void contentScrolled(TICScrollEvent event);
 }
