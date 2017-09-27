@@ -77,6 +77,11 @@ public interface ToolkitComponent {
 	public boolean isFocusOwner();
 	
 	/**
+	 * Requests the focus for the toolkit component to receive keyboard events.
+	 */
+	public void requestFocus();
+	
+	/**
 	 * Returns the current size of this component.
 	 * 
 	 * @return the size this component currently has
