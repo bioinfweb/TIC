@@ -19,6 +19,7 @@
 package info.bioinfweb.tic.toolkit;
 
 
+import info.bioinfweb.tic.SWTComponentFactory;
 import info.bioinfweb.tic.TICComponent;
 import info.bioinfweb.tic.scrolling.ScrollingTICComponent;
 import info.bioinfweb.tic.scrolling.TICScrollEvent;
@@ -39,11 +40,21 @@ public class DirectPaintingSWTScrollContainer extends DefaultSWTComposite implem
 	private Point origin = new Point (0, 0);
 	
 	
+	/**
+	 * Creates a new instance of this class that forwards key and mouse events to {@code outputComponent}.
+	 * The mouse events will have transformed coordinates according to the current scroll position.
+	 * 
+	 * @param ticComponent the <i>TIC</i> component associated with the returned instance (the scroll container)
+	 * @param parent the <i>SWT</i> parent composite
+	 * @param style the <i>SWT<i> style attributes
+	 * @param outputComponent the <i>TIC</i> component to be scrolled by the returned instance
+	 */
 	public DirectPaintingSWTScrollContainer(ScrollingTICComponent ticComponent, Composite parent, int style, 
 			TICComponent outputComponent) {
 		
 		super(ticComponent, parent, style | SWT.V_SCROLL | SWT.H_SCROLL);
 		this.outputComponent = outputComponent;
+		SWTComponentFactory.getInstance().registerEventForwarders(outputComponent, this, true);
 		
 		getHorizontalBar().addListener(SWT.Selection, new Listener() {
 			@Override

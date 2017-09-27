@@ -35,11 +35,42 @@ import java.util.EventListener;
  * @param <L> the type of lister to forward events to
  */
 public class AbstractSWTMouseEventForwarder<L extends EventListener> extends AbstractEventForwarder<L> {
-	public AbstractSWTMouseEventForwarder(TICListenerSet<L> listenerSet) {
+	private boolean transformMouseCoordinates;
+	
+	
+	/**
+	 * Creates a new instance of this class.
+	 * 
+	 * @param listenerSet the set of <i>TIC</i> listeners for forward events to
+	 * @param transformMouseCoordinates Specify {@code true} if mouse event coordinates shall be transformed
+	 *        depending on the scroll position of the toolkit component of the owner of the listener set or 
+	 *        {@code false} otherwise. (Specifying {@code true} only makes sense when the toolkit component 
+	 *        where the returned instance is registered implements {@link ScrollingToolkitComponent}. Otherwise
+	 *        the forwarder methods will throw {@link ClassCastException}s.)
+	 */
+	public AbstractSWTMouseEventForwarder(TICListenerSet<L> listenerSet, boolean transformMouseCoordinates) {
 		super(listenerSet);
+		if (transformMouseCoordinates && !(listenerSet.getOwner().getToolkitComponent() instanceof ScrollingToolkitComponent)) {
+			throw new IllegalArgumentException("The toolkit component of the owner of the specified listener set must "
+					+ "implement ScrollingToolkitComponent, if transformMouseCoordinates is true.");
+		}
+		else {
+			this.transformMouseCoordinates = transformMouseCoordinates;
+		}
 	}
-	
-	
+
+
+	/**
+	 * Determines whether the associated toolkit component is assumed to be a {@link ScrollingToolkitComponent}
+	 * and that mouse event coordinates shall be transformed depending in the scroll position. 
+	 * 
+	 * @return {@code true} if this instance is set to transform coordinates or {@code false} otherwise
+	 */
+	public boolean isTransformMouseCoordinates() {
+		return transformMouseCoordinates;
+	}
+
+
 	/**
 	 * Edits the x-coordinate of a mouse event according to the values of {@link DirectPaintingSWTScrollContainer#getScrollOffsetX()}
 	 * if the owner of the listener set implements {@link DirectPaintingSWTScrollContainer}. Otherwise the value remains unchanged. 
@@ -48,9 +79,9 @@ public class AbstractSWTMouseEventForwarder<L extends EventListener> extends Abs
 	 * @return the transformed x-coordinate
 	 */
 	protected int transformMouseX(int x) {
-		if (getListenerSet().getOwner().getToolkitComponent() instanceof ScrollingToolkitComponent) {
+		if (isTransformMouseCoordinates()) {
 			ScrollingToolkitComponent composite = (ScrollingToolkitComponent)getListenerSet().getOwner().getToolkitComponent();
-			x -= (int)Math.round(composite.getVisibleRectangle().getMinX());
+			x -= composite.getIndependentComponent().getScrollOffsetX();
 		}
 		return x;
 	}
@@ -64,9 +95,9 @@ public class AbstractSWTMouseEventForwarder<L extends EventListener> extends Abs
 	 * @return the transformed y-coordinate
 	 */
 	protected int transformMouseY(int y) {
-		if (getListenerSet().getOwner().getToolkitComponent() instanceof ScrollingToolkitComponent) {
+		if (isTransformMouseCoordinates()) {
 			ScrollingToolkitComponent composite = (ScrollingToolkitComponent)getListenerSet().getOwner().getToolkitComponent();
-			y -= (int)Math.round(composite.getVisibleRectangle().getMinY());
+			y -= composite.getIndependentComponent().getScrollOffsetY();
 		}
 		return y;
 	}

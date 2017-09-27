@@ -23,6 +23,8 @@ import info.bioinfweb.tic.exception.ToolkitSpecificInstantiationException;
 import info.bioinfweb.tic.input.SWTKeyEventForwarder;
 import info.bioinfweb.tic.input.SWTMouseEventForwarder;
 import info.bioinfweb.tic.input.SWTMouseWheelEventForwarder;
+import info.bioinfweb.tic.scrolling.ScrollingTICComponent;
+import info.bioinfweb.tic.toolkit.DirectPaintingSWTScrollContainer;
 import info.bioinfweb.tic.toolkit.ToolkitComponent;
 
 import java.lang.reflect.Constructor;
@@ -140,17 +142,37 @@ public class SWTComponentFactory {
 		}
 	}
 
+	
+	/**
+	 * Registers <i>SWT</i> event forwarders to allow <i>TIC</i> components to receive events.
+	 * <p>
+	 * This method is meant for internal use in <i>TIC</i>. It is usually not necessary to
+	 * call it in application code directly.
+	 * 
+	 * @param ticComponent the <i>TIC</i> component to receive forwarded events
+	 * @param toolkitComponent the <i>SWT</i> component that is the source of the input events
+	 * @param transformMouseCoordinates Determines whether mouse event coordinates shall be
+	 *        transformed according to the current scroll position of the toolkit component. 
+	 */
+	public void registerEventForwarders(TICComponent ticComponent, Composite toolkitComponent, 
+			boolean transformMouseCoordinates) {
+		
+		toolkitComponent.addKeyListener(new SWTKeyEventForwarder(ticComponent.getKeyListenersSet()));
+		SWTMouseEventForwarder mouseListeners = 
+				new SWTMouseEventForwarder(ticComponent.getMouseListenersSet(), transformMouseCoordinates);
+		toolkitComponent.addMouseListener(mouseListeners);
+		toolkitComponent.addMouseMoveListener(mouseListeners);
+		toolkitComponent.addMouseTrackListener(mouseListeners);
+		toolkitComponent.addMouseWheelListener(
+				new SWTMouseWheelEventForwarder(ticComponent.getMouseWheelListenersSet(), transformMouseCoordinates));
+	}
+	
 
 	private ToolkitComponent createAndRegisterSWTWidget(TICComponent ticComponent, Composite parent, int style, 
 			Object... additionalParameters) {
 		
 		Composite result = createSWTComponent(ticComponent, parent, style, additionalParameters);
-		result.addKeyListener(new SWTKeyEventForwarder(ticComponent.getKeyListenersSet()));
-		SWTMouseEventForwarder mouseListeners = new SWTMouseEventForwarder(ticComponent.getMouseListenersSet());
-		result.addMouseListener(mouseListeners);
-		result.addMouseMoveListener(mouseListeners);
-		result.addMouseTrackListener(mouseListeners);
-		result.addMouseWheelListener(new SWTMouseWheelEventForwarder(ticComponent.getMouseWheelListenersSet()));
+		registerEventForwarders(ticComponent, result, false);
 		return (ToolkitComponent)result;
 	}
 

@@ -20,6 +20,7 @@ package info.bioinfweb.tic.input;
 
 
 import info.bioinfweb.tic.TICComponent;
+import info.bioinfweb.tic.toolkit.ScrollingToolkitComponent;
 
 import org.eclipse.swt.events.MouseEvent;
 import org.eclipse.swt.events.MouseWheelListener;
@@ -37,8 +38,20 @@ import org.eclipse.swt.events.MouseWheelListener;
  * @bioinfweb.module info.bioinfweb.tic.swt
  */
 public class SWTMouseWheelEventForwarder extends AbstractSWTMouseEventForwarder<TICMouseWheelListener> implements MouseWheelListener {
-	public SWTMouseWheelEventForwarder(TICListenerSet<TICMouseWheelListener> listenerSet) {
-		super(listenerSet);
+	/**
+	 * Creates a new instance of this class.
+	 * 
+	 * @param listenerSet the set of <i>TIC</i> listeners for forward events to
+	 * @param transformMouseCoordinates Specify {@code true} if mouse event coordinates shall be transformed
+	 *        depending on the scroll position of the toolkit component of the owner of the listener set or 
+	 *        {@code false} otherwise. (Specifying {@code true} only makes sense when working with scrolling 
+	 *        components.)
+	 * @throws IllegalArgumentException if {@code transformMouseCoordinates = true} was specified and the 
+	 *         toolkit component of the owner of {@code listenerSet} does not implement 
+	 *         {@link ScrollingToolkitComponent}. 
+	 */
+	public SWTMouseWheelEventForwarder(TICListenerSet<TICMouseWheelListener> listenerSet, boolean transformMouseCoordinates) {
+		super(listenerSet, transformMouseCoordinates);
 	}
 
 
