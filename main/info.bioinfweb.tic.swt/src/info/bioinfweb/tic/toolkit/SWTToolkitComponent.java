@@ -84,4 +84,10 @@ public interface SWTToolkitComponent extends ToolkitComponent {
 	default public boolean isFocusOwner() {
 		return getSWTComponent().isFocusControl();
 	}
+
+	
+	@Override
+	default public void requestFocus() {
+		getSWTComponent().setFocus();
+	}
 }
