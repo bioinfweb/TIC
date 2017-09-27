@@ -20,7 +20,7 @@ package info.bioinfweb.tic.input;
 
 
 import info.bioinfweb.tic.TICComponent;
-import info.bioinfweb.tic.toolkit.ScrollingToolkitComponent;
+import info.bioinfweb.tic.scrolling.ScrollingTICComponent;
 
 import org.eclipse.swt.events.MouseEvent;
 import org.eclipse.swt.events.MouseListener;
@@ -48,16 +48,12 @@ public class SWTMouseEventForwarder extends AbstractSWTMouseEventForwarder<TICMo
 	 * Creates a new instance of this class.
 	 * 
 	 * @param listenerSet the set of <i>TIC</i> listeners for forward events to
-	 * @param transformMouseCoordinates Specify {@code true} if mouse event coordinates shall be transformed
-	 *        depending on the scroll position of the toolkit component of the owner of the listener set or 
-	 *        {@code false} otherwise. (Specifying {@code true} only makes sense when working with scrolling 
-	 *        components.)
-	 * @throws IllegalArgumentException if {@code transformMouseCoordinates = true} was specified and the 
-	 *         toolkit component of the owner of {@code listenerSet} does not implement 
-	 *         {@link ScrollingToolkitComponent}. 
+	 * @param scrolledComponent Optional parameter that allows to specify a scrolled component that will be the
+	 *        receiver of forwarded events. If the receiver is not a scrolled component and no mouse coordinate
+	 *        transformation shall be performed, {@code null} can be specified here. 
 	 */
-	public SWTMouseEventForwarder(TICListenerSet<TICMouseListener> listenerSet, boolean transformMouseCoordinates) {
-		super(listenerSet, transformMouseCoordinates);
+	public SWTMouseEventForwarder(TICListenerSet<TICMouseListener> listenerSet, ScrollingTICComponent scrolledComponent) {
+		super(listenerSet, scrolledComponent);
 	}
 
 

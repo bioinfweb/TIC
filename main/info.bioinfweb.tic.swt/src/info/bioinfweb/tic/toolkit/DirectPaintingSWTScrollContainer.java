@@ -54,7 +54,7 @@ public class DirectPaintingSWTScrollContainer extends DefaultSWTComposite implem
 		
 		super(ticComponent, parent, style | SWT.V_SCROLL | SWT.H_SCROLL);
 		this.outputComponent = outputComponent;
-		SWTComponentFactory.getInstance().registerEventForwarders(outputComponent, this, true);
+		SWTComponentFactory.getInstance().registerEventForwarders(outputComponent, this, ticComponent);
 		
 		getHorizontalBar().addListener(SWT.Selection, new Listener() {
 			@Override

@@ -151,20 +151,20 @@ public class SWTComponentFactory {
 	 * 
 	 * @param ticComponent the <i>TIC</i> component to receive forwarded events
 	 * @param toolkitComponent the <i>SWT</i> component that is the source of the input events
-	 * @param transformMouseCoordinates Determines whether mouse event coordinates shall be
-	 *        transformed according to the current scroll position of the toolkit component. 
+	 * @param scrollingComponent the <i>TIC</i> component acting as the scroll container or {@code null}
+	 *        if {@code ticComponent} is not contained within a scroll container
 	 */
 	public void registerEventForwarders(TICComponent ticComponent, Composite toolkitComponent, 
-			boolean transformMouseCoordinates) {
+			ScrollingTICComponent scrollingComponent) {
 		
 		toolkitComponent.addKeyListener(new SWTKeyEventForwarder(ticComponent.getKeyListenersSet()));
 		SWTMouseEventForwarder mouseListeners = 
-				new SWTMouseEventForwarder(ticComponent.getMouseListenersSet(), transformMouseCoordinates);
+				new SWTMouseEventForwarder(ticComponent.getMouseListenersSet(), scrollingComponent);
 		toolkitComponent.addMouseListener(mouseListeners);
 		toolkitComponent.addMouseMoveListener(mouseListeners);
 		toolkitComponent.addMouseTrackListener(mouseListeners);
 		toolkitComponent.addMouseWheelListener(
-				new SWTMouseWheelEventForwarder(ticComponent.getMouseWheelListenersSet(), transformMouseCoordinates));
+				new SWTMouseWheelEventForwarder(ticComponent.getMouseWheelListenersSet(), scrollingComponent));
 	}
 	
 
@@ -172,7 +172,7 @@ public class SWTComponentFactory {
 			Object... additionalParameters) {
 		
 		Composite result = createSWTComponent(ticComponent, parent, style, additionalParameters);
-		registerEventForwarders(ticComponent, result, false);
+		registerEventForwarders(ticComponent, result, null);
 		return (ToolkitComponent)result;
 	}
 

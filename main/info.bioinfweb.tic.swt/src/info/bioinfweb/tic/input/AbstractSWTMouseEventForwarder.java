@@ -19,6 +19,7 @@
 package info.bioinfweb.tic.input;
 
 
+import info.bioinfweb.tic.scrolling.ScrollingTICComponent;
 import info.bioinfweb.tic.toolkit.ScrollingToolkitComponent;
 
 import java.util.EventListener;
@@ -35,39 +36,20 @@ import java.util.EventListener;
  * @param <L> the type of lister to forward events to
  */
 public class AbstractSWTMouseEventForwarder<L extends EventListener> extends AbstractEventForwarder<L> {
-	private boolean transformMouseCoordinates;
+	private ScrollingTICComponent scrolledComponent;
 	
 	
 	/**
 	 * Creates a new instance of this class.
 	 * 
 	 * @param listenerSet the set of <i>TIC</i> listeners for forward events to
-	 * @param transformMouseCoordinates Specify {@code true} if mouse event coordinates shall be transformed
-	 *        depending on the scroll position of the toolkit component of the owner of the listener set or 
-	 *        {@code false} otherwise. (Specifying {@code true} only makes sense when the toolkit component 
-	 *        where the returned instance is registered implements {@link ScrollingToolkitComponent}. Otherwise
-	 *        the forwarder methods will throw {@link ClassCastException}s.)
+	 * @param scrolledComponent Optional parameter that allows to specify a scrolled component that will be the
+	 *        receiver of forwarded events. If the receiver is not a scrolled component and no mouse coordinate
+	 *        transformation shall be performed, {@code null} can be specified here. 
 	 */
-	public AbstractSWTMouseEventForwarder(TICListenerSet<L> listenerSet, boolean transformMouseCoordinates) {
+	public AbstractSWTMouseEventForwarder(TICListenerSet<L> listenerSet, ScrollingTICComponent scrolledComponent) {
 		super(listenerSet);
-		if (transformMouseCoordinates && !(listenerSet.getOwner().getToolkitComponent() instanceof ScrollingToolkitComponent)) {
-			throw new IllegalArgumentException("The toolkit component of the owner of the specified listener set must "
-					+ "implement ScrollingToolkitComponent, if transformMouseCoordinates is true.");
-		}
-		else {
-			this.transformMouseCoordinates = transformMouseCoordinates;
-		}
-	}
-
-
-	/**
-	 * Determines whether the associated toolkit component is assumed to be a {@link ScrollingToolkitComponent}
-	 * and that mouse event coordinates shall be transformed depending in the scroll position. 
-	 * 
-	 * @return {@code true} if this instance is set to transform coordinates or {@code false} otherwise
-	 */
-	public boolean isTransformMouseCoordinates() {
-		return transformMouseCoordinates;
+		this.scrolledComponent = scrolledComponent;
 	}
 
 
@@ -79,9 +61,8 @@ public class AbstractSWTMouseEventForwarder<L extends EventListener> extends Abs
 	 * @return the transformed x-coordinate
 	 */
 	protected int transformMouseX(int x) {
-		if (isTransformMouseCoordinates()) {
-			ScrollingToolkitComponent composite = (ScrollingToolkitComponent)getListenerSet().getOwner().getToolkitComponent();
-			x -= composite.getIndependentComponent().getScrollOffsetX();
+		if (scrolledComponent != null) {
+			x += scrolledComponent.getScrollOffsetX();  // Offset is <= 0.
 		}
 		return x;
 	}
@@ -95,9 +76,8 @@ public class AbstractSWTMouseEventForwarder<L extends EventListener> extends Abs
 	 * @return the transformed y-coordinate
 	 */
 	protected int transformMouseY(int y) {
-		if (isTransformMouseCoordinates()) {
-			ScrollingToolkitComponent composite = (ScrollingToolkitComponent)getListenerSet().getOwner().getToolkitComponent();
-			y -= composite.getIndependentComponent().getScrollOffsetY();
+		if (scrolledComponent != null) {
+			y += scrolledComponent.getScrollOffsetY();  // Offset is <= 0.
 		}
 		return y;
 	}
