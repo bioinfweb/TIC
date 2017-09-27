@@ -20,6 +20,8 @@ package info.bioinfweb.tic.demo.directscrolling;
 
 
 import info.bioinfweb.tic.SWTComponentFactory;
+import info.bioinfweb.tic.input.TICMouseAdapter;
+import info.bioinfweb.tic.input.TICMouseEvent;
 import info.bioinfweb.tic.scrolling.TICScrollEvent;
 import info.bioinfweb.tic.scrolling.TICScrollListener;
 
@@ -35,6 +37,7 @@ import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Menu;
 import org.eclipse.swt.widgets.MenuItem;
+import org.eclipse.swt.widgets.MessageBox;
 import org.eclipse.swt.widgets.Shell;
 
 
@@ -42,6 +45,7 @@ import org.eclipse.swt.widgets.Shell;
 public class SWTApplication {	
 	protected Shell shell;
 	private ScrollContainer scrollingComponent;
+	private MessageBox messageBox;
 	
 	
 	/**
@@ -118,6 +122,19 @@ public class SWTApplication {
 			public void contentScrolled(TICScrollEvent event) {
 				statusLabel.setText("Scroll position: (" + scrollingComponent.getScrollOffsetX() + ", " + 
 						scrollingComponent.getScrollOffsetY() + ")");
+			}
+		});
+		
+		
+		// Show message box with transformed coordinates on mouse click: 
+		messageBox = new MessageBox(shell, SWT.ICON_INFORMATION | SWT.OK);
+		messageBox.setText("Mouse Listener Test");
+		scrollingComponent.getOutputComponent().addMouseListener(new TICMouseAdapter() {
+			@Override
+			public boolean mousePressed(TICMouseEvent event) {
+				messageBox.setMessage("Mouse clicked at (" + event.getComponentX() + ", " + event.getComponentY() + ").");
+				messageBox.open();
+				return true;
 			}
 		});
 		
