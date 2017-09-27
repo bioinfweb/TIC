@@ -30,7 +30,7 @@ import org.eclipse.swt.events.MouseTrackListener;
 
 
 /**
- * Contains a list of {@link TICMouseListener}s and delegates all Swing and SWT events to the entries in this list.
+ * Contains a list of {@link TICMouseListener}s and delegates all <i>Swing</i> and <i>SWT</i> events to the entries in this list.
  * <p>
  * <b>Warning:</b> This class in meant for internal use by {@link TICComponent} and is not guaranteed to have an unchanged
  * API in future releases with the same major version number.
