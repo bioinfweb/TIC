@@ -76,23 +76,31 @@ public abstract class ScrollingTICComponent extends TICComponent {
 	 * Sets the current painting offset on x and y. This method should be used, if both coordinates are changed, instead
 	 * of calling {@link #setScrollOffsetX(int)} and {@link #setScrollOffsetY(int)} separately to avoid unnecessary
 	 * repainting.
+	 * <p>
+	 * If no toolkit component has yet been created, calling this method will have no effect.
 	 * 
 	 * @param x the new shift of the painting coordinate origin on x
 	 * @param y the new shift of the painting coordinate origin on y
 	 */
 	public void setScrollOffset(int x, int y) {
-		getToolkitComponent().setScrollOffset(x, y);
+		if (hasToolkitComponent()) {
+			getToolkitComponent().setScrollOffset(x, y);
+		}
 	}
 	
 	
 	/**
 	 * Sets the current painting offset on x. If this property is e.g. set 10, the component will be painted as if
 	 * it would be scrolled to the right by 10 px. (The left-most 10 px are not visible.)
+	 * <p>
+	 * If no toolkit component has yet been created, calling this method will have no effect.
 	 * 
 	 * @param scrollOffsetX the new shift of the painting coordinate origin on x
 	 */
 	public void setScrollOffsetX(int x) {
-		getToolkitComponent().setScrollOffset(x, getScrollOffsetY());
+		if (hasToolkitComponent()) {
+			getToolkitComponent().setScrollOffset(x, getScrollOffsetY());
+		}
 	}
 	//TODO Check if the doc here and in the next 3 methods is correct, or if the setted value must -10 instead of 10.
 	
@@ -100,11 +108,15 @@ public abstract class ScrollingTICComponent extends TICComponent {
 	/**
 	 * Sets the current painting offset on y. If this property is e.g. set 10, the component will be painted as if
 	 * it would be scrolled downwards by 10 px. (The top-most 10 px are not visible.)
+	 * <p>
+	 * If no toolkit component has yet been created, calling this method will have no effect.
 	 * 
 	 * @param y the new shift of the painting coordinate origin on y
 	 */
 	public void setScrollOffsetY(int y) {
-		getToolkitComponent().setScrollOffset(getScrollOffsetX(), y);
+		if (hasToolkitComponent()) {
+			getToolkitComponent().setScrollOffset(getScrollOffsetX(), y);
+		}
 	}
 	
 	
@@ -165,7 +177,12 @@ public abstract class ScrollingTICComponent extends TICComponent {
 	 * @return the currently visible rectangle
 	 */
 	public Rectangle getVisibleRectangle() {
-		return getToolkitComponent().getVisibleRectangle();
+		if (hasToolkitComponent()) {
+			return getToolkitComponent().getVisibleRectangle();
+		}
+		else {
+			return new Rectangle(0, 0);
+		}
 	}
 	
 	
