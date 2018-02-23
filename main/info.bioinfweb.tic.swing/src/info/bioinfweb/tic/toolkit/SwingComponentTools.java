@@ -43,6 +43,7 @@ public class SwingComponentTools {
 			Dimension size = toolkitComponent.getIndependentComponent().getSize();
 			component.setSize(size);
 			component.setPreferredSize(size);
+			component.doLayout();
 		}
 	}
 	
