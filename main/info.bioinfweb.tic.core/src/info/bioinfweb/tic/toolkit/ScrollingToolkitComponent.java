@@ -28,7 +28,7 @@ import java.awt.Rectangle;
 /**
  * Interface to be implemented by all toolkit component scroll containers associated with scrolling 
  * <i>TIC</i> components. {@link ScrollingTICComponent} delegates to {@link #setScrollOffset(int, int)}
- * and {@link #getVisibleRectangle()}to scroll its content.
+ * and {@link #getVisibleRectangle()} to scroll its content.
  * 
  * @author Ben St&ouml;ver
  * @since 3.0.0
