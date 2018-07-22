@@ -16,6 +16,10 @@ If you have further questions, feel free to contact support@bioinfweb.info.
 
 This *GitHub* repository in a synchronized mirror of the [master repository at bioinfweb](http://bioinfweb.info/Code/sventon/repos/TIC/list/). Feedback and pull requests are welcome. Synchronization was made possible by [*SubGit*](https://subgit.com/).
 
+## Issues
+
+If you want to submit a bug report or feature request, please use our public bug tracking system at http://bioinfweb.info/TIC/Bugs. (We do not manage issues on GitHub directly.)
+
 ## License
 
 *TIC* is distrubuted under [GNU General Lesser Public License Version 3](http://bioinfweb.info/TIC/License). See [NOTICE.txt](https://github.com/bioinfweb/TIC/blob/master/main/info.bioinfweb.tic.core/src/NOTICE.txt) for further details.
